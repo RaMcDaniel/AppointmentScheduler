@@ -34,18 +34,36 @@ public class WelcomeController implements Initializable {
     public Button welcomeAppointments;
     public Button welcomeExit;
 
-    public void onWelcomeYourSchedule(ActionEvent actionEvent) {
+    /** This method shows the screen with the user's schedule.
+     *
+     * @param actionEvent Not necessary to specify.
+     * @throws IOException if screen is not present.
+     */
+    public void onWelcomeYourSchedule(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/YourSchedule.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Your Schedule");
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void onWelcomeReports(ActionEvent actionEvent) {
+    public void onWelcomeReports(ActionEvent actionEvent) throws IOException{
+
     }
 
-    public void onWelcomeCustomers(ActionEvent actionEvent) {
+    public void onWelcomeCustomers(ActionEvent actionEvent) throws IOException{
     }
 
-    public void onWelcomeAppointments(ActionEvent actionEvent) {
+    public void onWelcomeAppointments(ActionEvent actionEvent) throws IOException{
+
     }
 
+    /** This returns to the login screen when exit button in clicked.
+     *
+     * @param actionEvent No need to specify.
+     * @throws IOException If screen is not present.
+     */
     public void onWelcomeExit(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

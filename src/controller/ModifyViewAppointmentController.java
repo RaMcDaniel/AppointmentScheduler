@@ -7,20 +7,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/** This class controls the Login screen.
+/** This class controls the View/Modify Appointment screen.
  *
  */
-public class LoginController implements Initializable {
-    public TextField loginUsername;
-    public TextField loginPassword;
-    public Button login;
+public class ModifyViewAppointmentController implements Initializable {
+
+    public Button modifyAppointmentExit;
+    public Button modifyAppointmentViewSchedule;
 
     /** This contains information that will populate when window is called.
      *
@@ -32,17 +31,20 @@ public class LoginController implements Initializable {
 
     }
 
-    public void onLoginUsername(ActionEvent actionEvent) {
+    public void onModifyAppointmentExit(ActionEvent actionEvent) {
     }
 
-    public void onLoginPassword(ActionEvent actionEvent) {
-    }
 
-    public void onLogin(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
+    /** This method returns user to their schedule when clicked.
+     *
+     * @param actionEvent Not necessary to specify.
+     * @throws IOException if screen isn't present.
+     */
+    public void onModifyAppointmentViewSchedule(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/YourSchedule.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
-        stage.setTitle("Welcome to Appointment Scheduler");
+        stage.setTitle("Your Schedule");
         stage.setScene(scene);
         stage.show();
     }

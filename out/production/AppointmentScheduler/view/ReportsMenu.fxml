@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsMenuController">
+   <children>
+      <Label layoutX="188.0" layoutY="41.0" text="Choose a Report to Run">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="reportMenuTotals" layoutX="239.0" layoutY="117.0" mnemonicParsing="false" onAction="#onReportMenuTotals" text="Appointment Totals" />
+      <Button fx:id="reportMenuSchedules" layoutX="251.0" layoutY="174.0" mnemonicParsing="false" onAction="#onReportMenuSchedules" text="User Schedules" />
+      <Button fx:id="reportMenuExtra" layoutX="271.0" layoutY="229.0" mnemonicParsing="false" onAction="#onReportMenuExtra" text="Mystery" />
+      <Button fx:id="reportMenuExit" layoutX="507.0" layoutY="336.0" mnemonicParsing="false" onAction="#onReportMenuExit" text="Exit" />
+      <Label layoutX="374.0" layoutY="340.0" text="Return to Main Menu" />
+   </children>
+</AnchorPane>

@@ -80,7 +80,7 @@ public class AppointmentMenuController implements Initializable {
     public void onAllAppointmentsExit(ActionEvent actionEvent) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 600, 400);
         stage.setTitle("Welcome to Appointment Scheduler");
         stage.setScene(scene);
         stage.show();

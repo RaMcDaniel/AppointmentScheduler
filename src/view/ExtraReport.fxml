@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExtraReportController">
+   <children>
+      <Label layoutX="317.0" layoutY="25.0" text=" MYSTERY Report">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="extraReportTextField" layoutX="18.0" layoutY="66.0" onAction="#onExtraReportTextField" prefHeight="478.0" prefWidth="762.0" />
+      <Button fx:id="exit" layoutX="701.0" layoutY="560.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
+   </children>
+</AnchorPane>

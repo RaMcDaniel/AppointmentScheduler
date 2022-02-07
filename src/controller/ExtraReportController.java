@@ -14,15 +14,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/** This class controls the Login screen.
+/** This class controls the extra report of your choice.
  *
  */
-public class LoginController implements Initializable {
-    public TextField loginUsername;
-    public TextField loginPassword;
-    public Button login;
+public class ExtraReportController implements Initializable {
+    public TextField extraReportTextField;
+    public Button exit;
 
-    /** This contains information that will populate when window is called.
+    /** This contains items initialized when window is created.
      *
      * @param url Not necessary to specify.
      * @param resourceBundle Not necessary to specify.
@@ -32,17 +31,19 @@ public class LoginController implements Initializable {
 
     }
 
-    public void onLoginUsername(ActionEvent actionEvent) {
+    public void onExtraReportTextField(ActionEvent actionEvent) {
     }
 
-    public void onLoginPassword(ActionEvent actionEvent) {
-    }
-
-    public void onLogin(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
+    /** This takes the user back to the 'reports' menu.
+     *
+     * @param actionEvent No need to specify.
+     * @throws IOException If screen is not present.
+     */
+    public void onExit(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsMenu.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);
-        stage.setTitle("Welcome to Appointment Scheduler");
+        stage.setTitle("Reports Menu");
         stage.setScene(scene);
         stage.show();
     }

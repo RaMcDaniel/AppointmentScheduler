@@ -36,10 +36,9 @@ public class YourScheduleController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onYourScheduleViewAppt(ActionEvent actionEvent) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyViewAppointment" +
-                ".fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyViewAppointment.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 800, 600);
         stage.setTitle("View/Modify Appointment");
         stage.setScene(scene);
         stage.show();

@@ -6,9 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.SortEvent;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +22,9 @@ public class AppointmentMenuController implements Initializable {
     public Button modifyAppointment;
     public Button deleteAppointment;
     public Button allAppointmentsExit;
+    public RadioButton allAppointmentViewWeekRadio;
+    public ToggleGroup allAppointmentWeekMonth;
+    public RadioButton allAppointmentViewMonthRadio;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,5 +66,19 @@ public class AppointmentMenuController implements Initializable {
         stage.setTitle("Welcome to Appointment Scheduler");
         stage.setScene(scene);
         stage.show();
+    }
+
+    /** This radio button toggles to the weekly schedule view.
+     *
+     * @param actionEvent Not necessary to specify.
+     */
+    public void onAllAppointmentViewWeekRadio(ActionEvent actionEvent) {
+    }
+
+    /** This radio button toggles to the monthly schedule view.
+     *
+     * @param actionEvent Not necessary to specify.
+     */
+    public void onAllAppointmentViewMonthRadio(ActionEvent actionEvent) {
     }
 }

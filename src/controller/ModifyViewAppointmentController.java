@@ -31,7 +31,18 @@ public class ModifyViewAppointmentController implements Initializable {
 
     }
 
-    public void onModifyAppointmentExit(ActionEvent actionEvent) {
+    /** This method returns user to the appointment menu.
+     *
+     * @param actionEvent Not necessary to specify.
+     * @throws IOException if screen isn't present.
+     */
+    public void onModifyAppointmentExit(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentMenu.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Appointments Menu");
+        stage.setScene(scene);
+        stage.show();
     }
 
 

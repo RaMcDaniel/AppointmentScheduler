@@ -53,7 +53,18 @@ public class WelcomeController implements Initializable {
         stage.show();
     }
 
+    /** This method shows the screen with the 'reports' menu.
+     *
+     * @param actionEvent Not necessary to specify.
+     * @throws IOException if screen is not present.
+     */
     public void onWelcomeReports(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 600, 400);
+        stage.setTitle("Run Reports");
+        stage.setScene(scene);
+        stage.show();
 
     }
 

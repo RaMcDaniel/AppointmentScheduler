@@ -26,7 +26,6 @@ public class AppointmentMenuController implements Initializable {
     public ToggleGroup allAppointmentWeekMonth;
     public RadioButton allAppointmentViewMonthRadio;
     public RadioButton allAppointmentViewAllRadio;
-    public ToggleGroup allAppointmentWeekMonth1;
 
     /** This contains items initialized when window is created.
      *
@@ -50,7 +49,7 @@ public class AppointmentMenuController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AddAppointment.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
-        stage.setTitle("View/Modify Appointment");
+        stage.setTitle("Add New Appointment");
         stage.setScene(scene);
         stage.show();
 

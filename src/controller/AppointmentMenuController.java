@@ -28,6 +28,11 @@ public class AppointmentMenuController implements Initializable {
     public RadioButton allAppointmentViewAllRadio;
     public ToggleGroup allAppointmentWeekMonth1;
 
+    /** This contains items initialized when window is created.
+     *
+     * @param url Not necessary to specify.
+     * @param resourceBundle Not necessary to specify.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -36,7 +41,19 @@ public class AppointmentMenuController implements Initializable {
     public void onAllAppointmentsTable(SortEvent<TableView> tableViewSortEvent) {
     }
 
+    /** This method takes user to the add appointment screen.
+     *
+     * @param actionEvent Not necessary to specify.
+     * @throws IOException if screen isn't present.
+     */
     public void onAddAppointment(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AddAppointment.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("View/Modify Appointment");
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     /** This method views an appointment on the view/modify screen.

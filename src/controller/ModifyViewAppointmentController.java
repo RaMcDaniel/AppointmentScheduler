@@ -7,6 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +24,17 @@ public class ModifyViewAppointmentController implements Initializable {
     public Button modifyAppointmentExit;
     public Button modifyAppointmentViewSchedule;
     public Button modAppointmentSave;
+    public TextField appointmentIDMod;
+    public TextField appointmentTitleMod;
+    public TextField appointmentDescriptionMod;
+    public TextField appointmentLocationMod;
+    public ComboBox chooseContactMod;
+    public ComboBox appointmentTypeMod;
+    public DatePicker appointmentDate;
+    public ComboBox startTime;
+    public ComboBox chooseCustomerIDMod;
+    public ComboBox chooseEndTime;
+    public TextField userIDMod;
 
     /** This contains information that will populate when window is called.
      *
@@ -61,6 +75,42 @@ public class ModifyViewAppointmentController implements Initializable {
         stage.show();
     }
 
-    public void onModAppointmentSave(ActionEvent actionEvent) {
+    public void onModAppointmentSave(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentMenu.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Appointments Menu");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void onAppointmentIDMod(ActionEvent actionEvent) {
+    }
+
+    public void onAppointmentTitleMod(ActionEvent actionEvent) {
+    }
+
+    public void onAppointmentDescriptionMod(ActionEvent actionEvent) {
+    }
+
+    public void onAppointmentLocationMod(ActionEvent actionEvent) {
+    }
+
+    public void onChooseContactMod(ActionEvent actionEvent) {
+    }
+
+    public void onAppointmentTypeMod(ActionEvent actionEvent) {
+    }
+
+    public void inAppointmentDate(ActionEvent actionEvent) {
+    }
+
+    public void onStartTime(ActionEvent actionEvent) {
+    }
+
+    public void onChooseCustomerIDMod(ActionEvent actionEvent) {
+    }
+
+    public void onChooseEndTime(ActionEvent actionEvent) {
     }
 }

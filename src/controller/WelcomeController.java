@@ -23,6 +23,11 @@ import java.util.ResourceBundle;
 public class WelcomeController implements Initializable {
 
 
+    /** This contains items initialized when window is created.
+     *
+     * @param url Not necessary to specify.
+     * @param resourceBundle Not necessary to specify.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

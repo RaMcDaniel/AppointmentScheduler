@@ -55,7 +55,18 @@ public class WelcomeController implements Initializable {
     public void onWelcomeCustomers(ActionEvent actionEvent) throws IOException{
     }
 
+    /** This takes the user to the appointment menu screen with the appointment button in clicked.
+     *
+     * @param actionEvent No need to specify.
+     * @throws IOException If screen is not present.
+     */
     public void onWelcomeAppointments(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentMenu.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Appointments Menu");
+        stage.setScene(scene);
+        stage.show();
 
     }
 

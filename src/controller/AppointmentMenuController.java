@@ -25,6 +25,8 @@ public class AppointmentMenuController implements Initializable {
     public RadioButton allAppointmentViewWeekRadio;
     public ToggleGroup allAppointmentWeekMonth;
     public RadioButton allAppointmentViewMonthRadio;
+    public RadioButton allAppointmentViewAllRadio;
+    public ToggleGroup allAppointmentWeekMonth1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,5 +82,12 @@ public class AppointmentMenuController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAllAppointmentViewMonthRadio(ActionEvent actionEvent) {
+    }
+
+    /** This radio button toggles to the all appointments view.
+     *
+     * @param actionEvent Not necessary to specify.
+     */
+    public void onAllAppointmentViewAllRadio(ActionEvent actionEvent) {
     }
 }

@@ -20,6 +20,7 @@ public class ModifyViewAppointmentController implements Initializable {
 
     public Button modifyAppointmentExit;
     public Button modifyAppointmentViewSchedule;
+    public Button modAppointmentSave;
 
     /** This contains information that will populate when window is called.
      *
@@ -58,5 +59,8 @@ public class ModifyViewAppointmentController implements Initializable {
         stage.setTitle("Your Schedule");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void onModAppointmentSave(ActionEvent actionEvent) {
     }
 }

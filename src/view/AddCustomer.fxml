@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCustomerController">
+   <children>
+      <Label layoutX="123.0" layoutY="151.0" text="Customer Name" />
+      <Label layoutX="123.0" layoutY="204.0" text="Address" />
+      <Label layoutX="124.0" layoutY="252.0" text="Postal Code" />
+      <Label layoutX="126.0" layoutY="304.0" text="Phone Number" />
+      <TextField fx:id="addCustomerName" layoutX="222.0" layoutY="147.0" onAction="#onAddCustomerName" promptText="first and last name" />
+      <TextField fx:id="addAddress" layoutX="222.0" layoutY="200.0" onAction="#onAddAddress" promptText="address" />
+      <TextField fx:id="addPostalCode" layoutX="222.0" layoutY="248.0" onAction="#onAddPostalCode" promptText="postal code" />
+      <TextField fx:id="addPhone" layoutX="222.0" layoutY="300.0" onAction="#onAddPhone" promptText="phone number" />
+      <TextField fx:id="addID" editable="false" layoutX="521.0" layoutY="147.0" promptText="ID - auto generated" />
+      <Label layoutX="332.0" layoutY="49.0" text="Add Customer">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="419.0" layoutY="151.0" text="Customer ID" />
+      <Label layoutX="419.0" layoutY="204.0" text="Country" />
+      <Label layoutX="423.0" layoutY="252.0" text="State/Province" />
+      <Label layoutX="383.0" layoutY="435.0" text="Return to Customer Menu" />
+      <Label layoutX="399.0" layoutY="373.0" text="Save New Customer" />
+      <ComboBox fx:id="addCountry" layoutX="521.0" layoutY="200.0" onAction="#onAddCountry" prefWidth="150.0" promptText="country" />
+      <ComboBox fx:id="addState" layoutX="521.0" layoutY="248.0" onAction="#onAddState" prefWidth="150.0" promptText="state/province" />
+      <Button fx:id="addExit" layoutX="550.0" layoutY="431.0" mnemonicParsing="false" onAction="#onAddExit" text="Exit" />
+      <Button fx:id="addSave" layoutX="540.0" layoutY="363.0" mnemonicParsing="false" onAction="#onAddSave" text="Save">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

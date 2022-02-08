@@ -44,6 +44,12 @@ public class CustomerMenuController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onAddCustomer(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AddCustomer.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Modify Customer");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /** This method takes user to the 'modify customer' screen.
@@ -52,6 +58,12 @@ public class CustomerMenuController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onModifyCustomer(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyCustomer.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Modify Customer");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /** This method calls a function to delete a customer and returns to the main menu when button is clicked.

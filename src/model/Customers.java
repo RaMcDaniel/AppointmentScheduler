@@ -1,11 +1,13 @@
 package model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
 public class Customers {
+    private int customerID;
     private String customerName;
     private String address;
     private String postalCode;
@@ -14,7 +16,8 @@ public class Customers {
     private ObservableList<Appointments> associatedAppointments;
 
 
-    public Customers(String customerName, String address, String postalCode, String phone, int divisionID, ObservableList associatedAppointments){
+    public Customers(int customerID, String customerName, String address, String postalCode, String phone, int divisionID, ObservableList associatedAppointments){
+        this.customerID = customerID;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
@@ -22,7 +25,27 @@ public class Customers {
         this.divisionID = divisionID;
         this.associatedAppointments = associatedAppointments;
     }
+    public Customers(int customerID, String customerName){
+        this.customerName = customerName;
+        this.customerID = customerID;
+    }
 
+    public static ObservableList<String> getReadable(ObservableList<Customers> allCustomerIDs) {
+        ObservableList<String> readableCountries = FXCollections.observableArrayList();
+        for(Customers c : allCustomerIDs){
+            String readableLine = (c.getCustomerID() + " " + c.getCustomerName());
+            readableCountries.add(readableLine);
+        }
+        return readableCountries;
+    }
+
+    public static int getCustomerInt(String customer) {
+        char c = customer.charAt(0);
+        int num = Character.getNumericValue(c);
+        return num;
+    }
+
+    public int getCustomerID(){return customerID;}
     public String getCustomerName(){ return customerName;}
     public String getAddress(){ return address;}
     public String getPostalCode(){ return postalCode;}
@@ -30,6 +53,7 @@ public class Customers {
     public int getDivisionID(){ return divisionID;}
     public ObservableList<Appointments> getAssociatedAppointments(){ return associatedAppointments;}
 
+    public void setCustomerID(int customerID){this.customerID=customerID;}
     public void setCustomerName(String customerName){this.customerName=customerName;}
     public void setAddress(String address){this.address=address;}
     public void setPostalCode(String postalCode){this.postalCode=postalCode;}

@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Contacts;
 import model.Countries;
+import model.Customers;
 import model.Users;
 
 import java.io.IOException;
@@ -70,13 +71,14 @@ public class AddAppointmentController implements Initializable {
         ObservableList<String> allContactsReadable = Contacts.getReadable(allContactIDs);
         chooseContact.setItems(allContactsReadable);
 
-        ObservableList<Integer> allCustomerIDs = null;
+        ObservableList<Customers> allCustomerIDs = FXCollections.observableArrayList();
         try {
             allCustomerIDs = CustomersQuery.getAllCustomerIDs();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        chooseCustomerID.setItems(allCustomerIDs);
+        ObservableList<String> allCustomersReadable = Customers.getReadable(allCustomerIDs);
+        chooseCustomerID.setItems(allCustomersReadable);
 
         int numAppointments = 0;
         try {

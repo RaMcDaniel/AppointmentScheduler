@@ -29,4 +29,16 @@ public abstract class UsersQuery {
         }
         return null;
     }
+
+    public static Object selectUserID(String userName) throws SQLException {
+        String sql = "SELECT User_ID from users WHERE User_Name = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, userName);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            int userID = rs.getInt("User_ID");
+            return userID;
+        }
+        return null;
+    }
 }

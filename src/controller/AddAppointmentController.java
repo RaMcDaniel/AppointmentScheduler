@@ -11,10 +11,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Users;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static model.Users.userID;
 
 /** This class controls the 'Add Appointment' screen.
  *
@@ -41,6 +45,13 @@ public class AddAppointmentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            Users.userID = Users.userNametoID(Users.userName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        userID.setText(String.valueOf(Users.userID));
 
     }
 

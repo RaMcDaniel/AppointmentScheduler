@@ -11,10 +11,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Users;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+
+import static model.Users.userID;
 
 /** This class controls the View/Modify Appointment screen.
  *
@@ -36,6 +41,7 @@ public class ModifyViewAppointmentController implements Initializable {
     public ComboBox chooseEndTime;
     public TextField userIDMod;
 
+
     /** This contains information that will populate when window is called.
      *
      * @param url Not necessary to specify.
@@ -43,6 +49,13 @@ public class ModifyViewAppointmentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            userID = Users.userNametoID(Users.userName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        userIDMod.setText(String.valueOf(userID));
 
     }
 

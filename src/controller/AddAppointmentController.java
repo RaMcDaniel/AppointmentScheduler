@@ -4,6 +4,7 @@ import helper.AppointmentsQuery;
 import helper.ContactsQuery;
 import helper.CustomersQuery;
 import helper.UsersQuery;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Contacts;
+import model.Countries;
 import model.Users;
 
 import java.io.IOException;
@@ -58,13 +61,14 @@ public class AddAppointmentController implements Initializable {
         userID.setText(String.valueOf(Users.passableUserID));
 
 
-        ObservableList<Integer> allContactIDs = null;
+        ObservableList<Contacts> allContactIDs = FXCollections.observableArrayList();
         try {
             allContactIDs = ContactsQuery.getAllContactIDs();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        chooseContact.setItems(allContactIDs);
+        ObservableList<String> allContactsReadable = Contacts.getReadable(allContactIDs);
+        chooseContact.setItems(allContactsReadable);
 
         ObservableList<Integer> allCustomerIDs = null;
         try {

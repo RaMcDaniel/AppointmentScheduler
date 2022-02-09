@@ -2,6 +2,7 @@ package controller;
 
 import helper.ContactsQuery;
 import helper.CustomersQuery;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Contacts;
 import model.Users;
 
 import java.io.IOException;
@@ -59,13 +61,14 @@ public class ModifyViewAppointmentController implements Initializable {
         }
         userIDMod.setText(String.valueOf(passableUserID));
 
-        ObservableList<Integer> allContactIDs = null;
+        ObservableList<Contacts> allContactIDs = FXCollections.observableArrayList();
         try {
             allContactIDs = ContactsQuery.getAllContactIDs();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        chooseContactMod.setItems(allContactIDs);
+        ObservableList<String> allContactsReadable = Contacts.getReadable(allContactIDs);
+        chooseContactMod.setItems(allContactsReadable);
 
         ObservableList<Integer> allCustomerIDs = null;
         try {

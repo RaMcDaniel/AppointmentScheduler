@@ -1,6 +1,7 @@
 package controller;
 
 import helper.CountriesQuery;
+import helper.FirstLevelDivisionsQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Countries;
+import model.FirstLevelDivisions;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,7 +52,6 @@ public class AddCustomerController implements Initializable {
             e.printStackTrace();
         }
         ObservableList<String> allCountryReadable = Countries.getReadable(allCountryIDs);
-
         addCountry.setItems(allCountryReadable);
 
     }
@@ -67,7 +68,12 @@ public class AddCustomerController implements Initializable {
     public void onAddPhone(ActionEvent actionEvent) {
     }
 
-    public void onAddCountry(ActionEvent actionEvent) {
+    public void onAddCountry(ActionEvent actionEvent) throws SQLException {
+        String country = addCountry.getSelectionModel().getSelectedItem().toString();
+        int countrySelection = Countries.getCountryInt(country);
+        ObservableList<FirstLevelDivisions> states = FirstLevelDivisionsQuery.getAllDivisions(countrySelection);
+        ObservableList<String> statesReadable = FirstLevelDivisions.getReadable(states);
+        addState.setItems(statesReadable);
     }
 
     public void onAddState(ActionEvent actionEvent) {

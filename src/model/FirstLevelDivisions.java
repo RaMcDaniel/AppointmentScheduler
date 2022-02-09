@@ -1,5 +1,8 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class FirstLevelDivisions {
     private int divisionID;
     private String division;
@@ -18,4 +21,25 @@ public class FirstLevelDivisions {
     public void setCountryID(int countryID) {this.countryID = countryID;}
     public void setDivision(String division) {this.division = division;}
     public void setDivisionID(int divisionID) {this.divisionID = divisionID;}
+
+
+    public static ObservableList<String> getReadable(ObservableList<FirstLevelDivisions> allStates) {
+        ObservableList<String> readableStates = FXCollections.observableArrayList();
+        for(FirstLevelDivisions d : allStates){
+            String readableLine = (d.getDivisionID() + " " + d.getDivision());
+            readableStates.add(readableLine);
+        }
+        return readableStates;
+    }
+
+    public static int getStateInt(String state) {
+        char c = state.charAt(0);
+        int num = Character.getNumericValue(c);
+        return num;
+    }
+
+
 }
+
+
+

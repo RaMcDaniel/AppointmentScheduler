@@ -21,6 +21,12 @@ public class Countries {
         return readableCountries;
     }
 
+    public static int getCountryInt(String country) {
+        char c = country.charAt(0);
+        int num = Character.getNumericValue(c);
+        return num;
+    }
+
     public int getCountryID() {return countryID;}
     public String getCountry() {return country;}
 

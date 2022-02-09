@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerMenuController">
    <children>
       <AnchorPane prefHeight="610.0" prefWidth="810.0">
@@ -19,8 +18,13 @@
             </Label>
             <TableView fx:id="allCustomersTable" layoutX="20.0" layoutY="54.0" onSort="#onAllCustomersTable" prefHeight="449.0" prefWidth="766.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="customerIDCol" prefWidth="65.59997367858887" text="ID" />
+                  <TableColumn fx:id="customerNameCol" prefWidth="123.20001983642578" text="Name" />
+                  <TableColumn fx:id="customerPhoneCol" prefWidth="89.5999755859375" text="Phone" />
+                  <TableColumn fx:id="customerAddressCol" prefWidth="157.5999755859375" text="Address" />
+                  <TableColumn fx:id="CustomerPostalCol" prefWidth="85.59994506835938" text="Postal Code" />
+                  <TableColumn fx:id="customerStateCol" prefWidth="120.0" text="State/Province" />
+                  <TableColumn fx:id="customerCountryCol" prefWidth="128.0" text="Country" />
                </columns>
             </TableView>
             <Button fx:id="addCustomer" layoutX="308.0" layoutY="515.0" mnemonicParsing="false" onAction="#onAddCustomer" text="Add" />

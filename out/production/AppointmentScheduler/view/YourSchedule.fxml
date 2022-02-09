@@ -11,20 +11,6 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.YourScheduleController">
    <children>
-      <TableView fx:id="yourScheduleTable" layoutX="15.0" layoutY="114.0" prefHeight="406.0" prefWidth="770.0">
-        <columns>
-          <TableColumn prefWidth="76.00003051757812" text="C1" />
-          <TableColumn prefWidth="63.199981689453125" text="C2" />
-            <TableColumn prefWidth="68.0" text="C1" />
-            <TableColumn prefWidth="82.4000244140625" text="C1" />
-            <TableColumn prefWidth="97.60003662109375" text="C1" />
-            <TableColumn prefWidth="122.39996337890625" text="C1" />
-            <TableColumn prefWidth="59.20001220703125" text="C1" />
-            <TableColumn prefWidth="68.800048828125" text="C1" />
-            <TableColumn prefWidth="62.39996337890625" text="C1" />
-            <TableColumn prefWidth="70.4000244140625" text="C1" />
-        </columns>
-      </TableView>
       <Button fx:id="yourScheduleViewAppt" layoutX="440.0" layoutY="547.0" mnemonicParsing="false" onAction="#onYourScheduleViewAppt" text="View" />
       <Button fx:id="yourScheduleReturn" layoutX="715.0" layoutY="547.0" mnemonicParsing="false" onAction="#onYourScheduleReturn" text="Exit" />
       <Label layoutX="279.0" layoutY="551.0" text="View Selected Appointment" />
@@ -40,6 +26,20 @@
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="thisMonthRadio" layoutX="359.0" layoutY="70.0" mnemonicParsing="false" onAction="#onThisMonthRadio" text="This Month" toggleGroup="$weekOrMonth" />
-      <RadioButton fx:id="viewAllRadio" layoutX="515.0" layoutY="70.0" mnemonicParsing="false" onAction="#onViewAllRadio" text="View All" toggleGroup="$weekOrMonth" />
+      <RadioButton fx:id="viewAllRadio" layoutX="515.0" layoutY="70.0" mnemonicParsing="false" onAction="#onViewAllRadio" selected="true" text="View All" toggleGroup="$weekOrMonth" />
+      <TableView fx:id="allAppointmentsTable" layoutX="17.0" layoutY="104.0" onSort="#onAllAppointmentsTable" prefHeight="414.0" prefWidth="766.0">
+         <columns>
+            <TableColumn fx:id="appID" prefWidth="40.0" text="ID" />
+            <TableColumn fx:id="appTitle" prefWidth="74.4000244140625" text="Title" />
+            <TableColumn fx:id="appDescription" prefWidth="83.20001220703125" text="Description" />
+            <TableColumn fx:id="appLocation" prefWidth="102.4000244140625" text="Location" />
+            <TableColumn fx:id="appType" prefWidth="75.20001220703125" text="Type" />
+            <TableColumn fx:id="startTime" prefWidth="102.39996337890625" text="Start Time" />
+            <TableColumn fx:id="endTime" prefWidth="82.39996337890625" text="End Time" />
+            <TableColumn fx:id="customerID" prefWidth="77.5999755859375" text="Customer" />
+            <TableColumn fx:id="userID" prefWidth="61.59991455078125" text="User" />
+            <TableColumn fx:id="contactID" prefWidth="72.0" text="Contact" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

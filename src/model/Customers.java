@@ -20,9 +20,9 @@ public class Customers {
     public Customers(int customerID, String customerName, String address, String postalCode, String phone, int divisionID, int countryID){
         this.customerID = customerID;
         this.customerName = customerName;
+        this.phone = phone;
         this.address = address;
         this.postalCode = postalCode;
-        this.phone = phone;
         this.divisionID = divisionID;
         this.countryID = countryID;
 
@@ -49,9 +49,9 @@ public class Customers {
 
     public int getCustomerID(){return customerID;}
     public String getCustomerName(){ return customerName;}
+    public String getPhone(){ return phone;}
     public String getAddress(){ return address;}
     public String getPostalCode(){ return postalCode;}
-    public String getPhone(){ return phone;}
     public int getDivisionID(){ return divisionID;}
     public int getCountryID(){return countryID;}
     public ObservableList<Appointments> getAssociatedAppointments(){ return associatedAppointments;}

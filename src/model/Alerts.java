@@ -8,7 +8,8 @@ import javafx.scene.control.Alert;
  */
 public class Alerts {
 
-    public static Alert inventory = new Alert(Alert.AlertType.ERROR, "Inventory must be greater than or equal to minimum. Inventory must be less than or equal to maximum.");
+    public static Alert userName = new Alert(Alert.AlertType.ERROR, "That username is not found. Try again.");
+    public static Alert userPassword = new Alert(Alert.AlertType.ERROR, "That password does not match. Try again.");
     public static Alert cancel = new Alert(Alert.AlertType.CONFIRMATION, "'Cancel' will lose all work on this page and return to main. Would you like to continue?");
 
     /** This is a general purpose alert creator. A popup box appears telling the user how to correct their input.

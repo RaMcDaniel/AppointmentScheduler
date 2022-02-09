@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.Users;
 
 
 import java.io.IOException;
@@ -103,6 +104,8 @@ public class WelcomeController implements Initializable {
      * @throws IOException If screen is not present.
      */
     public void onWelcomeExit(ActionEvent actionEvent) throws IOException {
+        Users.userName = null;
+        Users.userPassword = null;
         Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);

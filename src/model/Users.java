@@ -1,6 +1,7 @@
 package model;
 
 import helper.UsersQuery;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 
@@ -9,6 +10,12 @@ public class Users {
     public static String userName;
     public static String userPassword;
     public static int userID;
+
+
+
+    public Users() throws SQLException {
+    }
+
 
     public static boolean validUserName(String userName) throws SQLException {
         String validName = UsersQuery.selectUserName(userName);

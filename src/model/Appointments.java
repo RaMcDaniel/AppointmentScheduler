@@ -8,25 +8,25 @@ public class Appointments {
     private String appointmentTitle;
     private String description;
     private String location;
-    private String type;
+    private String appType;
     private Timestamp start;
     private Timestamp end;
     private int customerID;
-    private int userID;
+    private int appUserID;
     private int contactID;
 
 
-    public Appointments(int appointmentID, String appointmentTitle, String description, String location, String type,
-                        Timestamp start, Timestamp end, int customerID, int userID, int contactID) {
+    public Appointments(int appointmentID, String appointmentTitle, String description, String location, String appType,
+                        Timestamp start, Timestamp end, int customerID, int appUserID, int contactID) {
         this.appointmentID = appointmentID;
         this.appointmentTitle = appointmentTitle;
         this.description = description;
         this.location = location;
-        this.type = type;
+        this.appType = appType;
         this.start = start;
         this.end = end;
         this.customerID = customerID;
-        this.userID = userID;
+        this.appUserID = appUserID;
         this.contactID = contactID;
     }
 
@@ -34,10 +34,10 @@ public class Appointments {
     public String getAppointmentTitle(){return appointmentTitle;}
     public String getDescription() {return description;}
     public String getLocation(){return location;}
-    public String getType() {return type;}
+    public String getAppType() {return appType;}
     public Timestamp getStart() {return start;}
     public Timestamp getEnd() {return end;}
     public int getCustomerID() {return customerID;}
-    public int userID() {return userID;}
+    public int getAppUserID() {return appUserID;}
     public int getContactID() {return contactID;}
 }

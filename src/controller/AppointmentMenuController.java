@@ -26,6 +26,16 @@ public class AppointmentMenuController implements Initializable {
     public ToggleGroup allAppointmentWeekMonth;
     public RadioButton allAppointmentViewMonthRadio;
     public RadioButton allAppointmentViewAllRadio;
+    public TableColumn appID;
+    public TableColumn appTitle;
+    public TableColumn appDescription;
+    public TableColumn appLocation;
+    public TableColumn appType;
+    public TableColumn startTime;
+    public TableColumn endTime;
+    public TableColumn customerID;
+    public TableColumn userID;
+    public TableColumn contactID;
 
     /** This contains items initialized when window is created.
      *

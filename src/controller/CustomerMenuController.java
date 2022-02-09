@@ -1,5 +1,8 @@
 package controller;
 
+import helper.CustomersQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,11 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SortEvent;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Customers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /** This class controls the customer menu.
@@ -24,6 +31,14 @@ public class CustomerMenuController implements Initializable {
     public Button modifyCustomer;
     public Button deleteCustomer;
     public Button allCustomersExit;
+    public TableColumn customerIDCol;
+    public TableColumn customerNameCol;
+    public TableColumn customerPhoneCol;
+    public TableColumn customerAddressCol;
+    public TableColumn CustomerPostalCol;
+    public TableColumn customerStateCol;
+    public TableColumn customerCountryCol;
+    public static ObservableList<Customers> allCustomerObjects = FXCollections.observableArrayList();
 
     /** This contains items initialized when window is created.
      *
@@ -32,7 +47,22 @@ public class CustomerMenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        try {
+            allCustomerObjects = CustomersQuery.getAllCustomerObjects();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        allCustomersTable.setItems(allCustomerObjects);
+        customerIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        customerAddressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        CustomerPostalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        customerStateCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
+        customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("countryID"));
+
+
     }
 
     public void onAllCustomersTable(SortEvent<TableView> tableViewSortEvent) {

@@ -18,8 +18,16 @@
       </Label>
       <TableView fx:id="allAppointmentsTable" layoutX="20.0" layoutY="89.0" onSort="#onAllAppointmentsTable" prefHeight="414.0" prefWidth="766.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="appID" prefWidth="40.0" text="ID" />
+          <TableColumn fx:id="appTitle" prefWidth="74.4000244140625" text="Title" />
+            <TableColumn fx:id="appDescription" prefWidth="83.20001220703125" text="Description" />
+            <TableColumn fx:id="appLocation" prefWidth="102.4000244140625" text="Location" />
+            <TableColumn fx:id="appType" prefWidth="75.20001220703125" text="Type" />
+            <TableColumn fx:id="startTime" prefWidth="102.39996337890625" text="Start Time" />
+            <TableColumn fx:id="endTime" prefWidth="82.39996337890625" text="End Time" />
+            <TableColumn fx:id="customerID" prefWidth="77.5999755859375" text="Customer" />
+            <TableColumn fx:id="userID" prefWidth="61.59991455078125" text="User" />
+            <TableColumn fx:id="contactID" prefWidth="72.0" text="Contact" />
         </columns>
       </TableView>
       <Button fx:id="addAppointment" layoutX="308.0" layoutY="515.0" mnemonicParsing="false" onAction="#onAddAppointment" text="Add" />
@@ -33,6 +41,6 @@
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="allAppointmentViewMonthRadio" layoutX="352.0" layoutY="56.0" mnemonicParsing="false" onAction="#onAllAppointmentViewMonthRadio" text="View by Month" toggleGroup="$allAppointmentWeekMonth" />
-      <RadioButton fx:id="allAppointmentViewAllRadio" layoutX="523.0" layoutY="56.0" mnemonicParsing="false" onAction="#onAllAppointmentViewAllRadio" text="View All" toggleGroup="$allAppointmentWeekMonth" />
+      <RadioButton fx:id="allAppointmentViewAllRadio" layoutX="523.0" layoutY="56.0" mnemonicParsing="false" onAction="#onAllAppointmentViewAllRadio" selected="true" text="View All" toggleGroup="$allAppointmentWeekMonth" />
    </children>
 </AnchorPane>

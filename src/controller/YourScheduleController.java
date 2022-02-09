@@ -25,6 +25,17 @@ public class YourScheduleController implements Initializable {
     public ToggleGroup weekOrMonth;
     public RadioButton thisMonthRadio;
     public RadioButton viewAllRadio;
+    public TableView allAppointmentsTable;
+    public TableColumn appID;
+    public TableColumn appTitle;
+    public TableColumn appDescription;
+    public TableColumn appLocation;
+    public TableColumn appType;
+    public TableColumn startTime;
+    public TableColumn endTime;
+    public TableColumn customerID;
+    public TableColumn userID;
+    public TableColumn contactID;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -79,5 +90,8 @@ public class YourScheduleController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onViewAllRadio(ActionEvent actionEvent) {
+    }
+
+    public void onAllAppointmentsTable(SortEvent<TableView> tableViewSortEvent) {
     }
 }

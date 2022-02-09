@@ -13,17 +13,19 @@ public class Customers {
     private String postalCode;
     private String phone;
     private int divisionID;
+    private int countryID;
     private ObservableList<Appointments> associatedAppointments;
 
 
-    public Customers(int customerID, String customerName, String address, String postalCode, String phone, int divisionID, ObservableList associatedAppointments){
+    public Customers(int customerID, String customerName, String address, String postalCode, String phone, int divisionID, int countryID){
         this.customerID = customerID;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
         this.divisionID = divisionID;
-        this.associatedAppointments = associatedAppointments;
+        this.countryID = countryID;
+
     }
     public Customers(int customerID, String customerName){
         this.customerName = customerName;
@@ -51,6 +53,7 @@ public class Customers {
     public String getPostalCode(){ return postalCode;}
     public String getPhone(){ return phone;}
     public int getDivisionID(){ return divisionID;}
+    public int getCountryID(){return countryID;}
     public ObservableList<Appointments> getAssociatedAppointments(){ return associatedAppointments;}
 
     public void setCustomerID(int customerID){this.customerID=customerID;}

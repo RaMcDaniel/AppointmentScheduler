@@ -30,7 +30,7 @@ public class CustomersQuery {
      * @throws SQLException
      */
     public static ObservableList<Customers> getAllCustomerObjects() throws SQLException {
-        String sql = "SELECT * from customers, Country_ID WHERE first_level_divisions.Division_ID = customers.Division_ID";
+        String sql = "SELECT * from customers, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         ObservableList<Customers> allCustomerObjects = FXCollections.observableArrayList();
@@ -43,7 +43,7 @@ public class CustomersQuery {
             int state = rs.getInt("Division_ID");
             int country =rs.getInt("Country_ID");
 
-            Customers c = new Customers(customerID, customerName, customerPhone, customerAddress, postalCode, state, country);
+            Customers c = new Customers(customerID, customerName, customerAddress, postalCode, customerPhone, state, country);
             allCustomerObjects.add(c);
         }
         return allCustomerObjects;

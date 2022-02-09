@@ -1,5 +1,9 @@
 package controller;
 
+import helper.AppointmentsQuery;
+import helper.CustomersQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,10 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointments;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /** This class controls the screen that contains appointment options.
@@ -36,6 +43,7 @@ public class AppointmentMenuController implements Initializable {
     public TableColumn customerID;
     public TableColumn userID;
     public TableColumn contactID;
+    public static ObservableList<Appointments> allAppointmentObjects = FXCollections.observableArrayList();
 
     /** This contains items initialized when window is created.
      *
@@ -44,6 +52,23 @@ public class AppointmentMenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            allAppointmentObjects = AppointmentsQuery.getAllAppointmentObjects();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        allAppointmentsTable.setItems(allAppointmentObjects);
+        appID.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        appTitle.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
+        appDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startTime.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endTime.setCellValueFactory(new PropertyValueFactory<>("end"));
+        customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        userID.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        contactID.setCellValueFactory(new PropertyValueFactory<>("contactID"));
 
     }
 

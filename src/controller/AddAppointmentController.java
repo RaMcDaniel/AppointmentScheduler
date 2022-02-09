@@ -1,5 +1,6 @@
 package controller;
 
+import helper.AppointmentsQuery;
 import helper.ContactsQuery;
 import helper.CustomersQuery;
 import helper.UsersQuery;
@@ -39,6 +40,7 @@ public class AddAppointmentController implements Initializable {
     public TextField userID;
     public Button exitNewAppointment;
     public Button saveNewAppointment;
+    public static int APPOINTMENT_COUNTER;
 
 
     /** This contains items initialized when window is created.
@@ -62,7 +64,6 @@ public class AddAppointmentController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         chooseContact.setItems(allContactIDs);
 
         ObservableList<Integer> allCustomerIDs = null;
@@ -73,6 +74,14 @@ public class AddAppointmentController implements Initializable {
         }
         chooseCustomerID.setItems(allCustomerIDs);
 
+        int numAppointments = 0;
+        try {
+            numAppointments = AppointmentsQuery.getNumAppointments();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        APPOINTMENT_COUNTER = numAppointments + 1;
+        appointmentID.setText(String.valueOf(APPOINTMENT_COUNTER));
 
     }
 

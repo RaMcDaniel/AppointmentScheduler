@@ -1,6 +1,7 @@
 package controller;
 
 import helper.CountriesQuery;
+import helper.CustomersQuery;
 import helper.FirstLevelDivisionsQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+
 /** This class controls 'add customer' screen.
  *
  */
@@ -36,6 +38,7 @@ public class AddCustomerController implements Initializable {
     public ComboBox addState;
     public Button addExit;
     public Button addSave;
+    public static int CUSTOMER_COUNTER;
 
     /** This contains items initialized when window is created.
      *
@@ -53,6 +56,16 @@ public class AddCustomerController implements Initializable {
         }
         ObservableList<String> allCountryReadable = Countries.getReadable(allCountryIDs);
         addCountry.setItems(allCountryReadable);
+
+        int numCustomers = 0;
+        try {
+            numCustomers = CustomersQuery.getNumCustomers();
+            System.out.println(numCustomers);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        CUSTOMER_COUNTER = numCustomers + 1;
+        addID.setText(String.valueOf(CUSTOMER_COUNTER));
 
     }
 

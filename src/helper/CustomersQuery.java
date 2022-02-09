@@ -19,5 +19,15 @@ public class CustomersQuery {
         }
         return allCustomers;
     }
+    public static int getNumCustomers() throws SQLException {
+        String sql = "SELECT count(*) FROM customers";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        int numCustomers = 0;
+        while(rs.next()){
+            numCustomers = rs.getInt(1);
+        }
+        return numCustomers;
+    }
 
 }

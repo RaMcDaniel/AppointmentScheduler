@@ -23,6 +23,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+
 /** This class controls 'modify customer' screen.
  *
  */
@@ -54,6 +55,7 @@ public class ModifyCustomerController implements Initializable {
         }
         ObservableList<String> allCountryReadable = Countries.getReadable(allCountryIDs);
         modCountry.setItems(allCountryReadable);
+
 
     }
 

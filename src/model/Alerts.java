@@ -1,6 +1,7 @@
 package model;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
 
 /** This class contains alerts that are referenced elsewhere in the program.
  * Alerts include........
@@ -9,8 +10,10 @@ import javafx.scene.control.Alert;
 public class Alerts {
 
     public static Alert userName = new Alert(Alert.AlertType.ERROR, "That username is not found. Try again.");
+    public static Alert noneSelected = new Alert(Alert.AlertType.ERROR, "No appointment selected.");
     public static Alert userPassword = new Alert(Alert.AlertType.ERROR, "That password does not match. Try again.");
     public static Alert cancel = new Alert(Alert.AlertType.CONFIRMATION, "'Cancel' will lose all work on this page and return to main. Would you like to continue?");
+    public static Alert remove = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you'd like to delete this appointment?");
 
     /** This is a general purpose alert creator. A popup box appears telling the user how to correct their input.
      * It can be generalized to any field in the program.

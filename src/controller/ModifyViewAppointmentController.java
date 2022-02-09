@@ -1,5 +1,8 @@
 package controller;
 
+import helper.ContactsQuery;
+import helper.CustomersQuery;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
-import static model.Users.userID;
+import static model.Users.passableUserID;
 
 /** This class controls the View/Modify Appointment screen.
  *
@@ -34,7 +37,7 @@ public class ModifyViewAppointmentController implements Initializable {
     public TextField appointmentDescriptionMod;
     public TextField appointmentLocationMod;
     public ComboBox chooseContactMod;
-    public ComboBox appointmentTypeMod;
+    public TextField appointmentTypeMod;
     public DatePicker appointmentDate;
     public ComboBox startTime;
     public ComboBox chooseCustomerIDMod;
@@ -50,12 +53,27 @@ public class ModifyViewAppointmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            userID = Users.userNametoID(Users.userName);
+            passableUserID = Users.userNametoID(Users.userName);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        userIDMod.setText(String.valueOf(passableUserID));
 
-        userIDMod.setText(String.valueOf(userID));
+        ObservableList<Integer> allContactIDs = null;
+        try {
+            allContactIDs = ContactsQuery.getAllContactIDs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        chooseContactMod.setItems(allContactIDs);
+
+        ObservableList<Integer> allCustomerIDs = null;
+        try {
+            allCustomerIDs = CustomersQuery.getAllCustomerIDs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        chooseCustomerIDMod.setItems(allContactIDs);
 
     }
 

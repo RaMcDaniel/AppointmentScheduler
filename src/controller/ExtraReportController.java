@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class ExtraReportController implements Initializable {
     public TextField extraReportTextField;
     public Button exit;
+    public Button runExtraReport;
 
     /** This contains items initialized when window is created.
      *
@@ -46,5 +47,8 @@ public class ExtraReportController implements Initializable {
         stage.setTitle("Reports Menu");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void onRunExtraReport(ActionEvent actionEvent) {
     }
 }

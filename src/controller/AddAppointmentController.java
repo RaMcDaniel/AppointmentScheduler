@@ -1,5 +1,9 @@
 package controller;
 
+import helper.ContactsQuery;
+import helper.CustomersQuery;
+import helper.UsersQuery;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,8 +22,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static model.Users.userID;
-
 /** This class controls the 'Add Appointment' screen.
  *
  */
@@ -29,7 +31,7 @@ public class AddAppointmentController implements Initializable {
     public TextField appointmentDescription;
     public TextField appointmentLocation;
     public ComboBox chooseContact;
-    public ComboBox appointmentType;
+    public TextField appointmentType;
     public DatePicker appointmentDate;
     public ComboBox startTime;
     public ComboBox chooseCustomerID;
@@ -37,6 +39,7 @@ public class AddAppointmentController implements Initializable {
     public TextField userID;
     public Button exitNewAppointment;
     public Button saveNewAppointment;
+
 
     /** This contains items initialized when window is created.
      *
@@ -46,12 +49,30 @@ public class AddAppointmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            Users.userID = Users.userNametoID(Users.userName);
+            Users.passableUserID = Users.userNametoID(Users.userName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        userID.setText(String.valueOf(Users.passableUserID));
+
+
+        ObservableList<Integer> allContactIDs = null;
+        try {
+            allContactIDs = ContactsQuery.getAllContactIDs();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        userID.setText(String.valueOf(Users.userID));
+        chooseContact.setItems(allContactIDs);
+
+        ObservableList<Integer> allCustomerIDs = null;
+        try {
+            allCustomerIDs = CustomersQuery.getAllCustomerIDs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        chooseCustomerID.setItems(allContactIDs);
+
 
     }
 

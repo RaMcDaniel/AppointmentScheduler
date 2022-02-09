@@ -1,7 +1,6 @@
 package model;
 
 import helper.UsersQuery;
-import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 
@@ -9,11 +8,12 @@ import java.sql.SQLException;
 public class Users {
     public static String userName;
     public static String userPassword;
-    public static int userID;
+    public static int passableUserID;
 
 
 
     public Users() throws SQLException {
+
     }
 
 
@@ -43,8 +43,8 @@ public class Users {
      * @throws SQLException if query is not found
      */
     public static int userNametoID(String userName) throws SQLException {
-        userID = (int) UsersQuery.selectUserID(userName);
-        return userID;
+        passableUserID = (int) UsersQuery.selectUserID(userName);
+        return passableUserID;
     }
 
 }

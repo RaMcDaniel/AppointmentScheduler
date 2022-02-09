@@ -26,6 +26,7 @@ public class SchedulesReportController implements Initializable {
     public TextField userScheduleReportTextField;
     public Button exit;
     public ComboBox chooseUserSchedulesReport;
+    public Button runSchedulesReport;
 
     /** This contains items initialized when window is created.
      *
@@ -63,5 +64,8 @@ public class SchedulesReportController implements Initializable {
     }
 
     public void onChooseUserSchedulesReport(ActionEvent actionEvent) {
+    }
+
+    public void onRunSchedulesReport(ActionEvent actionEvent) {
     }
 }

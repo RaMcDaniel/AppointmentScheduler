@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyViewAppointmentController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyViewAppointmentController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -29,7 +25,6 @@
             <Label layoutX="107.0" layoutY="226.0" text="Location" />
             <ComboBox fx:id="chooseContactMod" layoutX="584.0" layoutY="222.0" onAction="#onChooseContactMod" prefWidth="150.0" promptText="Choose Contact" />
             <Label layoutX="117.0" layoutY="278.0" text="Type" />
-            <ComboBox fx:id="appointmentTypeMod" layoutX="223.0" layoutY="274.0" onAction="#onAppointmentTypeMod" prefWidth="150.0" promptText="appointment type" />
             <DatePicker fx:id="appointmentDate" layoutX="180.0" layoutY="381.0" onAction="#inAppointmentDate" promptText="appointment date" />
             <Label layoutX="105.0" layoutY="385.0" text="Date" />
             <Label layoutX="103.0" layoutY="437.0" text="Start Time" />
@@ -49,6 +44,7 @@
             <Button fx:id="modifyAppointmentViewSchedule" layoutX="653.0" layoutY="433.0" mnemonicParsing="false" onAction="#onModifyAppointmentViewSchedule" text="View" />
             <Label layoutX="466.0" layoutY="480.0" text="Return to Appointments" />
             <Button fx:id="modifyAppointmentExit" layoutX="656.0" layoutY="476.0" mnemonicParsing="false" onAction="#onModifyAppointmentExit" text="Exit" />
+            <TextField fx:id="appointmentTypeMod" layoutX="225.0" layoutY="274.0" promptText="appointment type" />
          </children>
       </AnchorPane>
 

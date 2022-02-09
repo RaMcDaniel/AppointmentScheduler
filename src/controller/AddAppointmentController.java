@@ -71,7 +71,7 @@ public class AddAppointmentController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        chooseCustomerID.setItems(allContactIDs);
+        chooseCustomerID.setItems(allCustomerIDs);
 
 
     }

@@ -73,7 +73,7 @@ public class ModifyViewAppointmentController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        chooseCustomerIDMod.setItems(allContactIDs);
+        chooseCustomerIDMod.setItems(allCustomerIDs);
 
     }
 

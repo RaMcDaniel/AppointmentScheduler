@@ -14,7 +14,7 @@ public class CustomersQuery {
         ResultSet rs = ps.executeQuery();
         ObservableList<Integer> allCustomers = FXCollections.observableArrayList();
         while(rs.next()){
-            int customerID = rs.getInt("Contact_ID");
+            int customerID = rs.getInt("Customer_ID");
             allCustomers.add(customerID);
         }
         return allCustomers;

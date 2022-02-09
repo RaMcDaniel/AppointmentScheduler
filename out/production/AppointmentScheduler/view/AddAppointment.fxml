@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
    <children>
       <Label layoutX="290.0" layoutY="32.0" text="Add New Appointment">
@@ -28,7 +27,6 @@
       <Label layoutX="107.0" layoutY="226.0" text="Location" />
       <ComboBox fx:id="chooseContact" layoutX="584.0" layoutY="222.0" onAction="#onChooseContact" prefWidth="150.0" promptText="Choose Contact" />
       <Label layoutX="117.0" layoutY="278.0" text="Type" />
-      <ComboBox fx:id="appointmentType" layoutX="223.0" layoutY="274.0" onAction="#onAppointmentType" prefWidth="150.0" promptText="appointment type" />
       <DatePicker fx:id="appointmentDate" layoutX="180.0" layoutY="381.0" onAction="#inAppointmentDate" promptText="appointment date" />
       <Label layoutX="105.0" layoutY="385.0" text="Date" />
       <Label layoutX="103.0" layoutY="437.0" text="Start Time" />
@@ -46,5 +44,6 @@
       </Button>
       <Label layoutX="467.0" layoutY="398.0" text="Save New Appointment" />
       <Label layoutX="464.0" layoutY="480.0" text="Return to Appointment Menu" />
+      <TextField fx:id="appointmentType" layoutX="224.0" layoutY="274.0" onAction="#onAppointmentType" promptText="appointment type" />
    </children>
 </AnchorPane>

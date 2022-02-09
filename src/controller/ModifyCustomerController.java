@@ -1,5 +1,9 @@
 package controller;
 
+import helper.CountriesQuery;
+import helper.CustomersQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,9 +14,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Countries;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /** This class controls 'modify customer' screen.
@@ -37,6 +43,15 @@ public class ModifyCustomerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ObservableList<Countries> allCountryIDs = FXCollections.observableArrayList();
+        try {
+            allCountryIDs = CountriesQuery.getAllCountryIDs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ObservableList<String> allCountryReadable = Countries.getReadable(allCountryIDs);
+        modCountry.setItems(allCountryReadable);
 
     }
 

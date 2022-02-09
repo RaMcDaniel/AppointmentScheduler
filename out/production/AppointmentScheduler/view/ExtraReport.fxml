@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExtraReportController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExtraReportController">
    <children>
       <Label layoutX="317.0" layoutY="25.0" text=" MYSTERY Report">
          <font>
@@ -15,5 +13,6 @@
       </Label>
       <TextField fx:id="extraReportTextField" layoutX="18.0" layoutY="66.0" onAction="#onExtraReportTextField" prefHeight="478.0" prefWidth="762.0" />
       <Button fx:id="exit" layoutX="701.0" layoutY="560.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
+      <Button fx:id="runExtraReport" layoutX="573.0" layoutY="27.0" mnemonicParsing="false" onAction="#onRunExtraReport" text="run" />
    </children>
 </AnchorPane>

@@ -63,11 +63,11 @@ public class AppointmentMenuController implements Initializable {
         appTitle.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
         appDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         appLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
-        appType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appType.setCellValueFactory(new PropertyValueFactory<>("appType"));
         startTime.setCellValueFactory(new PropertyValueFactory<>("start"));
         endTime.setCellValueFactory(new PropertyValueFactory<>("end"));
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        userID.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        userID.setCellValueFactory(new PropertyValueFactory<>("appUserID"));
         contactID.setCellValueFactory(new PropertyValueFactory<>("contactID"));
 
     }

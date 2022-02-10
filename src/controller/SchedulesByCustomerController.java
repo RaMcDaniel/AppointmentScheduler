@@ -16,24 +16,23 @@ import java.util.ResourceBundle;
 /** This class controls the 'Schedules by user' screen.
  *
  */
-public class SchedulesbyUserController implements Initializable {
+public class SchedulesByCustomerController implements Initializable {
 
 
-    public Button userReportExit;
-    public Label viewingForLabel;
-    public TableView usersAppointmentsTable;
-    public TableColumn usersIDCol;
-    public TableColumn usersTitleCol;
-    public TableColumn usersDescriptionCol;
-    public TableColumn usersLocationCol;
-    public TableColumn usersTypeCol;
-    public TableColumn usersStartCol;
-    public TableColumn userEndCol;
-    public TableColumn usersCustomerCol;
-    public TableColumn usersUserCol;
-    public TableColumn usersContactCol;
-    public ComboBox chooseUser;
-    public Button runUserReport;
+    public Button customerReportExit;
+    public TableView customersAppointmentsTable;
+    public TableColumn customersIDCol;
+    public TableColumn customersTitleCol;
+    public TableColumn customersDescriptionCol;
+    public TableColumn customersLocationCol;
+    public TableColumn customersTypeCol;
+    public TableColumn customersStartCol;
+    public TableColumn customersEndCol;
+    public TableColumn customersCustomerCol;
+    public TableColumn customersUserCol;
+    public TableColumn customersContactCol;
+    public ComboBox chooseCustomer;
+    public Button runCustomerReport;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,13 +40,13 @@ public class SchedulesbyUserController implements Initializable {
     }
 
 
-    public void onUsersAppointmentsTable(SortEvent<TableView> tableViewSortEvent) {
+    public void onCustomersAppointmentsTable(SortEvent<TableView> tableViewSortEvent) {
     }
 
-    public void onChooseUser(ActionEvent actionEvent) {
+    public void onChooseCustomer(ActionEvent actionEvent) {
     }
 
-    public void onRunUserReport(ActionEvent actionEvent) {
+    public void onRunCustomerReport(ActionEvent actionEvent) {
     }
 
     /** This method returns to the main menu when button is clicked.
@@ -55,7 +54,7 @@ public class SchedulesbyUserController implements Initializable {
      * @param actionEvent Not necessary to specify.
      * @throws IOException if screen isn't present.
      */
-    public void onUserReportExit(ActionEvent actionEvent) throws IOException {
+    public void onCustomerReportExit(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);

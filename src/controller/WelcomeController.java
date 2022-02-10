@@ -97,7 +97,7 @@ public class WelcomeController implements Initializable {
      * @throws IOException if screen is not present.
      */
     public void onSchedulesByUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/SchedulesByUser.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/SchedulesByCustomer.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
         stage.setTitle("Schedules by User");

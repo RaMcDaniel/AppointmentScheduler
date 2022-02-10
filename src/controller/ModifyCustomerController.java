@@ -41,6 +41,7 @@ public class ModifyCustomerController implements Initializable {
     public ComboBox modState;
     public Button modExit;
     public Button modSave;
+    //modifyID is your customer id of selected customer from last page.
 
     /** This contains items initialized when window is created.
      *
@@ -74,6 +75,28 @@ public class ModifyCustomerController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        ///////////////
+        //here goes the loop where you select the country
+        for (Object s : modCountry.getItems()){
+            if(Integer.parseInt(s.toString()) == modifyID){
+                modCountry.setValue(s);
+            }
+        }
+
+
+
+
+        ////////////////
+
+        ObservableList<FirstLevelDivisions> states = null;
+        try {
+            states = FirstLevelDivisionsQuery.getAllDivisions(modifyID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ObservableList<String> statesReadable = FirstLevelDivisions.getReadable(states);
+        modState.setItems(statesReadable);
 
 
 

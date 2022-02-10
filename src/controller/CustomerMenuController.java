@@ -64,7 +64,6 @@ public class CustomerMenuController implements Initializable {
         customerStateCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
         customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("countryID"));
 
-
     }
 
     public void onAllCustomersTable(SortEvent<TableView> tableViewSortEvent) {

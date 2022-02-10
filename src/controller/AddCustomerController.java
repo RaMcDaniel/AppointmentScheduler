@@ -140,10 +140,6 @@ public class AddCustomerController implements Initializable {
         }
         insertCustomer(customerName, address, postalCode, phone, divisionID);
 
-
-
-
-
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerMenu.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);

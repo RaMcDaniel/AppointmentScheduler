@@ -15,13 +15,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Alerts;
 import model.Countries;
+import model.Customers;
 import model.FirstLevelDivisions;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static helper.CustomersQuery.insertCustomer;
 
 
 /** This class controls 'add customer' screen.
@@ -39,6 +43,14 @@ public class AddCustomerController implements Initializable {
     public Button addExit;
     public Button addSave;
     public static int CUSTOMER_COUNTER;
+
+    private int customerID;
+    private String customerName = null;
+    private String address = null;
+    private String postalCode = null;
+    private String phone = null;
+    private int divisionID = 0;
+    private int countryID = 0;
 
     /** This contains items initialized when window is created.
      *
@@ -70,26 +82,36 @@ public class AddCustomerController implements Initializable {
     }
 
     public void onAddCustomerName(ActionEvent actionEvent) {
+        customerName = addCustomerName.getText();
     }
 
     public void onAddAddress(ActionEvent actionEvent) {
+        address = addAddress.getText();
     }
 
     public void onAddPostalCode(ActionEvent actionEvent) {
+        postalCode = addPostalCode.getText();
     }
 
     public void onAddPhone(ActionEvent actionEvent) {
+        phone = addPhone.getText();
     }
 
     public void onAddCountry(ActionEvent actionEvent) throws SQLException {
         String country = addCountry.getSelectionModel().getSelectedItem().toString();
         int countrySelection = Countries.getCountryInt(country);
+        countryID = countrySelection;
         ObservableList<FirstLevelDivisions> states = FirstLevelDivisionsQuery.getAllDivisions(countrySelection);
         ObservableList<String> statesReadable = FirstLevelDivisions.getReadable(states);
         addState.setItems(statesReadable);
     }
 
     public void onAddState(ActionEvent actionEvent) {
+        String state = addState.getSelectionModel().getSelectedItem().toString();
+        int stateSelection = Countries.getCountryInt(state);
+
+        divisionID = stateSelection;
+
     }
 
     /** This method returns to the customer menu when button is clicked.
@@ -111,7 +133,18 @@ public class AddCustomerController implements Initializable {
      * @param actionEvent Not necessary to specify.
      * @throws IOException if screen isn't present.
      */
-    public void onAddSave(ActionEvent actionEvent) throws IOException {
+    public void onAddSave(ActionEvent actionEvent) throws IOException, SQLException {
+
+        if(!(customerName!=null && address!=null && postalCode!=null && phone!=null && divisionID!=0 && countryID!=0)) {
+            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            return;
+        }
+        insertCustomer(customerName, address, postalCode, phone, divisionID);
+
+
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerMenu.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);

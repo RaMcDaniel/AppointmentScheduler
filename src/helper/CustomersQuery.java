@@ -50,9 +50,6 @@ public class CustomersQuery {
     }
 
 
-
-
-
     public static int getNumCustomers() throws SQLException {
         String sql = "SELECT count(*) FROM customers";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);

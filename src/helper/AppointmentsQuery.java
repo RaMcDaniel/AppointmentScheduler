@@ -102,4 +102,35 @@ public class AppointmentsQuery {
         return appointmentsBySelectedContact;
 
     }
+
+
+    public static ObservableList<String> getAllAppointmentTypes() throws SQLException {
+        String sql = "SELECT * from appointments";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList();
+        while(rs.next()){
+            String type = rs.getString("Type");
+            allAppointmentTypes.add(type);
+        }
+        return allAppointmentTypes;
+    }
+
+
+///////*****************************************************************
+    //////SELECT * FROM appointments WHERE month(Start) = 5
+    public static int getNumReportSelection(int month, String typeString) throws SQLException {
+        String sql = "SELECT count(*) FROM appointments WHERE month(Start) = ? AND Type = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, month);
+        ps.setString(2,typeString);
+        ResultSet rs = ps.executeQuery();
+        int numAppointments = 0;
+        while(rs.next()){
+            numAppointments = rs.getInt(1);
+        }
+        return numAppointments;
+    }
+
+
 }

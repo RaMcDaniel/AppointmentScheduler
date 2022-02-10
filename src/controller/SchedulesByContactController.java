@@ -1,5 +1,6 @@
 package controller;
 
+import helper.AppointmentsQuery;
 import helper.ContactsQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,8 +11,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Contacts;
+import model.Countries;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +41,8 @@ public class SchedulesByContactController implements Initializable {
     public TableColumn contactContactCol;
     public ComboBox chooseUser;
     public Button runUserReport;
+    public static ObservableList<Appointments> appointmentsBySelectedContact = FXCollections.observableArrayList();
+    public static int selectedContactID;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,8 +76,29 @@ public class SchedulesByContactController implements Initializable {
     }
 
     public void onChooseUser(ActionEvent actionEvent) {
+        String selectedContact = chooseUser.getSelectionModel().getSelectedItem().toString();
+        selectedContactID = Countries.getCountryInt(selectedContact);
     }
 
     public void onRunUserReport(ActionEvent actionEvent) {
+
+        try {
+            appointmentsBySelectedContact = AppointmentsQuery.getAppointmentsBySelectedContact(selectedContactID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        contactsAppointmentsTable.setItems(appointmentsBySelectedContact);
+        contactIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        contactTitleCol.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
+        contactDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        contactLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactTypeCol.setCellValueFactory(new PropertyValueFactory<>("appType"));
+        contactStartCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        contactEndCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        contactCustomerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        contactUserCol.setCellValueFactory(new PropertyValueFactory<>("appUserID"));
+        contactContactCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+
     }
 }

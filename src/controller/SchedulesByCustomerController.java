@@ -1,5 +1,6 @@
 package controller;
 
+import helper.AppointmentsQuery;
 import helper.CustomersQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +11,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointments;
+import model.Countries;
 import model.Customers;
 
 import java.io.IOException;
@@ -38,6 +42,8 @@ public class SchedulesByCustomerController implements Initializable {
     public TableColumn customersContactCol;
     public ComboBox chooseCustomer;
     public Button runCustomerReport;
+    public static ObservableList<Appointments> appointmentsBySelectedCustomer = FXCollections.observableArrayList();
+    public static int selectedCustomerID;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,9 +64,30 @@ public class SchedulesByCustomerController implements Initializable {
     }
 
     public void onChooseCustomer(ActionEvent actionEvent) {
+        String selectedCustomer = chooseCustomer.getSelectionModel().getSelectedItem().toString();
+        selectedCustomerID = Countries.getCountryInt(selectedCustomer);
     }
 
     public void onRunCustomerReport(ActionEvent actionEvent) {
+
+        try {
+            appointmentsBySelectedCustomer = AppointmentsQuery.getAppointmentsBySelectedCustomer(selectedCustomerID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        customersAppointmentsTable.setItems(appointmentsBySelectedCustomer);
+        customersIDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        customersTitleCol.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
+        customersDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        customersLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        customersTypeCol.setCellValueFactory(new PropertyValueFactory<>("appType"));
+        customersStartCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        customersEndCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        customersCustomerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customersUserCol.setCellValueFactory(new PropertyValueFactory<>("appUserID"));
+        customersContactCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+
     }
 
     /** This method returns to the main menu when button is clicked.

@@ -69,6 +69,7 @@ public class ModifyCustomerController implements Initializable {
             modPostalCode.setText(modifyCustomer.getPostalCode());
             modPhone.setText(modifyCustomer.getPhone());
             modID.setText(Integer.toString(modifyCustomer.getCustomerID()));
+            //modState.getSelectionModel().selectFirst();
 
         } catch (SQLException e) {
             e.printStackTrace();

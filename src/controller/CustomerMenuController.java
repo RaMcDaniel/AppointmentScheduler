@@ -9,17 +9,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.SortEvent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Alerts;
 import model.Customers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /** This class controls the customer menu.
@@ -101,7 +100,28 @@ public class CustomerMenuController implements Initializable {
      * @param actionEvent Not necessary to specify.
      * @throws IOException if screen isn't present.
      */
-    public void onDeleteCustomer(ActionEvent actionEvent) throws IOException{
+    public void onDeleteCustomer(ActionEvent actionEvent) throws IOException, SQLException {
+        Customers deletedCustomer = (Customers)allCustomersTable.getSelectionModel().getSelectedItem();
+        int deleteID = deletedCustomer.getCustomerID();
+
+        if (deletedCustomer==null){
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
+
+        if(CustomersQuery.determineAssociatedAppointments(deleteID)){
+            Alerts.associatedAppointments.showAndWait();
+            return;
+        }
+
+        Optional<ButtonType> result = Alerts.delete.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            CustomersQuery.deleteCustomer(deleteID);
+            Alerts.deleteCustomerConfirmation(deletedCustomer.getCustomerID(), deletedCustomer.getCustomerName()).showAndWait();
+        }
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);

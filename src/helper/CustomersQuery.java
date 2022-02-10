@@ -73,4 +73,24 @@ public class CustomersQuery {
     }
 
 
+    public static boolean determineAssociatedAppointments(int deleteID) throws SQLException {
+        String sql = "SELECT count(*) FROM appointments WHERE Customer_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, deleteID);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            int cID = rs.getInt("Customer_ID");   //can put column index int or table column label
+            if(cID > 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void deleteCustomer(int deleteID) throws SQLException {
+        String sql = "DELETE FROM customers WHERE FRUIT_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1,deleteID);
+        ps.executeUpdate();
+    }
 }

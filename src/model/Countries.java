@@ -3,6 +3,8 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Locale;
+
 public class Countries {
     private int countryID;
     private String country;
@@ -22,8 +24,9 @@ public class Countries {
     }
 
     public static int getCountryInt(String country) {
-        char c = country.charAt(0);
-        int num = Character.getNumericValue(c);
+        country = country.replaceAll("[^0-9]+", " ");
+        country = country.trim();
+        int num = Integer.parseInt(country);
         return num;
     }
 

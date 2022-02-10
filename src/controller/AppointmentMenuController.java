@@ -13,11 +13,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Alerts;
 import model.Appointments;
+import model.Customers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 /** This class controls the screen that contains appointment options.
@@ -44,6 +47,16 @@ public class AppointmentMenuController implements Initializable {
     public TableColumn userID;
     public TableColumn contactID;
     public static ObservableList<Appointments> allAppointmentObjects = FXCollections.observableArrayList();
+    public static int appointmentIDMod;
+    public static String appointmentTitleMod;
+    public static String descriptionMod;
+    public static String locationMod;
+    public static String appTypeMod;
+    public static Timestamp startMod;
+    public static Timestamp endMod;
+    public static int customerIDMod;
+    public static int appUserIDMod;
+    public static int contactIDMod;
 
     /** This contains items initialized when window is created.
      *
@@ -96,6 +109,24 @@ public class AppointmentMenuController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onModifyAppointment(ActionEvent actionEvent) throws IOException{
+
+        Appointments modifiedAppointment = (Appointments) allAppointmentsTable.getSelectionModel().getSelectedItem();
+        if(modifiedAppointment == null){
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
+        appointmentIDMod = modifiedAppointment.getAppointmentID();
+        appointmentTitleMod = modifiedAppointment.getAppointmentTitle();
+        descriptionMod = modifiedAppointment.getDescription();
+        locationMod = modifiedAppointment.getLocation();
+        appTypeMod = modifiedAppointment.getAppType();
+        startMod = modifiedAppointment.getStart();
+        endMod = modifiedAppointment.getEnd();
+        customerIDMod = modifiedAppointment.getCustomerID();
+        appUserIDMod = modifiedAppointment.getAppUserID();
+        contactIDMod = modifiedAppointment.getContactID();
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyViewAppointment.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);

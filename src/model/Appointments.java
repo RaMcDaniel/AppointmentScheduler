@@ -40,4 +40,15 @@ public class Appointments {
     public int getCustomerID() {return customerID;}
     public int getAppUserID() {return appUserID;}
     public int getContactID() {return contactID;}
+
+
+    public static String convertTimeStampToString(Timestamp time){
+        LocalDateTime t = time.toLocalDateTime();
+        int min = t.getMinute();
+        String minString = Integer.toString(min);
+        int hour = t.getHour();
+        String hourString = Integer.toString(hour);
+        String timeString = hourString + minString;
+        return timeString;
+    }
 }

@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Contacts;
 import model.Customers;
 import model.Users;
@@ -25,6 +26,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
+import static controller.AppointmentMenuController.*;
 import static model.Users.passableUserID;
 
 /** This class controls the View/Modify Appointment screen.
@@ -34,8 +36,8 @@ public class ModifyViewAppointmentController implements Initializable {
 
     public Button modifyAppointmentExit;
     public Button modAppointmentSave;
-    public TextField appointmentIDMod;
-    public TextField appointmentTitleMod;
+    public TextField appointmentIDModField;
+    public TextField appointmentTitleModField;
     public TextField appointmentDescriptionMod;
     public TextField appointmentLocationMod;
     public ComboBox chooseContactMod;
@@ -78,6 +80,27 @@ public class ModifyViewAppointmentController implements Initializable {
         }
         ObservableList<String> allCustomersReadable = Customers.getReadable(allCustomerIDs);
         chooseCustomerIDMod.setItems(allCustomersReadable);
+
+
+        String startModString = Appointments.convertTimeStampToString(startMod);
+        String endModString = Appointments.convertTimeStampToString(endMod);
+        appointmentIDModField.setText(String.valueOf(appointmentIDMod));
+        appointmentTitleModField.setText(appointmentTitleMod);
+        appointmentDescriptionMod.setText(descriptionMod);
+        appointmentLocationMod.setText(locationMod);
+        appointmentTypeMod.setText(appTypeMod);
+        modStartTime.setText(startModString);
+        modEndTime.setText(endModString);
+        chooseCustomerIDMod.setValue(customerIDMod);
+        userIDMod.setText(String.valueOf(appUserIDMod));
+        chooseContactMod.setValue(contactIDMod);
+
+
+
+
+
+
+
 
     }
 

@@ -37,7 +37,9 @@ public class CustomerMenuController implements Initializable {
     public TableColumn CustomerPostalCol;
     public TableColumn customerStateCol;
     public TableColumn customerCountryCol;
-    public static int modifyID;
+    public static int modifyCountryID;
+    public static int modifyCustomerID;
+    public static int modifyStateID;
     public static ObservableList<Customers> allCustomerObjects = FXCollections.observableArrayList();
 
     /** This contains items initialized when window is created.
@@ -94,7 +96,9 @@ public class CustomerMenuController implements Initializable {
             Alerts.noneSelected.showAndWait();
             return;
         }
-        modifyID = modifiedCustomer.getCustomerID();
+        modifyCountryID = modifiedCustomer.getCountryID();
+        modifyCustomerID =modifiedCustomer.getCustomerID();
+        modifyStateID = modifiedCustomer.getDivisionID();
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyCustomer.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

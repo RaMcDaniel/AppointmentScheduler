@@ -24,7 +24,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static controller.CustomerMenuController.modifyID;
+import static controller.CustomerMenuController.*;
 
 
 /** This class controls 'modify customer' screen.
@@ -63,7 +63,7 @@ public class ModifyCustomerController implements Initializable {
 
         Customers modifyCustomer;
         try {
-            modifyCustomer = (CustomersQuery.getCustomerByID(modifyID));
+            modifyCustomer = (CustomersQuery.getCustomerByID(modifyCustomerID));
 
             modCustomerName.setText(modifyCustomer.getCustomerName());
             modAddress.setText(modifyCustomer.getAddress());
@@ -79,17 +79,39 @@ public class ModifyCustomerController implements Initializable {
         ///////////////
         //here goes the loop where you select the country
         for (Object s : modCountry.getItems()){
-            System.out.println(s);
             String sString = s.toString();
-            System.out.println(sString);
             sString = sString.replaceAll("[^0-9]+", " ");
             sString = sString.trim();
-            System.out.println(sString);
             int num = Integer.parseInt(sString);
-            System.out.println(num);
-            System.out.println(modifyID);
-            if(num == modifyID){
+            if(num == modifyCountryID){
                 modCountry.setValue(s);
+            }
+        }
+
+
+        String country = modCountry.getSelectionModel().getSelectedItem().toString();
+        int countrySelection = Countries.getCountryInt(country);
+        //countryID = countrySelection;
+        ObservableList<FirstLevelDivisions> states = null;
+        try {
+            states = FirstLevelDivisionsQuery.getAllDivisions(countrySelection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ObservableList<String> statesReadable = FirstLevelDivisions.getReadable(states);
+        modState.setItems(statesReadable);
+
+
+
+
+        for (Object s : modState.getItems()){
+            String sString = s.toString();
+            sString = sString.replaceAll("[^0-9]+", " ");
+            sString = sString.trim();
+            int num = Integer.parseInt(sString);
+            System.out.println(modifyStateID);
+            if(num == modifyStateID){
+                modState.setValue(s);
             }
         }
 
@@ -97,16 +119,18 @@ public class ModifyCustomerController implements Initializable {
 
 
         ////////////////
+/**
+ *
 
         ObservableList<FirstLevelDivisions> states = null;
         try {
-            states = FirstLevelDivisionsQuery.getAllDivisions(modifyID);
+            states = FirstLevelDivisionsQuery.getAllDivisions(modifyCountryID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         ObservableList<String> statesReadable = FirstLevelDivisions.getReadable(states);
         modState.setItems(statesReadable);
-
+*/
 
 
 

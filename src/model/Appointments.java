@@ -43,12 +43,17 @@ public class Appointments {
 
 
     public static String convertTimeStampToString(Timestamp time){
+        System.out.println(time);
         LocalDateTime t = time.toLocalDateTime();
+        System.out.println(t);
         int min = t.getMinute();
+        System.out.println(min);
         String minString = Integer.toString(min);
+        System.out.println(minString);
         int hour = t.getHour();
         String hourString = Integer.toString(hour);
         String timeString = hourString + minString;
+        System.out.println(timeString);
         return timeString;
     }
 }

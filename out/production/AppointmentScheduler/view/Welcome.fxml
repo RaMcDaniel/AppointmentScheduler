@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeController">
    <children>
       <Label fx:id="welcomeLabel" layoutX="199.0" layoutY="24.0" text="Welcome USERNAME">
@@ -13,15 +12,21 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="welcomeYourSchedule" layoutX="218.0" layoutY="239.0" mnemonicParsing="false" onAction="#onWelcomeYourSchedule" text="View" />
-      <Button fx:id="welcomeReports" layoutX="391.0" layoutY="135.0" mnemonicParsing="false" onAction="#onWelcomeReports" text="View" />
-      <Button fx:id="welcomeCustomers" layoutX="159.0" layoutY="135.0" mnemonicParsing="false" onAction="#onWelcomeCustomers" text="View" />
-      <Button fx:id="welcomeAppointments" layoutX="279.0" layoutY="135.0" mnemonicParsing="false" onAction="#onWelcomeAppointments" text="View" />
-      <Label layoutX="201.0" layoutY="209.0" text="Your Schedule" />
-      <Label layoutX="391.0" layoutY="103.0" text="Reports" />
-      <Label layoutX="152.0" layoutY="103.0" text="Customers" />
-      <Label layoutX="262.0" layoutY="103.0" text="Appointments" />
-      <Label layoutX="335.0" layoutY="209.0" text="Log out" />
-      <Button fx:id="welcomeExit" layoutX="338.0" layoutY="239.0" mnemonicParsing="false" onAction="#onWelcomeExit" text="Exit" />
+      <Button fx:id="schedulesByUser" layoutX="126.0" layoutY="265.0" mnemonicParsing="false" onAction="#onSchedulesByUser" text="View" />
+      <Button fx:id="welcomeCustomers" layoutX="182.0" layoutY="112.0" mnemonicParsing="false" onAction="#onWelcomeCustomers" text="View" />
+      <Button fx:id="welcomeAppointments" layoutX="351.0" layoutY="112.0" mnemonicParsing="false" onAction="#onWelcomeAppointments" text="View" />
+      <Label layoutX="99.0" layoutY="223.0" text="Schedules by User" />
+      <Label layoutX="272.0" layoutY="174.0" text="Reports">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="175.0" layoutY="76.0" text="Customers" />
+      <Label layoutX="334.0" layoutY="76.0" text="Appointments" />
+      <Label layoutX="446.0" layoutY="343.0" text="Log out" />
+      <Button fx:id="welcomeExit" layoutX="515.0" layoutY="339.0" mnemonicParsing="false" onAction="#onWelcomeExit" text="Exit" />
+      <Label layoutX="243.0" layoutY="223.0" text="Schedules by Contact" />
+      <Label layoutX="393.0" layoutY="223.0" text="Totals Reports" />
+      <Button fx:id="schedulesByContact" layoutX="279.0" layoutY="265.0" mnemonicParsing="false" onAction="#onSchedulesByContact" text="VIew" />
+      <Button fx:id="totalsReport" layoutX="410.0" layoutY="265.0" mnemonicParsing="false" onAction="#onTotalsReport" text="View" />
    </children>
 </AnchorPane>

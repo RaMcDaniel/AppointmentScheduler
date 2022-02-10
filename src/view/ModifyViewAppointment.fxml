@@ -36,14 +36,12 @@
             <Label layoutX="464.0" layoutY="278.0" text="Customer ID" />
             <ComboBox fx:id="chooseCustomerIDMod" layoutX="584.0" layoutY="274.0" onAction="#onChooseCustomerIDMod" prefWidth="150.0" promptText="choose customer ID" />
             <TextField fx:id="userIDMod" editable="false" layoutX="584.0" layoutY="113.0" promptText="user ID" />
-            <Label layoutX="468.0" layoutY="383.0" text="Save Modified Data" />
-            <Button fx:id="modAppointmentSave" layoutX="646.0" layoutY="373.0" mnemonicParsing="false" onAction="#onModAppointmentSave" text="Save">
+            <Label layoutX="467.0" layoutY="416.0" text="Save Modified Data" />
+            <Button fx:id="modAppointmentSave" layoutX="645.0" layoutY="407.0" mnemonicParsing="false" onAction="#onModAppointmentSave" text="Save">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Label layoutX="465.0" layoutY="437.0" text="Go to Your Schedule" />
-            <Button fx:id="modifyAppointmentViewSchedule" layoutX="653.0" layoutY="433.0" mnemonicParsing="false" onAction="#onModifyAppointmentViewSchedule" text="View" />
             <Label layoutX="466.0" layoutY="480.0" text="Return to Appointments" />
             <Button fx:id="modifyAppointmentExit" layoutX="656.0" layoutY="476.0" mnemonicParsing="false" onAction="#onModifyAppointmentExit" text="Exit" />
             <TextField fx:id="appointmentTypeMod" layoutX="225.0" layoutY="274.0" onAction="#onAppointmentTypeMod" promptText="appointment type" />

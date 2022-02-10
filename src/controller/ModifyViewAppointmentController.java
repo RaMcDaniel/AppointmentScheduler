@@ -33,7 +33,6 @@ import static model.Users.passableUserID;
 public class ModifyViewAppointmentController implements Initializable {
 
     public Button modifyAppointmentExit;
-    public Button modifyAppointmentViewSchedule;
     public Button modAppointmentSave;
     public TextField appointmentIDMod;
     public TextField appointmentTitleMod;
@@ -96,20 +95,6 @@ public class ModifyViewAppointmentController implements Initializable {
         stage.show();
     }
 
-
-    /** This method returns user to their schedule when clicked.
-     *
-     * @param actionEvent Not necessary to specify.
-     * @throws IOException if screen isn't present.
-     */
-    public void onModifyAppointmentViewSchedule(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/SchedulesByUser.fxml"));
-        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        stage.setTitle("Your Schedule");
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void onModAppointmentSave(ActionEvent actionEvent) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentMenu.fxml"));

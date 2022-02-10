@@ -9,19 +9,29 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TotalsReportController">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
+      <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <Label layoutX="336.0" layoutY="14.0" text="Totals Report">
+            <Label layoutX="336.0" layoutY="41.0" text="Totals Report">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="totalReportTextField" layoutX="18.0" layoutY="95.0" onAction="#onTotalReportsTextField" prefHeight="457.0" prefWidth="762.0" />
             <Button fx:id="exit" layoutX="701.0" layoutY="560.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
-            <Label layoutX="112.0" layoutY="59.0" text="Filter by Type" />
-            <ComboBox fx:id="totalsReportType" layoutX="211.0" layoutY="55.0" onAction="#onTotalsReportType" prefWidth="150.0" promptText="appointment type" />
-            <Label layoutX="427.0" layoutY="59.0" text="Filter by Type" />
-            <ComboBox fx:id="totalsReportMonth" layoutX="522.0" layoutY="55.0" onAction="#onTotalsReportMonth" prefWidth="150.0" promptText="appointment month" />
+            <Label layoutX="122.0" layoutY="199.0" text="and by Type" />
+            <ComboBox fx:id="totalsReportType" layoutX="219.0" layoutY="195.0" onAction="#onTotalsReportType" prefWidth="150.0" promptText="appointment type" />
+            <Label layoutX="114.0" layoutY="140.0" text="Filter by Month" />
+            <ComboBox fx:id="totalsReportMonth" layoutX="219.0" layoutY="136.0" onAction="#onTotalsReportMonth" prefWidth="150.0" promptText="appointment month" />
+            <Button fx:id="runReport" layoutX="499.0" layoutY="189.0" mnemonicParsing="false" onAction="#onRunReport" text="Run Report">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="122.0" layoutY="325.0" prefHeight="59.0" prefWidth="282.0" text="For the selected month and type, there are this many appointments:" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="numAppointmentsField" editable="false" layoutX="463.0" layoutY="342.0" promptText="number of appointments" />
          </children>
       </AnchorPane>
    </children>

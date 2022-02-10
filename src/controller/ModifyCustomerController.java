@@ -16,12 +16,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Countries;
+import model.Customers;
 import model.FirstLevelDivisions;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static controller.CustomerMenuController.modifyID;
 
 
 /** This class controls 'modify customer' screen.
@@ -55,6 +58,24 @@ public class ModifyCustomerController implements Initializable {
         }
         ObservableList<String> allCountryReadable = Countries.getReadable(allCountryIDs);
         modCountry.setItems(allCountryReadable);
+
+
+        Customers modifyCustomer;
+        try {
+            modifyCustomer = (CustomersQuery.getCustomerByID(modifyID));
+
+            modCustomerName.setText(modifyCustomer.getCustomerName());
+            modAddress.setText(modifyCustomer.getAddress());
+            modPostalCode.setText(modifyCustomer.getPostalCode());
+            modPhone.setText(modifyCustomer.getPhone());
+            modID.setText(Integer.toString(modifyCustomer.getCustomerID()));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
 
 
     }

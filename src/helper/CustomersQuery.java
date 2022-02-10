@@ -51,7 +51,7 @@ public class CustomersQuery {
 
 
     public static int getNumCustomers() throws SQLException {
-        String sql = "SELECT count(*) FROM customers";
+        String sql = "SELECT max(Customer_ID) from customers;";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         int numCustomers = 0;
@@ -79,7 +79,7 @@ public class CustomersQuery {
         ps.setInt(1, deleteID);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            int cID = rs.getInt("Customer_ID");   //can put column index int or table column label
+            int cID = rs.getInt(1);
             if(cID > 0){
                 return true;
             }
@@ -88,9 +88,29 @@ public class CustomersQuery {
     }
 
     public static void deleteCustomer(int deleteID) throws SQLException {
-        String sql = "DELETE FROM customers WHERE FRUIT_ID = ?";
+        String sql = "DELETE FROM customers WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1,deleteID);
         ps.executeUpdate();
+    }
+
+    public static Customers getCustomerByID(int modifyID) throws SQLException {
+        String sql = "SELECT * from customers, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID AND Customer_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1,modifyID);
+        ResultSet rs = ps.executeQuery();
+        Customers c = null;
+        while (rs.next()) {
+            int customerID = rs.getInt("Customer_ID");
+            String customerName = rs.getString("Customer_Name");
+            String customerPhone = rs.getString("Phone");
+            String customerAddress = rs.getString("Address");
+            String postalCode = rs.getString("Postal_Code");
+            int state = rs.getInt("Division_ID");
+            int country = rs.getInt("Country_ID");
+
+            c = new Customers(customerID, customerName, customerAddress, postalCode, customerPhone, state, country);
+        }
+        return c;
     }
 }

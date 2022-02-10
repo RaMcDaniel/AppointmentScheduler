@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 
 public class FirstLevelDivisions {
     private int divisionID;

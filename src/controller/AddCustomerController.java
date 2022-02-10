@@ -72,12 +72,11 @@ public class AddCustomerController implements Initializable {
         int numCustomers = 0;
         try {
             numCustomers = CustomersQuery.getNumCustomers();
-            System.out.println(numCustomers);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         CUSTOMER_COUNTER = numCustomers + 1;
-        addID.setText(String.valueOf(CUSTOMER_COUNTER));
+       // addID.setText(String.valueOf(CUSTOMER_COUNTER));
 
     }
 

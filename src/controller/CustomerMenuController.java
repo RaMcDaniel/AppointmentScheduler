@@ -37,6 +37,7 @@ public class CustomerMenuController implements Initializable {
     public TableColumn CustomerPostalCol;
     public TableColumn customerStateCol;
     public TableColumn customerCountryCol;
+    public static int modifyID;
     public static ObservableList<Customers> allCustomerObjects = FXCollections.observableArrayList();
 
     /** This contains items initialized when window is created.
@@ -87,6 +88,14 @@ public class CustomerMenuController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onModifyCustomer(ActionEvent actionEvent) throws IOException{
+
+        Customers modifiedCustomer = (Customers)allCustomersTable.getSelectionModel().getSelectedItem();
+        if(modifiedCustomer == null){
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
+        modifyID = modifiedCustomer.getCustomerID();
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyCustomer.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
@@ -101,13 +110,13 @@ public class CustomerMenuController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onDeleteCustomer(ActionEvent actionEvent) throws IOException, SQLException {
-        Customers deletedCustomer = (Customers)allCustomersTable.getSelectionModel().getSelectedItem();
-        int deleteID = deletedCustomer.getCustomerID();
 
-        if (deletedCustomer==null){
+        Customers deletedCustomer = (Customers)allCustomersTable.getSelectionModel().getSelectedItem();
+        if(deletedCustomer == null){
             Alerts.noneSelected.showAndWait();
             return;
         }
+        int deleteID = deletedCustomer.getCustomerID();
 
         if(CustomersQuery.determineAssociatedAppointments(deleteID)){
             Alerts.associatedAppointments.showAndWait();

@@ -45,7 +45,7 @@ public class TotalsReportController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 13; i++){
             months.add(i);
         }
         totalsReportMonth.setItems(months);

@@ -1,5 +1,8 @@
 package controller;
 
+import helper.CustomersQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,9 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Customers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /** This class controls the 'Schedules by user' screen.
@@ -36,6 +41,15 @@ public class SchedulesByCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ObservableList<Customers> allCustomerIDs = FXCollections.observableArrayList();
+        try {
+            allCustomerIDs = CustomersQuery.getAllCustomerIDs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ObservableList<String> allCustomersReadable = Customers.getReadable(allCustomerIDs);
+        chooseCustomer.setItems(allCustomersReadable);
 
     }
 

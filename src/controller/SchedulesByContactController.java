@@ -1,5 +1,8 @@
 package controller;
 
+import helper.ContactsQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,9 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Contacts;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /** This class controls the 'schedules by contact' screen.
@@ -35,6 +40,15 @@ public class SchedulesByContactController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ObservableList<Contacts> allContactIDs = FXCollections.observableArrayList();
+        try {
+            allContactIDs = ContactsQuery.getAllContactIDs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ObservableList<String> allContactsReadable = Contacts.getReadable(allContactIDs);
+        chooseUser.setItems(allContactsReadable);
 
     }
 

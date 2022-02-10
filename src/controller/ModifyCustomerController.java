@@ -79,7 +79,16 @@ public class ModifyCustomerController implements Initializable {
         ///////////////
         //here goes the loop where you select the country
         for (Object s : modCountry.getItems()){
-            if(Integer.parseInt(s.toString()) == modifyID){
+            System.out.println(s);
+            String sString = s.toString();
+            System.out.println(sString);
+            sString = sString.replaceAll("[^0-9]+", " ");
+            sString = sString.trim();
+            System.out.println(sString);
+            int num = Integer.parseInt(sString);
+            System.out.println(num);
+            System.out.println(modifyID);
+            if(num == modifyID){
                 modCountry.setValue(s);
             }
         }

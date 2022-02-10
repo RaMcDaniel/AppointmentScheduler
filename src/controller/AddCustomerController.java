@@ -99,7 +99,7 @@ public class AddCustomerController implements Initializable {
     public void onAddCountry(ActionEvent actionEvent) throws SQLException {
         String country = addCountry.getSelectionModel().getSelectedItem().toString();
         int countrySelection = Countries.getCountryInt(country);
-        //countryID = countrySelection;
+        countryID = countrySelection;
         ObservableList<FirstLevelDivisions> states = FirstLevelDivisionsQuery.getAllDivisions(countrySelection);
         ObservableList<String> statesReadable = FirstLevelDivisions.getReadable(states);
         addState.setItems(statesReadable);

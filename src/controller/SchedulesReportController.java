@@ -55,10 +55,10 @@ public class SchedulesReportController implements Initializable {
      * @throws IOException If screen is not present.
      */
     public void onExit(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);
-        stage.setTitle("Reports Menu");
+        stage.setTitle("Welcome to Appointment Scheduler");
         stage.setScene(scene);
         stage.show();
     }

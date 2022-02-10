@@ -31,10 +31,8 @@
       <Label layoutX="105.0" layoutY="385.0" text="Date" />
       <Label layoutX="103.0" layoutY="437.0" text="Start Time" />
       <Label layoutX="105.0" layoutY="480.0" text="End Time" />
-      <ComboBox fx:id="startTime" layoutX="206.0" layoutY="433.0" onAction="#onStartTime" prefWidth="150.0" promptText="choose start time" />
       <Label layoutX="464.0" layoutY="278.0" text="Customer ID" />
       <ComboBox fx:id="chooseCustomerID" layoutX="584.0" layoutY="274.0" onAction="#onChooseCustomerID" prefWidth="150.0" promptText="choose customer ID" />
-      <ComboBox fx:id="chooseEndTime" layoutX="206.0" layoutY="476.0" onAction="#onChooseEndTime" prefWidth="150.0" promptText="choose end time" />
       <TextField fx:id="userID" editable="false" layoutX="584.0" layoutY="113.0" promptText="user ID" />
       <Button fx:id="exitNewAppointment" layoutX="641.0" layoutY="476.0" mnemonicParsing="false" onAction="#onExitNewAppointment" text="Exit" />
       <Button fx:id="saveNewAppointment" layoutX="631.0" layoutY="388.0" mnemonicParsing="false" onAction="#onSaveNewAppointment" text="Save">
@@ -45,5 +43,7 @@
       <Label layoutX="467.0" layoutY="398.0" text="Save New Appointment" />
       <Label layoutX="464.0" layoutY="480.0" text="Return to Appointment Menu" />
       <TextField fx:id="appointmentType" layoutX="224.0" layoutY="274.0" onAction="#onAppointmentType" promptText="appointment type" />
+      <TextField fx:id="addStartTime" layoutX="206.0" layoutY="433.0" onAction="#onAddStartTime" promptText="HHMM, numbers only" />
+      <TextField fx:id="addEndTime" layoutX="206.0" layoutY="476.0" onAction="#onAddEndTime" promptText="HHMM, numbers only" />
    </children>
 </AnchorPane>

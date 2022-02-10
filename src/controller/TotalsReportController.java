@@ -23,6 +23,8 @@ public class TotalsReportController implements Initializable {
     public Button exit;
     public ComboBox totalsReportType;
     public ComboBox totalsReportMonth;
+    public TextField numAppointmentsField;
+    public Button runReport;
 
     /** This contains items initialized when window is created.
      *
@@ -37,16 +39,16 @@ public class TotalsReportController implements Initializable {
     public void onTotalReportsTextField(ActionEvent actionEvent) {
     }
 
-    /** This takes the user back to the 'reports' menu.
+    /** This takes the user back to the main menu.
      *
      * @param actionEvent No need to specify.
      * @throws IOException If screen is not present.
      */
     public void onExit(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);
-        stage.setTitle("Reports Menu");
+        stage.setTitle("Welcome to Appointment Scheduler");
         stage.setScene(scene);
         stage.show();
     }
@@ -55,5 +57,8 @@ public class TotalsReportController implements Initializable {
     }
 
     public void onTotalsReportMonth(ActionEvent actionEvent) {
+    }
+
+    public void onRunReport(ActionEvent actionEvent) {
     }
 }

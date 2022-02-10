@@ -38,12 +38,13 @@ public class AddAppointmentController implements Initializable {
     public ComboBox chooseContact;
     public TextField appointmentType;
     public DatePicker appointmentDate;
-    public ComboBox startTime;
     public ComboBox chooseCustomerID;
-    public ComboBox chooseEndTime;
     public TextField userID;
     public Button exitNewAppointment;
     public Button saveNewAppointment;
+    public TextField addStartTime;
+    public TextField addEndTime;
+
     public static int APPOINTMENT_COUNTER;
 
 
@@ -112,13 +113,13 @@ public class AddAppointmentController implements Initializable {
     public void inAppointmentDate(ActionEvent actionEvent) {
     }
 
-    public void onStartTime(ActionEvent actionEvent) {
-    }
-
     public void onChooseCustomerID(ActionEvent actionEvent) {
     }
 
-    public void onChooseEndTime(ActionEvent actionEvent) {
+    public void onAddStartTime(ActionEvent actionEvent) {
+    }
+
+    public void onAddEndTime(ActionEvent actionEvent) {
     }
 
     /** This method returns user to the appointment menu.
@@ -148,4 +149,6 @@ public class AddAppointmentController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
 }

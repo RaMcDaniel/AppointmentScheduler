@@ -1,6 +1,5 @@
 package controller;
 
-import helper.CustomersQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,13 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import model.Customers;
 import model.Users;
 
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /** This class controls the fxml file containing the welcome screen, the base screen for the program.
@@ -25,6 +22,8 @@ import java.util.ResourceBundle;
  *
  */
 public class WelcomeController implements Initializable {
+
+
 
 
     /** This contains items initialized when window is created.
@@ -37,40 +36,15 @@ public class WelcomeController implements Initializable {
 
     }
     public Label welcomeLabel;
-    public Button welcomeYourSchedule;
-    public Button welcomeReports;
+    public Button schedulesByUser;
     public Button welcomeCustomers;
     public Button welcomeAppointments;
     public Button welcomeExit;
+    public Button schedulesByContact;
+    public Button totalsReport;
 
-    /** This method shows the screen with the user's schedule.
-     *
-     * @param actionEvent Not necessary to specify.
-     * @throws IOException if screen is not present.
-     */
-    public void onWelcomeYourSchedule(ActionEvent actionEvent) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/view/YourSchedule.fxml"));
-        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        stage.setTitle("Your Schedule");
-        stage.setScene(scene);
-        stage.show();
-    }
 
-    /** This method shows the screen with the 'reports' menu.
-     *
-     * @param actionEvent Not necessary to specify.
-     * @throws IOException if screen is not present.
-     */
-    public void onWelcomeReports(ActionEvent actionEvent) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsMenu.fxml"));
-        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
-        stage.setTitle("Run Reports");
-        stage.setScene(scene);
-        stage.show();
 
-    }
 
     /** This method takes the user to the 'all customers' menu.
      *
@@ -117,4 +91,35 @@ public class WelcomeController implements Initializable {
         stage.show();
     }
 
+    /** This method shows the screen with the users' schedules.
+     *
+     * @param actionEvent Not necessary to specify.
+     * @throws IOException if screen is not present.
+     */
+    public void onSchedulesByUser(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/SchedulesByUser.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Schedules by User");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void onSchedulesByContact(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/SchedulesByContact.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Schedules by Contact");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void onTotalsReport(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/TotalsReport.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Reports by Totals");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

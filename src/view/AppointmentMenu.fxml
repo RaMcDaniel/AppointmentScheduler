@@ -35,12 +35,12 @@
       <Button fx:id="deleteAppointment" layoutX="453.0" layoutY="515.0" mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" />
       <Button fx:id="allAppointmentsExit" layoutX="729.0" layoutY="554.0" mnemonicParsing="false" onAction="#onAllAppointmentsExit" text="Exit" />
       <Label layoutX="587.0" layoutY="558.0" text="Return to Main Menu" />
-      <RadioButton fx:id="allAppointmentViewWeekRadio" layoutX="167.0" layoutY="56.0" mnemonicParsing="false" onAction="#onAllAppointmentViewWeekRadio" text="View by Week">
+      <RadioButton fx:id="allAppointmentViewWeekRadio" layoutX="167.0" layoutY="56.0" mnemonicParsing="false" onAction="#onAllAppointmentViewWeekRadio" text="View This Week">
          <toggleGroup>
             <ToggleGroup fx:id="allAppointmentWeekMonth" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="allAppointmentViewMonthRadio" layoutX="352.0" layoutY="56.0" mnemonicParsing="false" onAction="#onAllAppointmentViewMonthRadio" text="View by Month" toggleGroup="$allAppointmentWeekMonth" />
+      <RadioButton fx:id="allAppointmentViewMonthRadio" layoutX="352.0" layoutY="56.0" mnemonicParsing="false" onAction="#onAllAppointmentViewMonthRadio" text="View This Month" toggleGroup="$allAppointmentWeekMonth" />
       <RadioButton fx:id="allAppointmentViewAllRadio" layoutX="523.0" layoutY="56.0" mnemonicParsing="false" onAction="#onAllAppointmentViewAllRadio" selected="true" text="View All" toggleGroup="$allAppointmentWeekMonth" />
    </children>
 </AnchorPane>

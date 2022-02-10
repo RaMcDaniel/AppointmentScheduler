@@ -42,10 +42,10 @@ public class ModifyViewAppointmentController implements Initializable {
     public ComboBox chooseContactMod;
     public TextField appointmentTypeMod;
     public DatePicker appointmentDate;
-    public ComboBox startTime;
     public ComboBox chooseCustomerIDMod;
-    public ComboBox chooseEndTime;
     public TextField userIDMod;
+    public TextField modStartTime;
+    public TextField modEndTime;
 
 
     /** This contains information that will populate when window is called.
@@ -103,7 +103,7 @@ public class ModifyViewAppointmentController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onModifyAppointmentViewSchedule(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/YourSchedule.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/SchedulesByUser.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
         stage.setTitle("Your Schedule");
@@ -141,12 +141,12 @@ public class ModifyViewAppointmentController implements Initializable {
     public void inAppointmentDate(ActionEvent actionEvent) {
     }
 
-    public void onStartTime(ActionEvent actionEvent) {
-    }
-
     public void onChooseCustomerIDMod(ActionEvent actionEvent) {
     }
 
-    public void onChooseEndTime(ActionEvent actionEvent) {
+    public void onModStartTIme(ActionEvent actionEvent) {
+    }
+
+    public void onModEndTime(ActionEvent actionEvent) {
     }
 }

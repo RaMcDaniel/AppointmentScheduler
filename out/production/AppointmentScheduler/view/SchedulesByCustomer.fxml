@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SchedulesByCustomerController">
+   <children>
+      <Button fx:id="customerReportExit" layoutX="715.0" layoutY="547.0" mnemonicParsing="false" onAction="#onCustomerReportExit" text="Exit" />
+      <Label layoutX="615.0" layoutY="551.0" text="Return to Menu" />
+      <Label layoutX="282.0" layoutY="14.0" text="Viewing Schedules by Customer">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="customersAppointmentsTable" layoutX="17.0" layoutY="104.0" onSort="#onCustomersAppointmentsTable" prefHeight="430.0" prefWidth="766.0">
+         <columns>
+            <TableColumn fx:id="customersIDCol" prefWidth="40.0" text="ID" />
+            <TableColumn fx:id="customersTitleCol" prefWidth="74.4000244140625" text="Title" />
+            <TableColumn fx:id="customersDescriptionCol" prefWidth="83.20001220703125" text="Description" />
+            <TableColumn fx:id="customersLocationCol" prefWidth="102.4000244140625" text="Location" />
+            <TableColumn fx:id="customersTypeCol" prefWidth="75.20001220703125" text="Type" />
+            <TableColumn fx:id="customersStartCol" prefWidth="102.39996337890625" text="Start Time" />
+            <TableColumn fx:id="customersEndCol" prefWidth="82.39996337890625" text="End Time" />
+            <TableColumn fx:id="customersCustomerCol" prefWidth="77.5999755859375" text="Customer" />
+            <TableColumn fx:id="customersUserCol" prefWidth="61.59991455078125" text="User" />
+            <TableColumn fx:id="customersContactCol" prefWidth="72.0" text="Contact" />
+         </columns>
+      </TableView>
+      <ComboBox fx:id="chooseCustomer" layoutX="215.0" layoutY="61.0" onAction="#onChooseCustomer" prefWidth="150.0" promptText="choose customer" />
+      <Label layoutX="117.0" layoutY="65.0" text="Choose a user" />
+      <Button fx:id="runCustomerReport" layoutX="519.0" layoutY="61.0" mnemonicParsing="false" onAction="#onRunCustomerReport" text="Run Report" />
+   </children>
+</AnchorPane>

@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /** This class controls the screen that contains appointment options.
@@ -147,7 +148,19 @@ public class AppointmentMenuController implements Initializable {
         stage.show();
     }
 
-    public void onDeleteAppointment(ActionEvent actionEvent) throws IOException{
+    public void onDeleteAppointment(ActionEvent actionEvent) throws IOException, SQLException {
+        Appointments deletedAppointment = (Appointments) allAppointmentsTable.getSelectionModel().getSelectedItem();
+        if(deletedAppointment == null){
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
+        int deleteID = deletedAppointment.getAppointmentID();
+
+        Optional<ButtonType> result = Alerts.delete.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            AppointmentsQuery.deleteAppointment(deleteID);
+            Alerts.deleteAppointmentConfirmation(deletedAppointment.getAppointmentID(), deletedAppointment.getAppType()).showAndWait();
+        }
     }
 
     /** This method returns to the main menu when button is clicked.

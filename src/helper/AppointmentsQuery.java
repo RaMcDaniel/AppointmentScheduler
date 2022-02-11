@@ -147,4 +147,28 @@ public class AppointmentsQuery {
         ps.setInt(9, contactIDAdd);
         ps.executeUpdate();
     }
+
+    public static void updateAppointment(String appointmentTitleAdd, String descriptionAdd, String locationAdd, String appTypeAdd,
+                                         Timestamp startTimeStamp, Timestamp endTimeStamp, int customerIDAdd, int passableUserID, int contactIDAdd) throws SQLException {
+        String sql = "UPDATE appointments SET (Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1,appointmentTitleAdd);
+        ps.setString(2,descriptionAdd);
+        ps.setString(3,locationAdd);
+        ps.setString(4,appTypeAdd);
+        ps.setTimestamp(5, startTimeStamp);
+        ps.setTimestamp(6, endTimeStamp);
+        ps.setInt(7, customerIDAdd);
+        ps.setInt(8, passableUserID);
+        ps.setInt(9, contactIDAdd);
+        ps.executeUpdate();
+    }
+
+
+    public static void deleteAppointment(int deleteID) throws SQLException {
+        String sql = "DELETE FROM appointments WHERE Appointment_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1,deleteID);
+        ps.executeUpdate();
+    }
 }

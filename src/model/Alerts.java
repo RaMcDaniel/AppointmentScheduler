@@ -39,7 +39,13 @@ public class Alerts {
     }
 
     public static Alert deleteCustomerConfirmation(int customerID, String customerName) {
-        String fullWarning = String.format("The customer, %s, with the ID: %s, has been deleted from the system", customerName, customerID);
+        String fullWarning = String.format("The customer, %s, with the ID: %s, has been deleted from the system.", customerName, customerID);
+        Alert inputError = new Alert(Alert.AlertType.ERROR, fullWarning);
+        return inputError;
+    }
+
+    public static Alert deleteAppointmentConfirmation(int appointmentID, String appType) {
+        String fullWarning = String.format("The appointment of type: %s, with the ID: %s, has been cancelled.", appType, appointmentID);
         Alert inputError = new Alert(Alert.AlertType.ERROR, fullWarning);
         return inputError;
     }

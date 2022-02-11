@@ -1,5 +1,6 @@
 package controller;
 
+import helper.AppointmentsQuery;
 import helper.ContactsQuery;
 import helper.CustomersQuery;
 import javafx.collections.FXCollections;
@@ -15,20 +16,19 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Appointments;
-import model.Contacts;
-import model.Customers;
-import model.Users;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 
 import static controller.AppointmentMenuController.*;
+import static model.Appointments.convertStringAndDateTimeStamp;
 import static model.Users.passableUserID;
 
 /** This class controls the View/Modify Appointment screen.
@@ -49,6 +49,10 @@ public class ModifyViewAppointmentController implements Initializable {
     public TextField userIDMod;
     public TextField modStartTime;
     public TextField modEndTime;
+    public static LocalDate dateAddMod;
+    public static String startHHmmMod;
+    public static String endHHmmMod;
+
 
 
     /** This contains information that will populate when window is called.
@@ -114,7 +118,20 @@ public class ModifyViewAppointmentController implements Initializable {
     }
 
 
-    public void onModAppointmentSave(ActionEvent actionEvent) throws IOException{
+    public void onModAppointmentSave(ActionEvent actionEvent) throws IOException, SQLException {
+
+        if(!(appointmentTitleMod!=null && descriptionMod!=null && locationMod!=null && appTypeMod!=null && customerIDMod!=0 && contactIDMod!=0 && dateMod!=null)) {
+            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            return;
+        }
+
+        Timestamp startTimeStamp = convertStringAndDateTimeStamp(startHHmmMod, dateAddMod);
+        Timestamp endTimeStamp = convertStringAndDateTimeStamp(endHHmmMod, dateAddMod);
+
+
+        AppointmentsQuery.updateAppointment(appointmentTitleMod, descriptionMod, locationMod, appTypeMod,
+                startTimeStamp, endTimeStamp, customerIDMod, Users.passableUserID, contactIDMod);
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentMenu.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
@@ -123,33 +140,43 @@ public class ModifyViewAppointmentController implements Initializable {
         stage.show();
     }
 
-    public void onAppointmentIDMod(ActionEvent actionEvent) {
-    }
-
     public void onAppointmentTitleMod(ActionEvent actionEvent) {
+        appointmentTitleMod = appointmentTitleModField.getText();
     }
 
     public void onAppointmentDescriptionMod(ActionEvent actionEvent) {
+        descriptionMod = appointmentDescriptionMod.getText();
     }
 
     public void onAppointmentLocationMod(ActionEvent actionEvent) {
+        locationMod = appointmentLocationMod.getText();
     }
 
     public void onChooseContactMod(ActionEvent actionEvent) {
+        String contact = chooseContactMod.getSelectionModel().getSelectedItem().toString();
+        int contactSelection = Countries.getCountryInt(contact);
+        contactIDMod = contactSelection;
     }
 
     public void onAppointmentTypeMod(ActionEvent actionEvent) {
+        appTypeMod = appointmentTypeMod.getTypeSelector();
     }
 
     public void onAppointmentDate(ActionEvent actionEvent) {
+        dateAddMod = appointmentDate.getValue();
     }
 
     public void onChooseCustomerIDMod(ActionEvent actionEvent) {
+        String customer = chooseCustomerIDMod.getSelectionModel().getSelectedItem().toString();
+        int customerSelection = Countries.getCountryInt(customer);
+        customerIDMod = customerSelection;
     }
 
     public void onModStartTIme(ActionEvent actionEvent) {
+        startHHmmMod = modStartTime.getText();
     }
 
     public void onModEndTime(ActionEvent actionEvent) {
+        endHHmmMod = modEndTime.getText();
     }
 }

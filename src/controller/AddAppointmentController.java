@@ -175,7 +175,6 @@ public class AddAppointmentController implements Initializable {
             return;
         }
 
-
         Timestamp startTimeStamp = convertStringAndDateTimeStamp(startHHmmAdd, dateAdd);
         Timestamp endTimeStamp = convertStringAndDateTimeStamp(endHHmmAdd, dateAdd);
 

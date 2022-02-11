@@ -17,15 +17,18 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Contacts;
-import model.Countries;
-import model.Customers;
-import model.Users;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
+
+import static helper.CustomersQuery.insertCustomer;
+import static model.Appointments.convertStringAndDateTimeStamp;
 
 /** This class controls the 'Add Appointment' screen.
  *
@@ -44,8 +47,18 @@ public class AddAppointmentController implements Initializable {
     public Button saveNewAppointment;
     public TextField addStartTime;
     public TextField addEndTime;
-
     public static int APPOINTMENT_COUNTER;
+
+    public static int appointmentIDAdd;
+    public static String appointmentTitleAdd;
+    public static String descriptionAdd;
+    public static String locationAdd;
+    public static String appTypeAdd;
+    public static int customerIDAdd = 0;
+    public static int contactIDAdd = 0;
+    public static LocalDate dateAdd;
+    public static String startHHmmAdd;
+    public static String endHHmmAdd;
 
 
     /** This contains items initialized when window is created.
@@ -93,33 +106,47 @@ public class AddAppointmentController implements Initializable {
     }
 
     public void onAppointmentID(ActionEvent actionEvent) {
+        appointmentIDAdd = Integer.parseInt(appointmentID.getText());
     }
 
     public void onAppointmentTitle(ActionEvent actionEvent) {
+        appointmentTitleAdd = appointmentTitle.getText();
     }
 
     public void onAppointmentDescription(ActionEvent actionEvent) {
+        descriptionAdd = appointmentDescription.getText();
     }
 
     public void onAppointmentLocation(ActionEvent actionEvent) {
+        locationAdd = appointmentLocation.getText();
     }
 
     public void onChooseContact(ActionEvent actionEvent) {
+        String contact = chooseContact.getSelectionModel().getSelectedItem().toString();
+        int contactSelection = Countries.getCountryInt(contact);
+        contactIDAdd = contactSelection;
     }
 
     public void onAppointmentType(ActionEvent actionEvent) {
+        appTypeAdd = appointmentType.getText();
     }
 
     public void inAppointmentDate(ActionEvent actionEvent) {
+        dateAdd = appointmentDate.getValue();
     }
 
     public void onChooseCustomerID(ActionEvent actionEvent) {
+        String customer = chooseCustomerID.getSelectionModel().getSelectedItem().toString();
+        int customerSelection = Countries.getCountryInt(customer);
+        customerIDAdd = customerSelection;
     }
 
     public void onAddStartTime(ActionEvent actionEvent) {
+        startHHmmAdd = addStartTime.getText();
     }
 
     public void onAddEndTime(ActionEvent actionEvent) {
+        endHHmmAdd = addEndTime.getText();
     }
 
     /** This method returns user to the appointment menu.
@@ -141,7 +168,23 @@ public class AddAppointmentController implements Initializable {
      * @param actionEvent Not necessary to specify.
      * @throws IOException if screen isn't present.
      */
-    public void onSaveNewAppointment(ActionEvent actionEvent) throws IOException{
+    public void onSaveNewAppointment(ActionEvent actionEvent) throws IOException, SQLException {
+
+        if(!(appointmentTitleAdd!=null && descriptionAdd!=null && locationAdd!=null && appTypeAdd!=null && customerIDAdd!=0 && contactIDAdd!=0 && dateAdd!=null)) {
+            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            return;
+        }
+
+
+        Timestamp startTimeStamp = convertStringAndDateTimeStamp(startHHmmAdd, dateAdd);
+        Timestamp endTimeStamp = convertStringAndDateTimeStamp(endHHmmAdd, dateAdd);
+
+
+        AppointmentsQuery.insertAppointment(appointmentTitleAdd, descriptionAdd, locationAdd, appTypeAdd,
+                startTimeStamp, endTimeStamp, customerIDAdd, Users.passableUserID, contactIDAdd);
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentMenu.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);

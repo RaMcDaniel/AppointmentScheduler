@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 public class AppointmentsQuery {
     public static int getNumAppointments() throws SQLException {
-        String sql = "SELECT count(*) FROM appointments";
+        String sql = "SELECT max(Appointment_ID) from appointments;";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         int numAppointments = 0;
@@ -23,6 +23,7 @@ public class AppointmentsQuery {
         }
         return numAppointments;
     }
+
 
 
     public static ObservableList<Appointments> getAllAppointmentObjects() throws SQLException {
@@ -117,8 +118,6 @@ public class AppointmentsQuery {
     }
 
 
-///////*****************************************************************
-    //////SELECT * FROM appointments WHERE month(Start) = 5
     public static int getNumReportSelection(int month, String typeString) throws SQLException {
         String sql = "SELECT count(*) FROM appointments WHERE month(Start) = ? AND Type = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -133,4 +132,19 @@ public class AppointmentsQuery {
     }
 
 
+    public static void insertAppointment(String appointmentTitleAdd, String descriptionAdd, String locationAdd, String appTypeAdd,
+                                         Timestamp startTimeStamp, Timestamp endTimeStamp, int customerIDAdd, int passableUserID, int contactIDAdd) throws SQLException {
+        String sql = "INSERT INTO appointments(Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1,appointmentTitleAdd);
+        ps.setString(2,descriptionAdd);
+        ps.setString(3,locationAdd);
+        ps.setString(4,appTypeAdd);
+        ps.setTimestamp(5, startTimeStamp);
+        ps.setTimestamp(6, endTimeStamp);
+        ps.setInt(7, customerIDAdd);
+        ps.setInt(8, passableUserID);
+        ps.setInt(9, contactIDAdd);
+        ps.executeUpdate();
+    }
 }

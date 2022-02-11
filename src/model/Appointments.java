@@ -1,7 +1,10 @@
 package model;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Appointments {
     private int appointmentID;
@@ -42,18 +45,12 @@ public class Appointments {
     public int getContactID() {return contactID;}
 
 
-    public static String convertTimeStampToString(Timestamp time){
-        System.out.println(time);
-        LocalDateTime t = time.toLocalDateTime();
-        System.out.println(t);
-        int min = t.getMinute();
-        System.out.println(min);
-        String minString = Integer.toString(min);
-        System.out.println(minString);
-        int hour = t.getHour();
-        String hourString = Integer.toString(hour);
-        String timeString = hourString + minString;
-        System.out.println(timeString);
-        return timeString;
+    public static Timestamp convertStringAndDateTimeStamp(String HHmm, LocalDate date){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmm");
+        LocalTime lt = LocalTime.parse(HHmm, dtf);
+        LocalDateTime ldt = LocalDateTime.of(date, lt);
+        Timestamp timestamp = Timestamp.valueOf(ldt);
+        return timestamp;
+
     }
 }

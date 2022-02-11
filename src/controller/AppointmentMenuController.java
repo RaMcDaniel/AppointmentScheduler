@@ -161,6 +161,13 @@ public class AppointmentMenuController implements Initializable {
             AppointmentsQuery.deleteAppointment(deleteID);
             Alerts.deleteAppointmentConfirmation(deletedAppointment.getAppointmentID(), deletedAppointment.getAppType()).showAndWait();
         }
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 600, 400);
+        stage.setTitle("Welcome to Appointment Scheduler");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /** This method returns to the main menu when button is clicked.

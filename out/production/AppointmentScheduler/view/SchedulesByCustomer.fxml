@@ -32,7 +32,7 @@
          </columns>
       </TableView>
       <ComboBox fx:id="chooseCustomer" layoutX="215.0" layoutY="61.0" onAction="#onChooseCustomer" prefWidth="150.0" promptText="choose customer" />
-      <Label layoutX="117.0" layoutY="65.0" text="Choose a user" />
+      <Label layoutX="98.0" layoutY="65.0" text="Choose a customer" />
       <Button fx:id="runCustomerReport" layoutX="519.0" layoutY="61.0" mnemonicParsing="false" onAction="#onRunCustomerReport" text="Run Report" />
    </children>
 </AnchorPane>

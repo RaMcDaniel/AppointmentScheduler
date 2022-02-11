@@ -149,8 +149,8 @@ public class AppointmentsQuery {
     }
 
     public static void updateAppointment(String appointmentTitleAdd, String descriptionAdd, String locationAdd, String appTypeAdd,
-                                         Timestamp startTimeStamp, Timestamp endTimeStamp, int customerIDAdd, int passableUserID, int contactIDAdd) throws SQLException {
-        String sql = "UPDATE appointments SET (Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ?";
+                                         Timestamp startTimeStamp, Timestamp endTimeStamp, int customerIDAdd, int passableUserID, int contactIDAdd, int apptID) throws SQLException {
+        String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1,appointmentTitleAdd);
         ps.setString(2,descriptionAdd);
@@ -161,6 +161,7 @@ public class AppointmentsQuery {
         ps.setInt(7, customerIDAdd);
         ps.setInt(8, passableUserID);
         ps.setInt(9, contactIDAdd);
+        ps.setInt(10, apptID);
         ps.executeUpdate();
     }
 

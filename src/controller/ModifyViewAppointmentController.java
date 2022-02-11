@@ -49,9 +49,9 @@ public class ModifyViewAppointmentController implements Initializable {
     public TextField userIDMod;
     public TextField modStartTime;
     public TextField modEndTime;
-    public static LocalDate dateAddMod;
-    public static String startHHmmMod;
-    public static String endHHmmMod;
+    //public static LocalDate dateAddMod;
+    //public static String startHHmmMod;
+    //public static String endHHmmMod;
 
 
 
@@ -125,12 +125,12 @@ public class ModifyViewAppointmentController implements Initializable {
             return;
         }
 
-        Timestamp startTimeStamp = convertStringAndDateTimeStamp(startHHmmMod, dateAddMod);
-        Timestamp endTimeStamp = convertStringAndDateTimeStamp(endHHmmMod, dateAddMod);
+        Timestamp startTimeStamp = convertStringAndDateTimeStamp(startHHmm, dateMod);
+        Timestamp endTimeStamp = convertStringAndDateTimeStamp(endHHmm, dateMod);
 
 
         AppointmentsQuery.updateAppointment(appointmentTitleMod, descriptionMod, locationMod, appTypeMod,
-                startTimeStamp, endTimeStamp, customerIDMod, Users.passableUserID, contactIDMod);
+                startTimeStamp, endTimeStamp, customerIDMod, Users.passableUserID, contactIDMod, appointmentIDMod);
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentMenu.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -163,7 +163,7 @@ public class ModifyViewAppointmentController implements Initializable {
     }
 
     public void onAppointmentDate(ActionEvent actionEvent) {
-        dateAddMod = appointmentDate.getValue();
+        dateMod = appointmentDate.getValue();
     }
 
     public void onChooseCustomerIDMod(ActionEvent actionEvent) {
@@ -173,10 +173,10 @@ public class ModifyViewAppointmentController implements Initializable {
     }
 
     public void onModStartTIme(ActionEvent actionEvent) {
-        startHHmmMod = modStartTime.getText();
+        startHHmm = modStartTime.getText();
     }
 
     public void onModEndTime(ActionEvent actionEvent) {
-        endHHmmMod = modEndTime.getText();
+        endHHmm = modEndTime.getText();
     }
 }

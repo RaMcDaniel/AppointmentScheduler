@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /** This class controls the screen that contains appointment options.
@@ -52,11 +56,14 @@ public class AppointmentMenuController implements Initializable {
     public static String descriptionMod;
     public static String locationMod;
     public static String appTypeMod;
-    public static Timestamp startMod;
-    public static Timestamp endMod;
+    public static LocalTime startMod;
+    public static LocalTime endMod;
     public static int customerIDMod;
     public static int appUserIDMod;
     public static int contactIDMod;
+    public static LocalDate dateMod;
+    public static String startHHmm;
+    public static String endHHmm;
 
     /** This contains items initialized when window is created.
      *
@@ -120,11 +127,16 @@ public class AppointmentMenuController implements Initializable {
         descriptionMod = modifiedAppointment.getDescription();
         locationMod = modifiedAppointment.getLocation();
         appTypeMod = modifiedAppointment.getAppType();
-        startMod = modifiedAppointment.getStart();
-        endMod = modifiedAppointment.getEnd();
+        startMod = modifiedAppointment.getStart().toLocalDateTime().toLocalTime();
+        endMod = modifiedAppointment.getEnd().toLocalDateTime().toLocalTime();
         customerIDMod = modifiedAppointment.getCustomerID();
         appUserIDMod = modifiedAppointment.getAppUserID();
         contactIDMod = modifiedAppointment.getContactID();
+        dateMod = modifiedAppointment.getStart().toLocalDateTime().toLocalDate();
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmm");
+        startHHmm = dtf.format(modifiedAppointment.getStart().toLocalDateTime());
+        endHHmm = dtf.format(modifiedAppointment.getEnd().toLocalDateTime());
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyViewAppointment.fxml"));

@@ -29,7 +29,7 @@
             <Label layoutX="107.0" layoutY="226.0" text="Location" />
             <ComboBox fx:id="chooseContactMod" layoutX="584.0" layoutY="222.0" onAction="#onChooseContactMod" prefWidth="150.0" promptText="Choose Contact" />
             <Label layoutX="117.0" layoutY="278.0" text="Type" />
-            <DatePicker fx:id="appointmentDate" layoutX="180.0" layoutY="381.0" onAction="#inAppointmentDate" promptText="appointment date" />
+            <DatePicker fx:id="appointmentDate" layoutX="180.0" layoutY="381.0" onAction="#onAppointmentDate" promptText="appointment date" />
             <Label layoutX="105.0" layoutY="385.0" text="Date" />
             <Label layoutX="103.0" layoutY="437.0" text="Start Time" />
             <Label layoutX="105.0" layoutY="480.0" text="End Time" />

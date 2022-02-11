@@ -23,6 +23,8 @@ import model.Users;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 
@@ -82,25 +84,18 @@ public class ModifyViewAppointmentController implements Initializable {
         chooseCustomerIDMod.setItems(allCustomersReadable);
 
 
-        String startModString = Appointments.convertTimeStampToString(startMod);
-        String endModString = Appointments.convertTimeStampToString(endMod);
+
         appointmentIDModField.setText(String.valueOf(appointmentIDMod));
         appointmentTitleModField.setText(appointmentTitleMod);
         appointmentDescriptionMod.setText(descriptionMod);
         appointmentLocationMod.setText(locationMod);
         appointmentTypeMod.setText(appTypeMod);
-        modStartTime.setText(startModString);
-        modEndTime.setText(endModString);
+        modStartTime.setText(startHHmm);
+        modEndTime.setText(endHHmm);
         chooseCustomerIDMod.setValue(customerIDMod);
         userIDMod.setText(String.valueOf(appUserIDMod));
         chooseContactMod.setValue(contactIDMod);
-
-
-
-
-
-
-
+        appointmentDate.setValue(dateMod);
 
     }
 
@@ -146,7 +141,7 @@ public class ModifyViewAppointmentController implements Initializable {
     public void onAppointmentTypeMod(ActionEvent actionEvent) {
     }
 
-    public void inAppointmentDate(ActionEvent actionEvent) {
+    public void onAppointmentDate(ActionEvent actionEvent) {
     }
 
     public void onChooseCustomerIDMod(ActionEvent actionEvent) {

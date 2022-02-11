@@ -41,6 +41,7 @@ public class CustomerMenuController implements Initializable {
     public static int modifyCustomerID;
     public static int modifyStateID;
     public static ObservableList<Customers> allCustomerObjects = FXCollections.observableArrayList();
+    public static Customers passableCustomer;
 
     /** This contains items initialized when window is created.
      *
@@ -95,6 +96,7 @@ public class CustomerMenuController implements Initializable {
             Alerts.noneSelected.showAndWait();
             return;
         }
+        passableCustomer = modifiedCustomer;
         modifyCountryID = modifiedCustomer.getCountryID();
         modifyCustomerID =modifiedCustomer.getCustomerID();
         modifyStateID = modifiedCustomer.getDivisionID();

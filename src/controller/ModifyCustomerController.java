@@ -45,13 +45,13 @@ public class ModifyCustomerController implements Initializable {
     public Button modExit;
     public Button modSave;
 
-    private int customerIDMod = 0;
-    private String customerNameMod = null;
-    private String addressMod = null;
-    private String postalCodeMod = null;
-    private String phoneMod = null;
-    private int divisionIDMod = 0;
-    private int countryIDMod = 0;
+    public static int customerIDMod;
+    public static String customerNameMod;
+    public static String addressMod;
+    public static String postalCodeMod;
+    public static String phoneMod;
+    public static int divisionIDMod;
+    public static int countryIDMod;
 
 
     /** This contains items initialized when window is created.
@@ -61,6 +61,14 @@ public class ModifyCustomerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        customerIDMod = modifyCustomerID;
+        customerNameMod = passableCustomer.getCustomerName();
+        addressMod = passableCustomer.getAddress();
+        postalCodeMod = passableCustomer.getPostalCode();
+        phoneMod = passableCustomer.getPhone();
+        divisionIDMod = modifyStateID;
+        countryIDMod = modifyCountryID;
 
         ObservableList<Countries> allCountryIDs = FXCollections.observableArrayList();
         try {
@@ -98,7 +106,7 @@ public class ModifyCustomerController implements Initializable {
         String country = modCountry.getSelectionModel().getSelectedItem().toString();
         int countrySelection = Countries.getCountryInt(country);
         //countryID = countrySelection;
-        ObservableList<FirstLevelDivisions> states = null;
+        ObservableList<FirstLevelDivisions> states = FXCollections.observableArrayList();
         try {
             states = FirstLevelDivisionsQuery.getAllDivisions(countrySelection);
         } catch (SQLException e) {
@@ -146,10 +154,16 @@ public class ModifyCustomerController implements Initializable {
     }
 
     public void onModState(ActionEvent actionEvent) {
-        String state = modState.getSelectionModel().getSelectedItem().toString();
-        int stateSelection = Countries.getCountryInt(state);
+        if(modState.getSelectionModel().isEmpty()){
+            return;
+        }
+        else{
+            String state = modState.getSelectionModel().getSelectedItem().toString();
+            int stateSelection = Countries.getCountryInt(state);
 
-        divisionIDMod = stateSelection;
+            divisionIDMod = stateSelection;
+        }
+
     }
 
     /** This method returns to the customer menu when button is clicked.
@@ -173,10 +187,13 @@ public class ModifyCustomerController implements Initializable {
      */
     public void onModSave(ActionEvent actionEvent) throws IOException, SQLException {
 
+        System.out.println(customerNameMod + addressMod + postalCodeMod + phoneMod + divisionIDMod + countryIDMod);
+
         if(!(customerNameMod!=null && addressMod!=null && postalCodeMod!=null && phoneMod!=null && divisionIDMod!=0 && countryIDMod!=0)) {
             Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
             return;
         }
+        System.out.println(customerNameMod + addressMod + postalCodeMod + phoneMod + divisionIDMod + countryIDMod);
         updateCustomer(customerNameMod, addressMod, postalCodeMod, phoneMod, divisionIDMod, customerIDMod);
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerMenu.fxml"));

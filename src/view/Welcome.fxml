@@ -15,7 +15,7 @@
       <Button fx:id="schedulesByUser" layoutX="126.0" layoutY="265.0" mnemonicParsing="false" onAction="#onSchedulesByUser" text="View" />
       <Button fx:id="welcomeCustomers" layoutX="182.0" layoutY="112.0" mnemonicParsing="false" onAction="#onWelcomeCustomers" text="View" />
       <Button fx:id="welcomeAppointments" layoutX="351.0" layoutY="112.0" mnemonicParsing="false" onAction="#onWelcomeAppointments" text="View" />
-      <Label layoutX="99.0" layoutY="223.0" text="Schedules by User" />
+      <Label layoutX="85.0" layoutY="223.0" text="Schedules by Customer" />
       <Label layoutX="272.0" layoutY="174.0" text="Reports">
          <font>
             <Font size="16.0" />

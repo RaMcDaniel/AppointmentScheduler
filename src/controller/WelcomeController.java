@@ -100,7 +100,7 @@ public class WelcomeController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/view/SchedulesByCustomer.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
-        stage.setTitle("Schedules by User");
+        stage.setTitle("Schedules by Customer");
         stage.setScene(scene);
         stage.show();
     }

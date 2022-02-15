@@ -1,5 +1,6 @@
 package controller;
 
+import helper.JDBC;
 import helper.UsersQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Alerts;
+import model.ExitMessage;
 import model.Users;
 
 import java.io.IOException;
@@ -31,6 +35,8 @@ public class LoginController implements Initializable {
     public Button login;
     public Button exit;
 
+
+
     /** This contains information that will populate when window is called.
      *
      * @param url Not necessary to specify.
@@ -38,7 +44,7 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        exit.setOnAction(e -> System.exit(0));
+
 
     }
 
@@ -91,8 +97,26 @@ public class LoginController implements Initializable {
         }
 
 
+    }
 
+    /** Here a lambda is used for the popup displayed upon exiting the program. The lambda bypasses the need to
+     * set the button responses to a specific instance of the class.
+     *
+     * @param actionEvent Not necessary to specify
+     */
 
+    public void onExit(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Exit");
+        alert.setContentText("Thank you for using Appointment Scheduler.");
+
+        alert.showAndWait().ifPresent((response -> {
+            if (response == ButtonType.OK) {
+                JDBC.closeConnection();
+                System.exit(0);
+            }
+
+            }));
 
     }
 

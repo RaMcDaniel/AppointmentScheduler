@@ -49,4 +49,5 @@ public class Alerts {
         Alert inputError = new Alert(Alert.AlertType.ERROR, fullWarning);
         return inputError;
     }
+
 }

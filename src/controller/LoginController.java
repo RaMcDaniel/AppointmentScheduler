@@ -29,6 +29,7 @@ public class LoginController implements Initializable {
     public TextField loginUsername;
     public TextField loginPassword;
     public Button login;
+    public Button exit;
 
     /** This contains information that will populate when window is called.
      *
@@ -37,6 +38,7 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        exit.setOnAction(e -> System.exit(0));
 
     }
 
@@ -93,4 +95,5 @@ public class LoginController implements Initializable {
 
 
     }
+
 }

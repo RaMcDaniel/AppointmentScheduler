@@ -143,6 +143,7 @@ public class AddAppointmentController implements Initializable {
 
     public void onAddStartTime(ActionEvent actionEvent) {
         startHHmmAdd = addStartTime.getText();
+
     }
 
     public void onAddEndTime(ActionEvent actionEvent) {
@@ -163,7 +164,8 @@ public class AddAppointmentController implements Initializable {
         stage.show();
     }
 
-    /** This method saves the new appointment and returns user to the appointment menu.
+    /**
+     * This method validates and saves the new appointment and returns user to the appointment menu.
      *
      * @param actionEvent Not necessary to specify.
      * @throws IOException if screen isn't present.
@@ -178,10 +180,25 @@ public class AddAppointmentController implements Initializable {
         Timestamp startTimeStamp = convertStringAndDateTimeStamp(startHHmmAdd, dateAdd);
         Timestamp endTimeStamp = convertStringAndDateTimeStamp(endHHmmAdd, dateAdd);
 
+        if(AppointmentsQuery.checkStart(startTimeStamp) == false){
+            Alerts.businessHours.showAndWait();
+            addStartTime.setText("");
+            return;
+        }
+
+        if(AppointmentsQuery.checkEnd(endTimeStamp) == false){
+            Alerts.businessHours.showAndWait();
+            addEndTime.setText("");
+            return;
+        }
+        if(endTimeStamp.before(startTimeStamp)){
+            Alerts.impossibleTime.showAndWait();
+            addEndTime.setText("");
+            return;
+        }
 
         AppointmentsQuery.insertAppointment(appointmentTitleAdd, descriptionAdd, locationAdd, appTypeAdd,
                 startTimeStamp, endTimeStamp, customerIDAdd, Users.passableUserID, contactIDAdd);
-
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentMenu.fxml"));

@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.*;
 
 public class AppointmentsQuery {
     public static int getNumAppointments() throws SQLException {
@@ -171,5 +171,85 @@ public class AppointmentsQuery {
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1,deleteID);
         ps.executeUpdate();
+    }
+
+    public static ObservableList<Appointments> getWeekAppointments() throws SQLException {
+        String sql = "SELECT * from appointments WHERE Date(Start) >= current_date() AND Date(Start) < (current_date() + 7)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        ObservableList<Appointments> allWeekObjects = FXCollections.observableArrayList();
+        while(rs.next()){
+            int appointmentID = rs.getInt("Appointment_ID");
+            String appointmentTitle = rs.getString("Title");
+            String description = rs.getString("Description");
+            String location = rs.getString("Location");
+            String type = rs.getString("Type");
+            Timestamp start = rs.getTimestamp("Start");
+            Timestamp end =rs.getTimestamp("End");
+            int customerID =rs.getInt("Customer_ID");
+            int userID =rs.getInt("User_ID");
+            int contactID =rs.getInt("Contact_ID");
+
+            Appointments c = new Appointments(appointmentID, appointmentTitle, description, location, type,
+                    start, end, customerID, userID, contactID);
+            allWeekObjects.add(c);
+        }
+        return allWeekObjects;
+    }
+
+    public static ObservableList<Appointments> getMonthAppointments() throws SQLException{
+        String sql = "SELECT * from appointments WHERE MONTH(Start)=MONTH(now())\n" +
+                "       and YEAR(Start)=YEAR(now())";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        ObservableList<Appointments> allMonthObjects = FXCollections.observableArrayList();
+        while(rs.next()){
+            int appointmentID = rs.getInt("Appointment_ID");
+            String appointmentTitle = rs.getString("Title");
+            String description = rs.getString("Description");
+            String location = rs.getString("Location");
+            String type = rs.getString("Type");
+            Timestamp start = rs.getTimestamp("Start");
+            Timestamp end =rs.getTimestamp("End");
+            int customerID =rs.getInt("Customer_ID");
+            int userID =rs.getInt("User_ID");
+            int contactID =rs.getInt("Contact_ID");
+
+            Appointments c = new Appointments(appointmentID, appointmentTitle, description, location, type,
+                    start, end, customerID, userID, contactID);
+            allMonthObjects.add(c);
+        }
+        return allMonthObjects;
+    }
+
+    public static boolean checkStart(Timestamp startTimeStamp) {
+        LocalDateTime lDT = startTimeStamp.toLocalDateTime();
+        ZonedDateTime zLDT = lDT.atZone(ZoneId.systemDefault());
+        System.out.println(zLDT);
+        ZonedDateTime estZoned = zLDT.withZoneSameInstant(ZoneId.of("EST", ZoneId.SHORT_IDS));
+        LocalTime time = estZoned.toLocalTime();
+        System.out.println(time);
+        LocalTime open = LocalTime.of(8,00);
+
+        if(time.isBefore(open)){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkEnd(Timestamp endTimeStamp) {
+        LocalDateTime lDT = endTimeStamp.toLocalDateTime();
+        ZonedDateTime zLDT = lDT.atZone(ZoneId.systemDefault());
+        System.out.println(zLDT);
+        ZonedDateTime estZoned = zLDT.withZoneSameInstant(ZoneId.of("EST", ZoneId.SHORT_IDS));
+        LocalTime time = estZoned.toLocalTime();
+        System.out.println(time);
+        LocalTime close = LocalTime.of(22,00);
+
+        if(time.isAfter(close)){
+            return false;
+        }
+        return true;
+
     }
 }

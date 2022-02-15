@@ -93,11 +93,12 @@ public class LoginController implements Initializable {
             stage.show();
         }
 
-
     }
 
     /** Here a lambda is used for the popup displayed upon exiting the program. The lambda bypasses the need to
      * set the button responses to a specific instance of the class.
+     *
+     * Overall, this method is called when the exit button is clicked, and it closes the connection and ends the program.
      *
      * @param actionEvent Not necessary to specify
      */

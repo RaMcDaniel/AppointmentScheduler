@@ -7,6 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Locale;
+import java.util.TimeZone;
+
 /** This class hold the main method, opens the database connection, and launches the first screen.
  *
  * @throws java.io.IOException if fxml file is not present.
@@ -38,6 +43,8 @@ public class Main extends Application {
      */
     public static void main(String[] args){
         JDBC.openConnection();
+        //Locale.setDefault(new Locale("Fr"));
+        //TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
 
         launch(args);
 

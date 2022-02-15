@@ -17,6 +17,9 @@ public class Alerts {
     public static Alert cancel = new Alert(Alert.AlertType.CONFIRMATION, "'Cancel' will lose all work on this page and return to main. Would you like to continue?");
     public static Alert remove = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you'd like to delete this appointment?");
     public static Alert delete = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you'd like to delete this selection?");
+    public static Alert businessHours = new Alert(Alert.AlertType.INFORMATION, "Business Hours are between 0800 and 2200 " +
+            "EST. Please schedule your appointments within those hours.");
+    public static Alert impossibleTime = new Alert(Alert.AlertType.ERROR, "Please schedule the end time AFTER the start time.");
 
 
     public static Alert deleteConfirmation (int appID, String appType){

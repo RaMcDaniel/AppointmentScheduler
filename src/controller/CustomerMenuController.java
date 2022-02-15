@@ -1,6 +1,7 @@
 package controller;
 
 import helper.CustomersQuery;
+import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -109,7 +110,10 @@ public class CustomerMenuController implements Initializable {
         stage.show();
     }
 
-    /** This method calls a function to delete a customer and returns to the main menu when button is clicked.
+    /** The lambda syntax in the delete.showAndWait() method allows the program to avoid making a concrete instance
+     * of "response". The result of ButtonType.ok is passed directly to the alert without a response object.
+     *
+     * This method calls a function to delete a customer and returns to the main menu when button is clicked.
      *
      * @param actionEvent Not necessary to specify.
      * @throws IOException if screen isn't present.
@@ -128,11 +132,17 @@ public class CustomerMenuController implements Initializable {
             return;
         }
 
-        Optional<ButtonType> result = Alerts.delete.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK){
-            CustomersQuery.deleteCustomer(deleteID);
-            Alerts.deleteCustomerConfirmation(deletedCustomer.getCustomerID(), deletedCustomer.getCustomerName()).showAndWait();
-        }
+        Alerts.delete.showAndWait().ifPresent((response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    CustomersQuery.deleteCustomer(deleteID);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                Alerts.deleteCustomerConfirmation(deletedCustomer.getCustomerID(), deletedCustomer.getCustomerName()).showAndWait();
+            }
+
+        }));
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));

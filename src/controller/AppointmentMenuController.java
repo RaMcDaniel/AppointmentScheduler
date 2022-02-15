@@ -65,6 +65,7 @@ public class AppointmentMenuController implements Initializable {
     public static LocalDate dateMod;
     public static String startHHmm;
     public static String endHHmm;
+    public static ObservableList<Appointments> selectedAppointments = FXCollections.observableArrayList();
 
     /** This contains items initialized when window is created.
      *
@@ -189,6 +190,15 @@ public class AppointmentMenuController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAllAppointmentViewWeekRadio(ActionEvent actionEvent) {
+
+        try {
+            selectedAppointments = AppointmentsQuery.getWeekAppointments();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        allAppointmentsTable.setItems(selectedAppointments);
     }
 
     /** This radio button toggles to the monthly schedule view.
@@ -196,6 +206,16 @@ public class AppointmentMenuController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAllAppointmentViewMonthRadio(ActionEvent actionEvent) {
+
+        try {
+            selectedAppointments = AppointmentsQuery.getMonthAppointments();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        allAppointmentsTable.setItems(selectedAppointments);
     }
 
     /** This radio button toggles to the all appointments view.
@@ -203,5 +223,6 @@ public class AppointmentMenuController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAllAppointmentViewAllRadio(ActionEvent actionEvent) {
+        allAppointmentsTable.setItems(allAppointmentObjects);
     }
 }

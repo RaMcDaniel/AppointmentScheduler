@@ -128,6 +128,24 @@ public class ModifyViewAppointmentController implements Initializable {
         Timestamp startTimeStamp = convertStringAndDateTimeStamp(startHHmm, dateMod);
         Timestamp endTimeStamp = convertStringAndDateTimeStamp(endHHmm, dateMod);
 
+        if(AppointmentsQuery.checkStart(startTimeStamp) == false){
+            Alerts.businessHours.showAndWait();
+            modStartTime.setText("");
+            return;
+        }
+
+        if(AppointmentsQuery.checkEnd(endTimeStamp) == false){
+            Alerts.businessHours.showAndWait();
+            modEndTime.setText("");
+            return;
+        }
+
+        if(endTimeStamp.before(startTimeStamp)){
+            Alerts.impossibleTime.showAndWait();
+            modEndTime.setText("");
+            return;
+        }
+
 
         AppointmentsQuery.updateAppointment(appointmentTitleMod, descriptionMod, locationMod, appTypeMod,
                 startTimeStamp, endTimeStamp, customerIDMod, Users.passableUserID, contactIDMod, appointmentIDMod);

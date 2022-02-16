@@ -197,6 +197,13 @@ public class AddAppointmentController implements Initializable {
             return;
         }
 
+        if(Appointments.checkOverlaps(startTimeStamp, endTimeStamp, dateAdd, customerIDAdd) == true){
+            Alerts.overlap.showAndWait();
+            addStartTime.setText("");
+            addEndTime.setText("");
+            return;
+        }
+
         AppointmentsQuery.insertAppointment(appointmentTitleAdd, descriptionAdd, locationAdd, appTypeAdd,
                 startTimeStamp, endTimeStamp, customerIDAdd, Users.passableUserID, contactIDAdd);
 

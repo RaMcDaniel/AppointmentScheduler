@@ -1,7 +1,9 @@
 package model;
 
+import helper.AppointmentsQuery;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,6 +41,31 @@ public class Appointments {
     public Appointments(int appointmentID, Timestamp start) {
         this.appointmentID = appointmentID;
         this.start = start;
+    }
+
+    public Appointments(int appointmentID, Timestamp start, Timestamp end) {
+        this.appointmentID = appointmentID;
+        this.start = start;
+        this.end = end;
+    }
+
+    public static boolean checkOverlaps(Timestamp startTimeStamp, Timestamp endTimeStamp, LocalDate dateAdd, int customerIDAdd) throws SQLException {
+        ObservableList<Appointments> potentialOverlaps = AppointmentsQuery.potentialOverlaps(customerIDAdd, dateAdd);
+        for(Appointments a : potentialOverlaps){
+            if(startTimeStamp.before(a.getStart()) && endTimeStamp.after(a.getStart())){
+                return true;
+            }
+            if(startTimeStamp.equals(a.getStart())){
+                return  true;
+            }
+            if(startTimeStamp.after(a.getStart()) && (endTimeStamp.before(a.getEnd()) || endTimeStamp.equals(a.getEnd()))){
+                return true;
+            }
+            if(startTimeStamp.after(a.getStart()) && startTimeStamp.before(a.getEnd())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getAppointmentID(){ return appointmentID;}

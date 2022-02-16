@@ -25,6 +25,7 @@ public class Alerts {
             "EST. Please schedule your appointments within those hours.");
     public static Alert impossibleTime = new Alert(Alert.AlertType.ERROR, "Please schedule the end time AFTER the start time.");
     public static Alert noUpcoming = new Alert(Alert.AlertType.INFORMATION, "You have no upcoming appointments.");
+    public static Alert overlap = new Alert(Alert.AlertType.WARNING, "This customer already has an appointment at this time. Please try a different time.");
 
 
     public static Alert deleteConfirmation (int appID, String appType){

@@ -10,17 +10,17 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="95.0" layoutY="63.0" text="Welcome to Appointment Scheduler">
+            <Label fx:id="welcomeLabel" layoutX="95.0" layoutY="63.0" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="128.0" layoutY="163.0" text="username:">
+            <Label fx:id="usernameLabel" layoutX="80.0" layoutY="163.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="129.0" layoutY="217.0" text="password:">
+            <Label fx:id="passwordLabel" layoutX="80.0" layoutY="217.0">
                <font>
                   <Font size="16.0" />
                </font>

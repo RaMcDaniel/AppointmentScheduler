@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Alerts;
 import model.Users;
@@ -20,10 +17,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static model.Users.userName;
@@ -37,6 +33,9 @@ public class LoginController  implements Initializable{
     public TextField loginPassword;
     public Button login;
     public Button exit;
+    public Label welcomeLabel;
+    public Label usernameLabel;
+    public Label passwordLabel;
     FileWriter filewriter;
     {
         try {
@@ -54,7 +53,17 @@ public class LoginController  implements Initializable{
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        log.println("Login attempts on " + LocalDate.now() + ":");
+        log.println("Login attempts on" + " " + LocalDate.now() + ":");
+
+        ResourceBundle rb = ResourceBundle.getBundle("main/French", Locale.getDefault());
+        welcomeLabel.setText(rb.getString("title"));
+        login.setText(rb.getString("login"));
+        exit.setText(rb.getString("exit"));
+        loginUsername.setText(rb.getString("username"));
+        loginPassword.setText(rb.getString("password"));
+        usernameLabel.setText(rb.getString("username"));
+        passwordLabel.setText(rb.getString("password"));
+
     }
 
     /** This is called when a user types in the username field.
@@ -66,7 +75,7 @@ public class LoginController  implements Initializable{
         userName = loginUsername.getText();
         boolean isValid = Users.validUserName(userName);
         if (!isValid){
-            log.println("Invalid username: " + userName + "; entered at: "  + LocalTime.now() + " Failed login.");
+            log.println("Invalid" + "username" + ": " + userName + "; entered at: "  + LocalTime.now() + " Failed login.");
             loginUsername.setText("");
         }
     }

@@ -25,7 +25,6 @@ public class Main extends Application {
         addTestData();
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
-        Stage.setTitle("Login");
         Stage.setScene(new Scene(root, 600, 400));
         Stage.show();
     }
@@ -43,7 +42,7 @@ public class Main extends Application {
      */
     public static void main(String[] args){
         JDBC.openConnection();
-        //Locale.setDefault(new Locale("Fr"));
+        Locale.setDefault(new Locale("Fr"));
         //TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
 
         launch(args);

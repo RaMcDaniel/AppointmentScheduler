@@ -6,6 +6,9 @@ import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
+/** This class pertains to customers in the system.
+ *
+ */
 public class Customers {
     private int customerID;
     private String customerName;
@@ -16,7 +19,16 @@ public class Customers {
     private int countryID;
     private ObservableList<Appointments> associatedAppointments;
 
-
+    /** A constructor for customer objects.
+     *
+     * @param customerID customer ID
+     * @param customerName customer name
+     * @param address customer address
+     * @param postalCode postal code
+     * @param phone phone number
+     * @param divisionID state/province ID
+     * @param countryID country ID
+     */
     public Customers(int customerID, String customerName, String address, String postalCode, String phone, int divisionID, int countryID){
         this.customerID = customerID;
         this.customerName = customerName;
@@ -25,13 +37,23 @@ public class Customers {
         this.postalCode = postalCode;
         this.divisionID = divisionID;
         this.countryID = countryID;
-
     }
+
+    /** A constructor for customer objects.
+     *
+     * @param customerID customer ID
+     * @param customerName customer name
+     */
     public Customers(int customerID, String customerName){
         this.customerName = customerName;
         this.customerID = customerID;
     }
 
+    /** This method creates a list of country names and IDs for use in a combo box.
+     *
+     * @param allCustomerIDs an observable list of customers.
+     * @return a readable list of countries and IDs.
+     */
     public static ObservableList<String> getReadable(ObservableList<Customers> allCustomerIDs) {
         ObservableList<String> readableCountries = FXCollections.observableArrayList();
         for(Customers c : allCustomerIDs){
@@ -41,6 +63,11 @@ public class Customers {
         return readableCountries;
     }
 
+    /** This method gets a customer ID from a customer name.
+     *
+     * @param customer customer name
+     * @return customer ID
+     */
     public static int getCustomerInt(String customer) {
         char c = customer.charAt(0);
         int num = Character.getNumericValue(c);
@@ -63,31 +90,4 @@ public class Customers {
     public void setPhone(String phone){this.phone=phone;}
     public void setDivisionID(int divisionID){this.divisionID=divisionID;}
 
-    /**
-     *
-     * PROBABLY USELESS???
-     */
-    public void addAssociatedAppointment(Appointments appointment){
-        if(appointment == null){
-            Alerts.noneSelected.showAndWait();
-            return;
-        }
-        associatedAppointments.add(appointment);
-    }
-
-    /**
-     *
-     * PROBABLY USELESS???
-     */
-    public boolean deleteAssociatedAppointment(Appointments selectedAppointment){
-        if (selectedAppointment==null){
-            Alerts.noneSelected.showAndWait();
-            return false;
-        }
-        Optional<ButtonType> result = Alerts.remove.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK) {
-            associatedAppointments.remove(selectedAppointment);
-        }
-        return true;
-    }
 }

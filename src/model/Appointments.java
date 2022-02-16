@@ -8,8 +8,12 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.TimeZone;
+
+import static java.time.ZoneOffset.UTC;
 
 public class Appointments {
     private int appointmentID;
@@ -92,14 +96,20 @@ public class Appointments {
     public static void upcomingAppointments(ObservableList<Appointments> upcomingAppointments){
         for (Appointments a :upcomingAppointments){
             Timestamp timestamp = a.getStart();
-            //LocalTime eight = LocalTime.of(8, 0);
-            //LocalDateTime now = LocalDateTime.of(LocalDate.now(), eight);
-            //System.out.println(now);
+            int id = a.getAppointmentID();
+            System.out.println(id + timestamp.toString());
+
             LocalDateTime now = LocalDateTime.now();
+            System.out.println(now);
+
             LocalDateTime ldt = timestamp.toLocalDateTime();
+            System.out.println(ldt);
+
+
+
             long timeDifference = ChronoUnit.MINUTES.between(now, ldt);
             System.out.println(timeDifference);
-            if(timeDifference <= 15){
+            if(timeDifference > 0 && timeDifference <= 15){
                 int aptID = a.getAppointmentID();
                 LocalDate date = ldt.toLocalDate();
                 LocalTime time = ldt.toLocalTime();

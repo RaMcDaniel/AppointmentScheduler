@@ -7,10 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Locale;
-import java.util.TimeZone;
 
 /** This class hold the main method, opens the database connection, and launches the first screen.
  *
@@ -18,12 +14,9 @@ import java.util.TimeZone;
  */
 public class Main extends Application {
 
-
     @Override
     public void start(Stage Stage) throws Exception {
-
-        addTestData();
-
+        //addTestData();
         Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
         Stage.setScene(new Scene(root, 600, 400));
         Stage.show();
@@ -42,13 +35,9 @@ public class Main extends Application {
      */
     public static void main(String[] args){
         JDBC.openConnection();
-        Locale.setDefault(new Locale("Fr"));
+        //Locale.setDefault(new Locale("Fr"));
         //TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
-
         launch(args);
-
-
-
         JDBC.closeConnection();
     }
 }

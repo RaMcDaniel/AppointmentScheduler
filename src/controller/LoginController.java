@@ -19,6 +19,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -29,6 +30,7 @@ import static model.Users.userPassword;
  *
  */
 public class LoginController  implements Initializable{
+    public static ResourceBundle rb = ResourceBundle.getBundle("main/French", Locale.getDefault());
     public TextField loginUsername;
     public TextField loginPassword;
     public Button login;
@@ -36,6 +38,7 @@ public class LoginController  implements Initializable{
     public Label welcomeLabel;
     public Label usernameLabel;
     public Label passwordLabel;
+    public Label timeZoneLabel;
     FileWriter filewriter;
     {
         try {
@@ -55,14 +58,15 @@ public class LoginController  implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         log.println("Login attempts on" + " " + LocalDate.now() + ":");
 
-        ResourceBundle rb = ResourceBundle.getBundle("main/French", Locale.getDefault());
+
         welcomeLabel.setText(rb.getString("title"));
         login.setText(rb.getString("login"));
         exit.setText(rb.getString("exit"));
-        loginUsername.setText(rb.getString("username"));
-        loginPassword.setText(rb.getString("password"));
+        loginUsername.setPromptText(rb.getString("username"));
+        loginPassword.setPromptText(rb.getString("password"));
         usernameLabel.setText(rb.getString("username"));
         passwordLabel.setText(rb.getString("password"));
+        timeZoneLabel.setText(rb.getString("timezone") + ": " + ZoneId.systemDefault());
 
     }
 
@@ -86,7 +90,7 @@ public class LoginController  implements Initializable{
      */
     public void onLoginPassword(ActionEvent actionEvent) {
         if (userName == null) {
-            Alerts.inputError("username", "valid usernames. Enter a username first.").showAndWait();
+            Alerts.inputError(rb.getString("username"), rb.getString("validusername")).showAndWait();
             log.println("Invalid username. No username entered at: "  + LocalTime.now() + " Failed login.");
             loginPassword.setText("");
         }
@@ -98,13 +102,13 @@ public class LoginController  implements Initializable{
     public void onLogin(ActionEvent actionEvent) throws IOException, SQLException {
 
         if(userName ==null){
-            Alerts.inputError("username", "valid username. Enter a username.").showAndWait();
+            Alerts.inputError(rb.getString("username"), rb.getString("validusername")).showAndWait();
             log.println("Invalid username. No username entered at: "  + LocalTime.now() + " Failed login.");
             return;
         }
 
         if (userPassword == null) {
-            Alerts.inputError("password", "valid passwords. Enter a valid password.").showAndWait();
+            Alerts.inputError(rb.getString("password"), rb.getString("validpassword")).showAndWait();
             log.println("Username: " + userName + "; failed login, no password provided at " + LocalTime.now());
             loginPassword.setText("");
             return;
@@ -144,8 +148,8 @@ public class LoginController  implements Initializable{
     public void onExit(ActionEvent actionEvent) {
         log.close();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Exit");
-        alert.setContentText("Thank you for using Appointment Scheduler.");
+        alert.setTitle(rb.getString("exitmessage"));
+        alert.setContentText(rb.getString("thanks"));
 
         alert.showAndWait().ifPresent((response -> {
             if (response == ButtonType.OK) {

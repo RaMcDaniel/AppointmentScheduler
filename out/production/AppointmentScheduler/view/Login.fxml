@@ -33,6 +33,7 @@
                </font>
             </Button>
             <Button fx:id="exit" layoutX="506.0" layoutY="344.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
+            <Label fx:id="timeZoneLabel" layoutX="286.0" layoutY="348.0" text="Label" />
          </children>
       </AnchorPane>
    </children>

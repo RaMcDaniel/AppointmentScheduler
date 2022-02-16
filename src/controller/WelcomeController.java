@@ -10,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Users;
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,9 +20,6 @@ import java.util.ResourceBundle;
  *
  */
 public class WelcomeController implements Initializable {
-
-
-
 
     /** This contains items initialized when window is created.
      *
@@ -42,8 +37,6 @@ public class WelcomeController implements Initializable {
     public Button welcomeExit;
     public Button schedulesByContact;
     public Button totalsReport;
-
-
 
 
     /** This method takes the user to the 'all customers' menu.
@@ -86,7 +79,6 @@ public class WelcomeController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);
-        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }

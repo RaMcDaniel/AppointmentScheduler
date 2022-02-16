@@ -19,3 +19,19 @@ Login attempts on 2022-02-15:
 Login attempts on 2022-02-15:
 Username: test; successfully logged in at 20:44:47.310168700
 Login attempts on 2022-02-15:
+Login attempts on 2022-02-15:
+Username: test; failed login, no password provided at 23:54:06.118136200
+Username: test; failed login, wrong password provided at 23:54:10.830994500
+Invalidusername: ; entered at: 23:54:17.512757800 Failed login.
+Username: ; failed login, wrong password provided at 23:54:23.214092300
+Username: test; successfully logged in at 23:54:31.137967200
+Login attempts on 2022-02-15:
+Login attempts on 2022-02-15:
+Username: test; successfully logged in at 23:55:48.806115700
+Login attempts on 2022-02-15:
+Username: test; successfully logged in at 00:00:05.219215
+Login attempts on 2022-02-16:
+Login attempts on 2022-02-16:
+Login attempts on 2022-02-16:
+Login attempts on 2022-02-16:
+Username: test; successfully logged in at 00:15:45.516744

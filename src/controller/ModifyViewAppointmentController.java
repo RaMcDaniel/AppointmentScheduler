@@ -49,9 +49,6 @@ public class ModifyViewAppointmentController implements Initializable {
     public TextField userIDMod;
     public TextField modStartTime;
     public TextField modEndTime;
-    //public static LocalDate dateAddMod;
-    //public static String startHHmmMod;
-    //public static String endHHmmMod;
 
 
 

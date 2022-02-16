@@ -1,6 +1,11 @@
 package model;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import static controller.LoginController.rb;
 
 /** This class contains alerts that are referenced elsewhere in the program.
@@ -19,6 +24,7 @@ public class Alerts {
     public static Alert businessHours = new Alert(Alert.AlertType.INFORMATION, "Business Hours are between 0800 and 2200 " +
             "EST. Please schedule your appointments within those hours.");
     public static Alert impossibleTime = new Alert(Alert.AlertType.ERROR, "Please schedule the end time AFTER the start time.");
+    public static Alert noUpcoming = new Alert(Alert.AlertType.INFORMATION, "You have no upcoming appointments.");
 
 
     public static Alert deleteConfirmation (int appID, String appType){
@@ -26,6 +32,14 @@ public class Alerts {
         Alert inputError = new Alert(Alert.AlertType.ERROR, fullWarning);
         return inputError;
     }
+
+
+    public static Alert overlapping (int aptID, LocalDate date, LocalTime time){
+        String fullWarning = String.format("The appointment with ID: %s, at %s, on %s, is within 15 minutes.", aptID, time, date);
+        Alert overlapping = new Alert(Alert.AlertType.INFORMATION, fullWarning);
+        return overlapping;
+    }
+
 
     /** This is a general purpose alert creator. A popup box appears telling the user how to correct their input.
      * It can be generalized to any field in the program.

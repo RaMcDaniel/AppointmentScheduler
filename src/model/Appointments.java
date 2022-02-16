@@ -1,10 +1,13 @@
 package model;
 
+import javafx.collections.ObservableList;
+
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Appointments {
     private int appointmentID;
@@ -33,6 +36,11 @@ public class Appointments {
         this.contactID = contactID;
     }
 
+    public Appointments(int appointmentID, Timestamp start) {
+        this.appointmentID = appointmentID;
+        this.start = start;
+    }
+
     public int getAppointmentID(){ return appointmentID;}
     public String getAppointmentTitle(){return appointmentTitle;}
     public String getDescription() {return description;}
@@ -53,4 +61,25 @@ public class Appointments {
         return timestamp;
 
     }
+
+    public static void upcomingAppointments(ObservableList<Appointments> upcomingAppointments){
+        for (Appointments a :upcomingAppointments){
+            Timestamp timestamp = a.getStart();
+            //LocalTime eight = LocalTime.of(8, 0);
+            //LocalDateTime now = LocalDateTime.of(LocalDate.now(), eight);
+            //System.out.println(now);
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime ldt = timestamp.toLocalDateTime();
+            long timeDifference = ChronoUnit.MINUTES.between(now, ldt);
+            System.out.println(timeDifference);
+            if(timeDifference <= 15){
+                int aptID = a.getAppointmentID();
+                LocalDate date = ldt.toLocalDate();
+                LocalTime time = ldt.toLocalTime();
+                Alerts.overlapping(aptID, date, time).showAndWait();
+                return;
+            }
+            }
+        Alerts.noUpcoming.showAndWait();
+        }
 }

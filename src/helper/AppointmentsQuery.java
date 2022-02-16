@@ -3,8 +3,6 @@ package helper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
-import model.Countries;
-import model.Customers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,6 +101,32 @@ public class AppointmentsQuery {
         return appointmentsBySelectedContact;
 
     }
+
+
+    public static ObservableList<Appointments> getUpcomingAppointments(int selectedCustomerID) throws SQLException {
+
+        String sql = "SELECT Appointment_ID, Start FROM appointments WHERE User_ID = ? AND date(Start) = current_date()";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, selectedCustomerID);
+        ResultSet rs = ps.executeQuery();
+        ObservableList<Appointments> upcomingAppointments = FXCollections.observableArrayList();
+        while(rs.next()){
+            int appointmentID = rs.getInt("Appointment_ID");
+            Timestamp start = rs.getTimestamp("Start");
+
+            Appointments c = new Appointments(appointmentID, start);
+            upcomingAppointments.add(c);
+        }
+        return upcomingAppointments;
+
+    }
+
+
+
+
+
+
+
 
 
     public static ObservableList<String> getAllAppointmentTypes() throws SQLException {

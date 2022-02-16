@@ -1,0 +1,20 @@
+
+Login attempts on 2022-02-15:
+Invalid username: asfd; entered at: 20:33:34.509218300 Failed login.
+Username: test; failed login, no password provided at 20:33:39.720436100
+Username: admin; successfully logged in at 20:33:56.207202600
+Login attempts on 2022-02-15:
+Username: admin; successfully logged in at 20:34:36.840596100
+Login attempts on 2022-02-15:
+Username: test; successfully logged in at 20:37:57.387140200
+Login attempts on 2022-02-15:
+Invalid username: asfd; entered at: 20:43:19.503660600 Failed login.
+Login attempts on 2022-02-15:
+Invalid username. No username entered at: 20:43:47.457337900 Failed login.
+Login attempts on 2022-02-15:
+Username: admin; failed login, no password provided at 20:44:07.510635400
+Login attempts on 2022-02-15:
+Username: admin; successfully logged in at 20:44:22.294434500
+Login attempts on 2022-02-15:
+Login attempts on 2022-02-15:
+Username: test; successfully logged in at 20:44:47.310168700

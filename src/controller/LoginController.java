@@ -15,9 +15,15 @@ import javafx.stage.Stage;
 import model.Alerts;
 import model.Users;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import static model.Users.userName;
@@ -26,13 +32,20 @@ import static model.Users.userPassword;
 /** This class controls the Login screen.
  *
  */
-public class LoginController implements Initializable {
+public class LoginController  implements Initializable{
     public TextField loginUsername;
     public TextField loginPassword;
     public Button login;
     public Button exit;
-
-
+    FileWriter filewriter;
+    {
+        try {
+            filewriter = new FileWriter("login_activity.txt", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    PrintWriter log = new PrintWriter(filewriter);
 
     /** This contains information that will populate when window is called.
      *
@@ -41,8 +54,7 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
+        log.println("Login attempts on " + LocalDate.now() + ":");
     }
 
     /** This is called when a user types in the username field.
@@ -53,8 +65,10 @@ public class LoginController implements Initializable {
     public void onLoginUsername(ActionEvent actionEvent) throws SQLException {
         userName = loginUsername.getText();
         boolean isValid = Users.validUserName(userName);
-        if (!isValid)
+        if (!isValid){
+            log.println("Invalid username: " + userName + "; entered at: "  + LocalTime.now() + " Failed login.");
             loginUsername.setText("");
+        }
     }
 
     /**
@@ -64,6 +78,7 @@ public class LoginController implements Initializable {
     public void onLoginPassword(ActionEvent actionEvent) {
         if (userName == null) {
             Alerts.inputError("username", "valid usernames. Enter a username first.").showAndWait();
+            log.println("Invalid username. No username entered at: "  + LocalTime.now() + " Failed login.");
             loginPassword.setText("");
         }
         else {
@@ -73,18 +88,34 @@ public class LoginController implements Initializable {
 
     public void onLogin(ActionEvent actionEvent) throws IOException, SQLException {
 
+        if(userName ==null){
+            Alerts.inputError("username", "valid username. Enter a username.").showAndWait();
+            log.println("Invalid username. No username entered at: "  + LocalTime.now() + " Failed login.");
+            return;
+        }
+
         if (userPassword == null) {
             Alerts.inputError("password", "valid passwords. Enter a valid password.").showAndWait();
+            log.println("Username: " + userName + "; failed login, no password provided at " + LocalTime.now());
             loginPassword.setText("");
             return;
         }
 
         String validUserName = Users.validUserPassword(userPassword);
+        if(validUserName == null) {
+            log.println("Username: " + userName + "; failed login, wrong password provided at "  + LocalTime.now());
+            loginPassword.setText("");
+            return;
+        }
         if(!validUserName.equals(userName)) {
             Alerts.userPassword.showAndWait();
             loginPassword.setText("");
+            log.println("Username: " + userName + "; failed login, wrong password provided at"  + LocalTime.now());
+            return;
         }
         else {
+            log.println("Username: " + userName + "; successfully logged in at " + LocalTime.now());
+            log.close();
             Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
             Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root, 600, 400);
@@ -92,7 +123,6 @@ public class LoginController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
-
     }
 
     /** Here a lambda is used for the popup displayed upon exiting the program. The lambda bypasses the need to
@@ -102,8 +132,8 @@ public class LoginController implements Initializable {
      *
      * @param actionEvent Not necessary to specify
      */
-
     public void onExit(ActionEvent actionEvent) {
+        log.close();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Exit");
         alert.setContentText("Thank you for using Appointment Scheduler.");
@@ -113,9 +143,6 @@ public class LoginController implements Initializable {
                 JDBC.closeConnection();
                 System.exit(0);
             }
-
             }));
-
     }
-
 }

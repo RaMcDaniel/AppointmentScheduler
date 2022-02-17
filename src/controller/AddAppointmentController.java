@@ -48,7 +48,6 @@ public class AddAppointmentController implements Initializable {
     public TextField addStartTime;
     public TextField addEndTime;
     public static int APPOINTMENT_COUNTER;
-
     public static int appointmentIDAdd;
     public static String appointmentTitleAdd;
     public static String descriptionAdd;
@@ -59,7 +58,6 @@ public class AddAppointmentController implements Initializable {
     public static LocalDate dateAdd;
     public static String startHHmmAdd;
     public static String endHHmmAdd;
-
 
     /** This contains items initialized when window is created.
      *
@@ -169,6 +167,7 @@ public class AddAppointmentController implements Initializable {
      *
      * @param actionEvent Not necessary to specify.
      * @throws IOException if screen isn't present.
+     * @throws SQLException if query not found
      */
     public void onSaveNewAppointment(ActionEvent actionEvent) throws IOException, SQLException {
 

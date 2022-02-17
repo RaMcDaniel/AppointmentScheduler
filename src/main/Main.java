@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 
 /** This class hold the main method, opens the database connection, and launches the first screen.
  *
- * @throws java.io.IOException if fxml file is not present.
  */
 public class Main extends Application {
 

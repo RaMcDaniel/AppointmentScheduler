@@ -99,3 +99,10 @@ Login attempts on 2022-02-16:
 Username: test; successfully logged in at 17:08:50.678729900
 Login attempts on 2022-02-16:
 Username: test; successfully logged in at 17:16:21.543095100
+Login attempts on 2022-02-17:
+Username: test; failed login, no password provided at 16:02:23.120871
+Username: test; successfully logged in at 16:02:29.165587900
+Login attempts on 2022-02-17:
+Invalid username. No username entered at: 16:02:37.234050 Failed login.
+Username: admin; successfully logged in at 16:02:46.573965900
+Login attempts on 2022-02-17:

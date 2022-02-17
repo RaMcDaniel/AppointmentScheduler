@@ -23,7 +23,6 @@ import static model.Users.userName;
 
 /** This class controls the fxml file containing the welcome screen, the base screen for the program.
  *
- * **** needs a popup warning user if appt. within 15 min.
  *
  */
 public class WelcomeController implements Initializable {
@@ -35,7 +34,6 @@ public class WelcomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
     public Label welcomeLabel;
     public Button schedulesByUser;
@@ -44,7 +42,6 @@ public class WelcomeController implements Initializable {
     public Button welcomeExit;
     public Button schedulesByContact;
     public Button totalsReport;
-
     public ObservableList<Appointments> upcoming = FXCollections.observableArrayList();
     int currentUserID;
 
@@ -63,8 +60,6 @@ public class WelcomeController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
 
     /** This method takes the user to the 'all customers' menu.
      *
@@ -124,6 +119,11 @@ public class WelcomeController implements Initializable {
         stage.show();
     }
 
+    /** This method shows the screen with the contacts' schedules.
+     *
+     * @param actionEvent Not necessary to specify.
+     * @throws IOException if screen is not present.
+     */
     public void onSchedulesByContact(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/SchedulesByContact.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -133,6 +133,11 @@ public class WelcomeController implements Initializable {
         stage.show();
     }
 
+    /** This method shows the screen with the reports by month and type.
+     *
+     * @param actionEvent Not necessary to specify.
+     * @throws IOException if screen is not present.
+     */
     public void onTotalsReport(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/TotalsReport.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

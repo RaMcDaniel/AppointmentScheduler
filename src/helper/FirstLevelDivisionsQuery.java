@@ -2,13 +2,14 @@ package helper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Countries;
 import model.FirstLevelDivisions;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** This class contains SQL queries relevant to first level divisions.
+ *
+ */
 public class FirstLevelDivisionsQuery {
 
     /** This methods gets all divisions that match the specified country.

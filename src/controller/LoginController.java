@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Alerts;
 import model.Users;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +21,6 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import static model.Users.userName;
 import static model.Users.userPassword;
 
@@ -50,6 +48,7 @@ public class LoginController  implements Initializable{
     PrintWriter log = new PrintWriter(filewriter);
 
     /** This contains information that will populate when window is called.
+     * This includes resource bundle references for loading the page in French if necessary.
      *
      * @param url Not necessary to specify.
      * @param resourceBundle Not necessary to specify.
@@ -57,7 +56,6 @@ public class LoginController  implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         log.println("Login attempts on" + " " + LocalDate.now() + ":");
-
 
         welcomeLabel.setText(rb.getString("title"));
         login.setText(rb.getString("login"));
@@ -67,7 +65,6 @@ public class LoginController  implements Initializable{
         usernameLabel.setText(rb.getString("username"));
         passwordLabel.setText(rb.getString("password"));
         timeZoneLabel.setText(rb.getString("timezone") + ": " + ZoneId.systemDefault());
-
     }
 
     /** This is called when a user types in the username field.
@@ -84,7 +81,7 @@ public class LoginController  implements Initializable{
         }
     }
 
-    /**
+    /** This method controls the passwords field, and requires an entry in username to allow typing here.
      *
      * @param actionEvent on typing in password field.
      */
@@ -99,6 +96,12 @@ public class LoginController  implements Initializable{
         }
     }
 
+    /** This method handles everything happens when the login button is clicked, including all username and password validation.
+     *
+     * @param actionEvent not necessary to specify
+     * @throws IOException if input/output errors
+     * @throws SQLException if query isn't found
+     */
     public void onLogin(ActionEvent actionEvent) throws IOException, SQLException {
 
         if(userName ==null){

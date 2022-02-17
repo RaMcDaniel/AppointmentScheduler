@@ -14,7 +14,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Countries;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -56,8 +55,6 @@ public class TotalsReportController implements Initializable {
             e.printStackTrace();
         }
         totalsReportType.setItems(types);
-
-
     }
 
     public void onTotalReportsTextField(ActionEvent actionEvent) {
@@ -77,19 +74,29 @@ public class TotalsReportController implements Initializable {
         stage.show();
     }
 
+    /** This method is called when the report type field is used.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onTotalsReportType(ActionEvent actionEvent) {
         typeString = totalsReportType.getSelectionModel().getSelectedItem().toString();
     }
 
+    /** This method is called when the report month field is used.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onTotalsReportMonth(ActionEvent actionEvent) {
         String monthString = totalsReportMonth.getSelectionModel().getSelectedItem().toString();
         month = Countries.getCountryInt(monthString);
     }
 
+    /** This method is called when the user clicks the button the run the report.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onRunReport(ActionEvent actionEvent) throws SQLException {
-
         totalAppointments = getNumReportSelection(month, typeString);
-
         numAppointmentsField.setText(String.valueOf(totalAppointments));
     }
 }

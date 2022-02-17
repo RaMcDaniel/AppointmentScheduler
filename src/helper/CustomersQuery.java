@@ -2,14 +2,21 @@ package helper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Appointments;
 import model.Customers;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** This class contains SQL queries pertaining to customers.
+ *
+ */
 public class CustomersQuery {
+
+    /** This method gets all customer ID and names.
+     *
+     * @return an observable list of customers.
+     * @throws SQLException if query not found
+     */
     public static ObservableList<Customers> getAllCustomerIDs() throws SQLException {
         String sql = "SELECT * from customers";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -24,10 +31,10 @@ public class CustomersQuery {
         return allCustomers;
     }
 
-    /** THis creates a complete customer objects that can be passed to modify screen
+    /** THis creates a complete customer objects that can be passed to the modify screen.
      *
-     * @return
-     * @throws SQLException
+     * @return an observable list of customers
+     * @throws SQLException if query not found
      */
     public static ObservableList<Customers> getAllCustomerObjects() throws SQLException {
         String sql = "SELECT * from customers, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID";
@@ -49,7 +56,11 @@ public class CustomersQuery {
         return allCustomerObjects;
     }
 
-
+    /** This method gets the largest customer ID from the database, so the next assigned customer ID can be predicted.
+     *
+     * @return the highest customer ID in the database
+     * @throws SQLException if query not found
+     */
     public static int getNumCustomers() throws SQLException {
         String sql = "SELECT max(Customer_ID) from customers;";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -61,6 +72,15 @@ public class CustomersQuery {
         return numCustomers;
     }
 
+    /** This method adds a new customer to the database.
+     *
+     * @param customerName customer's name
+     * @param address address
+     * @param postalCode postal code
+     * @param phone phone number
+     * @param divisionID state/province
+     * @throws SQLException if query not found
+     */
     public static void insertCustomer(String customerName, String address, String postalCode, String phone, int divisionID) throws SQLException {
         String sql = "INSERT INTO customers(Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?, ?, ?, ?, ?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -72,6 +92,15 @@ public class CustomersQuery {
         ps.executeUpdate();
     }
 
+    /** This method updates a customer in the database.
+     *
+     * @param customerName customer's name
+     * @param address address
+     * @param postalCode postal code
+     * @param phone phone number
+     * @param divisionID state/province
+     * @throws SQLException if query not found
+     */
     public static void updateCustomer(String customerName, String address, String postalCode, String phone, int divisionID, int customerID) throws SQLException {
         String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -84,8 +113,12 @@ public class CustomersQuery {
         ps.executeUpdate();
     }
 
-
-
+    /** This method returns all appointments associated with a given customer, so they can be deleted if none are found.
+     *
+     * @param deleteID the customer ID you are trying to delete
+     * @return true or false
+     * @throws SQLException if query not found
+     */
     public static boolean determineAssociatedAppointments(int deleteID) throws SQLException {
         String sql = "SELECT count(*) FROM appointments WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -100,6 +133,11 @@ public class CustomersQuery {
         return false;
     }
 
+    /** This method deletes a customer with a given customer ID from the database.
+     *
+     * @param deleteID the given customer ID
+     * @throws SQLException if query not found
+     */
     public static void deleteCustomer(int deleteID) throws SQLException {
         String sql = "DELETE FROM customers WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -107,6 +145,12 @@ public class CustomersQuery {
         ps.executeUpdate();
     }
 
+    /** This method gets all the customer's information, including the country ID from a joined table.
+     *
+     * @param modifyID the customer ID
+     * @return a lsit of customers
+     * @throws SQLException if query not found
+     */
     public static Customers getCustomerByID(int modifyID) throws SQLException {
         String sql = "SELECT * from customers, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID AND Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);

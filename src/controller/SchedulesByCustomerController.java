@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import model.Appointments;
 import model.Countries;
 import model.Customers;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -26,8 +25,6 @@ import java.util.ResourceBundle;
  *
  */
 public class SchedulesByCustomerController implements Initializable {
-
-
     public Button customerReportExit;
     public TableView customersAppointmentsTable;
     public TableColumn customersIDCol;
@@ -45,9 +42,13 @@ public class SchedulesByCustomerController implements Initializable {
     public static ObservableList<Appointments> appointmentsBySelectedCustomer = FXCollections.observableArrayList();
     public static int selectedCustomerID;
 
+    /** This method contains everything that is set when the window is initialized.
+     *
+     * @param url not necessary to specify
+     * @param resourceBundle not necessary to specify
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         ObservableList<Customers> allCustomerIDs = FXCollections.observableArrayList();
         try {
             allCustomerIDs = CustomersQuery.getAllCustomerIDs();
@@ -56,20 +57,25 @@ public class SchedulesByCustomerController implements Initializable {
         }
         ObservableList<String> allCustomersReadable = Customers.getReadable(allCustomerIDs);
         chooseCustomer.setItems(allCustomersReadable);
-
     }
-
 
     public void onCustomersAppointmentsTable(SortEvent<TableView> tableViewSortEvent) {
     }
 
+    /** This method is called when the customer combo box is selected from.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onChooseCustomer(ActionEvent actionEvent) {
         String selectedCustomer = chooseCustomer.getSelectionModel().getSelectedItem().toString();
         selectedCustomerID = Countries.getCountryInt(selectedCustomer);
     }
 
+    /** This method populates the tables with appointments fitting the selected criteria.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onRunCustomerReport(ActionEvent actionEvent) {
-
         try {
             appointmentsBySelectedCustomer = AppointmentsQuery.getAppointmentsBySelectedCustomer(selectedCustomerID);
         } catch (SQLException e) {
@@ -87,7 +93,6 @@ public class SchedulesByCustomerController implements Initializable {
         customersCustomerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         customersUserCol.setCellValueFactory(new PropertyValueFactory<>("appUserID"));
         customersContactCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
-
     }
 
     /** This method returns to the main menu when button is clicked.

@@ -19,16 +19,12 @@ import model.Alerts;
 import model.Countries;
 import model.Customers;
 import model.FirstLevelDivisions;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import static controller.CustomerMenuController.*;
-import static helper.CustomersQuery.insertCustomer;
 import static helper.CustomersQuery.updateCustomer;
-
 
 /** This class controls 'modify customer' screen.
  *
@@ -44,7 +40,6 @@ public class ModifyCustomerController implements Initializable {
     public ComboBox modState;
     public Button modExit;
     public Button modSave;
-
     public static int customerIDMod;
     public static String customerNameMod;
     public static String addressMod;
@@ -78,7 +73,6 @@ public class ModifyCustomerController implements Initializable {
         }
         ObservableList<String> allCountryReadable = Countries.getReadable(allCountryIDs);
         modCountry.setItems(allCountryReadable);
-
 
         Customers modifyCustomer;
         try {
@@ -115,7 +109,6 @@ public class ModifyCustomerController implements Initializable {
         ObservableList<String> statesReadable = FirstLevelDivisions.getReadable(states);
         modState.setItems(statesReadable);
 
-
         for (Object s : modState.getItems()){
             String sString = s.toString();
             sString = sString.replaceAll("[^0-9]+", " ");
@@ -128,22 +121,42 @@ public class ModifyCustomerController implements Initializable {
         }
     }
 
+    /** This method handles when the name field is typed into.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onModCustomerName(ActionEvent actionEvent) {
         customerNameMod = modCustomerName.getText();
     }
 
+    /** This method handles when the address field is typed into.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onModAddress(ActionEvent actionEvent) {
         addressMod = modAddress.getText();
     }
 
+    /** This method handles when the postal code field is typed into.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onModPostalCode(ActionEvent actionEvent) {
         postalCodeMod = modPostalCode.getText();
     }
 
+    /** This method handles when the phone field is typed into.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onModPhone(ActionEvent actionEvent) {
         phoneMod = modPhone.getText();
     }
 
+    /** This method controls interactions between the country and first level division combo boxes.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onModCountry(ActionEvent actionEvent) throws SQLException {
         String country = modCountry.getSelectionModel().getSelectedItem().toString();
         int countrySelection = Countries.getCountryInt(country);
@@ -153,6 +166,10 @@ public class ModifyCustomerController implements Initializable {
         modState.setItems(statesReadable);
     }
 
+    /** This method also controls interactions between the country and first level division combo boxes.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onModState(ActionEvent actionEvent) {
         if(modState.getSelectionModel().isEmpty()){
             return;
@@ -163,7 +180,6 @@ public class ModifyCustomerController implements Initializable {
 
             divisionIDMod = stateSelection;
         }
-
     }
 
     /** This method returns to the customer menu when button is clicked.

@@ -12,8 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Users;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -41,9 +39,7 @@ public class SchedulesReportController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         chooseUserSchedulesReport.setItems(allUserIDs);
-
     }
 
     public void onUserScheduleReportTextField(ActionEvent actionEvent) {

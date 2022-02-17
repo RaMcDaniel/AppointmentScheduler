@@ -1,7 +1,6 @@
 package controller;
 
 import helper.CustomersQuery;
-import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,11 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Alerts;
 import model.Customers;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /** This class controls the customer menu.
@@ -65,7 +62,6 @@ public class CustomerMenuController implements Initializable {
         CustomerPostalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         customerStateCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
         customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("countryID"));
-
     }
 
     public void onAllCustomersTable(SortEvent<TableView> tableViewSortEvent) {
@@ -141,9 +137,7 @@ public class CustomerMenuController implements Initializable {
                 }
                 Alerts.deleteCustomerConfirmation(deletedCustomer.getCustomerID(), deletedCustomer.getCustomerName()).showAndWait();
             }
-
         }));
-
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

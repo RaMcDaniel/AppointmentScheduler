@@ -1,7 +1,6 @@
 package controller;
 
 import helper.AppointmentsQuery;
-import helper.CustomersQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,14 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Alerts;
 import model.Appointments;
-import model.Customers;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -91,7 +86,6 @@ public class AppointmentMenuController implements Initializable {
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         userID.setCellValueFactory(new PropertyValueFactory<>("appUserID"));
         contactID.setCellValueFactory(new PropertyValueFactory<>("contactID"));
-
     }
 
     public void onAllAppointmentsTable(SortEvent<TableView> tableViewSortEvent) {
@@ -109,7 +103,6 @@ public class AppointmentMenuController implements Initializable {
         stage.setTitle("Add New Appointment");
         stage.setScene(scene);
         stage.show();
-
     }
 
     /** This method views an appointment on the view/modify screen.
@@ -118,7 +111,6 @@ public class AppointmentMenuController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onModifyAppointment(ActionEvent actionEvent) throws IOException{
-
         Appointments modifiedAppointment = (Appointments) allAppointmentsTable.getSelectionModel().getSelectedItem();
         if(modifiedAppointment == null){
             Alerts.noneSelected.showAndWait();
@@ -140,7 +132,6 @@ public class AppointmentMenuController implements Initializable {
         startHHmm = dtf.format(modifiedAppointment.getStart().toLocalDateTime());
         endHHmm = dtf.format(modifiedAppointment.getEnd().toLocalDateTime());
 
-
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyViewAppointment.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
@@ -149,6 +140,12 @@ public class AppointmentMenuController implements Initializable {
         stage.show();
     }
 
+    /** This method controls when happens when the delete button is clicked, including all delete-related validations.
+     *
+     * @param actionEvent not necessary to specify
+     * @throws IOException input/output errors
+     * @throws SQLException if query not found
+     */
     public void onDeleteAppointment(ActionEvent actionEvent) throws IOException, SQLException {
         Appointments deletedAppointment = (Appointments) allAppointmentsTable.getSelectionModel().getSelectedItem();
         if(deletedAppointment == null){
@@ -190,14 +187,11 @@ public class AppointmentMenuController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAllAppointmentViewWeekRadio(ActionEvent actionEvent) {
-
         try {
             selectedAppointments = AppointmentsQuery.getWeekAppointments();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
         allAppointmentsTable.setItems(selectedAppointments);
     }
 
@@ -206,15 +200,11 @@ public class AppointmentMenuController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAllAppointmentViewMonthRadio(ActionEvent actionEvent) {
-
         try {
             selectedAppointments = AppointmentsQuery.getMonthAppointments();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
         allAppointmentsTable.setItems(selectedAppointments);
     }
 

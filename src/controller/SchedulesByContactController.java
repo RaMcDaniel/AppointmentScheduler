@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
 import model.Countries;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -44,9 +43,13 @@ public class SchedulesByContactController implements Initializable {
     public static ObservableList<Appointments> appointmentsBySelectedContact = FXCollections.observableArrayList();
     public static int selectedContactID;
 
+    /** This method contains everything set when the window is initialized.
+     *
+     * @param url not necessary to specify
+     * @param resourceBundle not necessary to specify
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         ObservableList<Contacts> allContactIDs = FXCollections.observableArrayList();
         try {
             allContactIDs = ContactsQuery.getAllContactIDs();
@@ -55,7 +58,6 @@ public class SchedulesByContactController implements Initializable {
         }
         ObservableList<String> allContactsReadable = Contacts.getReadable(allContactIDs);
         chooseUser.setItems(allContactsReadable);
-
     }
 
     /** This method returns to the main menu when button is clicked.
@@ -75,13 +77,20 @@ public class SchedulesByContactController implements Initializable {
     public void onContactsAppointmentsTable(SortEvent<TableView> tableViewSortEvent) {
     }
 
+    /** This method controls the user combo box.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onChooseUser(ActionEvent actionEvent) {
         String selectedContact = chooseUser.getSelectionModel().getSelectedItem().toString();
         selectedContactID = Countries.getCountryInt(selectedContact);
     }
 
+    /** This method populates the table with appointments matching the selected criteria.
+     *
+     * @param actionEvent not necessary to specify
+     */
     public void onRunUserReport(ActionEvent actionEvent) {
-
         try {
             appointmentsBySelectedContact = AppointmentsQuery.getAppointmentsBySelectedContact(selectedContactID);
         } catch (SQLException e) {
@@ -99,6 +108,5 @@ public class SchedulesByContactController implements Initializable {
         contactCustomerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         contactUserCol.setCellValueFactory(new PropertyValueFactory<>("appUserID"));
         contactContactCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
-
     }
 }

@@ -133,9 +133,17 @@ public class AddCustomerController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onAddSave(ActionEvent actionEvent) throws IOException, SQLException {
+        customerName = addCustomerName.getText();
+        address = addAddress.getText();
+        postalCode = addPostalCode.getText();
+        phone = addPhone.getText();
 
         if(!(customerName!=null && address!=null && postalCode!=null && phone!=null && divisionID!=0 && countryID!=0)) {
-            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            Alerts.inputError("form", "all fields must be completed.").showAndWait();
+            return;
+        }
+        if(!(customerName!="" && address!="" && postalCode!="" && phone!="")){
+            Alerts.inputError("form", "all fields must be completed.").showAndWait();
             return;
         }
         insertCustomer(customerName, address, postalCode, phone, divisionID);

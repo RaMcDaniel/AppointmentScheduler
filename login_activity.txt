@@ -119,3 +119,10 @@ Username: test; failed login, wrong password provided at 18:23:10.031221500
 Username: test; successfully logged in at 18:23:15.095992300
 Login attempts on 2022-02-19:
 Username: test; successfully logged in at 18:24:11.305108500
+Login attempts on 2022-02-19:
+Username: admin; successfully logged in at 18:32:08.364319200
+Login attempts on 2022-02-19:
+Username: admin; failed login, wrong password provided at 18:38:24.239197300
+Username: admin; successfully logged in at 18:38:29.149628200
+Login attempts on 2022-02-19:
+Username: test; successfully logged in at 18:45:23.592726600

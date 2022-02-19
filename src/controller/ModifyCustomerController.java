@@ -202,11 +202,19 @@ public class ModifyCustomerController implements Initializable {
      * @throws IOException if screen isn't present.
      */
     public void onModSave(ActionEvent actionEvent) throws IOException, SQLException {
+        customerNameMod = modCustomerName.getText();
+        addressMod = modAddress.getText();
+        postalCodeMod = modPostalCode.getText();
+        phoneMod = modPhone.getText();
 
-        System.out.println(customerNameMod + addressMod + postalCodeMod + phoneMod + divisionIDMod + countryIDMod);
+        //System.out.println(customerNameMod + addressMod + postalCodeMod + phoneMod + divisionIDMod + countryIDMod);
 
         if(!(customerNameMod!=null && addressMod!=null && postalCodeMod!=null && phoneMod!=null && divisionIDMod!=0 && countryIDMod!=0)) {
-            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            Alerts.inputError("form", "all fields must be completed.").showAndWait();
+            return;
+        }
+        if(!(customerNameMod!="" && addressMod!="" && postalCodeMod!="" && phoneMod!="")) {
+            Alerts.inputError("form", "all fields must be completed.").showAndWait();
             return;
         }
         System.out.println(customerNameMod + addressMod + postalCodeMod + phoneMod + divisionIDMod + countryIDMod);

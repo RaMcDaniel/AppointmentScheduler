@@ -37,6 +37,9 @@ public class LoginController  implements Initializable{
     public Label usernameLabel;
     public Label passwordLabel;
     public Label timeZoneLabel;
+    public static boolean isValid;
+
+
     FileWriter filewriter;
     {
         try {
@@ -65,6 +68,7 @@ public class LoginController  implements Initializable{
         usernameLabel.setText(rb.getString("username"));
         passwordLabel.setText(rb.getString("password"));
         timeZoneLabel.setText(rb.getString("timezone") + ": " + ZoneId.systemDefault());
+
     }
 
     /** This is called when a user types in the username field.
@@ -74,11 +78,6 @@ public class LoginController  implements Initializable{
      */
     public void onLoginUsername(ActionEvent actionEvent) throws SQLException {
         userName = loginUsername.getText();
-        boolean isValid = Users.validUserName(userName);
-        if (!isValid){
-            log.println("Invalid" + "username" + ": " + userName + "; entered at: "  + LocalTime.now() + " Failed login.");
-            loginUsername.setText("");
-        }
     }
 
     /** This method controls the passwords field, and requires an entry in username to allow typing here.
@@ -86,14 +85,7 @@ public class LoginController  implements Initializable{
      * @param actionEvent on typing in password field.
      */
     public void onLoginPassword(ActionEvent actionEvent) {
-        if (userName == null) {
-            Alerts.inputError(rb.getString("username"), rb.getString("validusername")).showAndWait();
-            log.println("Invalid username. No username entered at: "  + LocalTime.now() + " Failed login.");
-            loginPassword.setText("");
-        }
-        else {
-            userPassword = loginPassword.getText();
-        }
+        userPassword = loginPassword.getText();
     }
 
     /** This method handles everything happens when the login button is clicked, including all username and password validation.
@@ -103,10 +95,19 @@ public class LoginController  implements Initializable{
      * @throws SQLException if query isn't found
      */
     public void onLogin(ActionEvent actionEvent) throws IOException, SQLException {
+        userName = loginUsername.getText();
+        userPassword = loginPassword.getText();
 
         if(userName ==null){
             Alerts.inputError(rb.getString("username"), rb.getString("validusername")).showAndWait();
             log.println("Invalid username. No username entered at: "  + LocalTime.now() + " Failed login.");
+            return;
+        }
+
+        isValid = Users.validUserName(userName);
+        if (!isValid){
+            log.println("Invalid" + "username" + ": " + userName + "; entered at: "  + LocalTime.now() + " Failed login.");
+            loginUsername.setText("");
             return;
         }
 

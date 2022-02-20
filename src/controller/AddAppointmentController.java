@@ -170,9 +170,40 @@ public class AddAppointmentController implements Initializable {
      * @throws SQLException if query not found
      */
     public void onSaveNewAppointment(ActionEvent actionEvent) throws IOException, SQLException {
+        appointmentTitleAdd = appointmentTitle.getText();
+        descriptionAdd = appointmentDescription.getText();
+        locationAdd = appointmentLocation.getText();
+        appTypeAdd = appointmentType.getText();
+        dateAdd = appointmentDate.getValue();
+        if(!(chooseContact.getSelectionModel().getSelectedItem()== null)){
+            String contact = chooseContact.getSelectionModel().getSelectedItem().toString();
+            int contactSelection = Countries.getCountryInt(contact);
+            contactIDAdd = contactSelection;
+        }
+        if(!(chooseCustomerID.getSelectionModel().getSelectedItem()== null)){
+            String customer = chooseCustomerID.getSelectionModel().getSelectedItem().toString();
+            int customerSelection = Countries.getCountryInt(customer);
+            customerIDAdd = customerSelection;
+        }
+
+        startHHmmAdd = addStartTime.getText();
+        endHHmmAdd = addEndTime.getText();
 
         if(!(appointmentTitleAdd!=null && descriptionAdd!=null && locationAdd!=null && appTypeAdd!=null && customerIDAdd!=0 && contactIDAdd!=0 && dateAdd!=null)) {
-            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            Alerts.inputError("form", "all fields must be completed.").showAndWait();
+            return;
+        }
+        if(!(appointmentTitleAdd!="" && descriptionAdd!="" && locationAdd!="" && appTypeAdd!="")) {
+            Alerts.inputError("form", "all fields must be completed.").showAndWait();
+            return;
+        }
+
+        if (!(startHHmmAdd.matches("[0-9]{4}$"))){
+            Alerts.inputError("start time", "Please use military time, enter 4 numbers only, in the form HHMM.").showAndWait();
+            return;
+        }
+        if (!(endHHmmAdd.matches("[0-9]{4}$"))){
+            Alerts.inputError("end time", "Please use military time, enter 4 numbers only, in the form HHMM.").showAndWait();
             return;
         }
 

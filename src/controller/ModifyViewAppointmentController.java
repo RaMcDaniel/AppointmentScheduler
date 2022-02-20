@@ -111,8 +111,39 @@ public class ModifyViewAppointmentController implements Initializable {
      * @throws SQLException if query isn't found
      */
     public void onModAppointmentSave(ActionEvent actionEvent) throws IOException, SQLException {
+        appointmentTitleMod = appointmentTitleModField.getText();
+        descriptionMod = appointmentDescriptionMod.getText();
+        locationMod = appointmentLocationMod.getText();
+        appTypeMod = appointmentTypeMod.getTypeSelector();
+        startHHmm = modStartTime.getText();
+        endHHmm = modEndTime.getText();
+
+        if(!(chooseCustomerIDMod.getSelectionModel().getSelectedItem()== null)){
+            String customer = chooseCustomerIDMod.getSelectionModel().getSelectedItem().toString();
+            int customerSelection = Countries.getCountryInt(customer);
+            customerIDMod = customerSelection;
+        }
+        if(!(chooseContactMod.getSelectionModel().getSelectedItem()== null)){
+            String contact = chooseContactMod.getSelectionModel().getSelectedItem().toString();
+            int contactSelection = Countries.getCountryInt(contact);
+            contactIDMod = contactSelection;
+        }
+
         if(!(appointmentTitleMod!=null && descriptionMod!=null && locationMod!=null && appTypeMod!=null && customerIDMod!=0 && contactIDMod!=0 && dateMod!=null)) {
-            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            Alerts.inputError("form", "all fields must be completed.").showAndWait();
+            return;
+        }
+        if(!(appointmentTitleMod!="" && descriptionMod!="" && locationMod!="" && appTypeMod!="")) {
+            Alerts.inputError("form", "all fields must be completed.").showAndWait();
+            return;
+        }
+
+        if (!(startHHmm.matches("[0-9]{4}$"))){
+            Alerts.inputError("start time", "Please use military time, enter 4 numbers only, in the form HHMM.").showAndWait();
+            return;
+        }
+        if (!(endHHmm.matches("[0-9]{4}$"))){
+            Alerts.inputError("end time", "Please use military time, enter 4 numbers only, in the form HHMM.").showAndWait();
             return;
         }
 
@@ -214,6 +245,10 @@ public class ModifyViewAppointmentController implements Initializable {
      */
     public void onModStartTIme(ActionEvent actionEvent) {
         startHHmm = modStartTime.getText();
+        if (!(startHHmm.matches("[0-9]{4}$"))){
+            Alerts.inputError("start time", "Please use military time, enter 4 numbers only, in the form HHMM.").showAndWait();
+            return;
+        }
     }
 
     /** This method handles when the end time field is typed into.
@@ -222,5 +257,9 @@ public class ModifyViewAppointmentController implements Initializable {
      */
     public void onModEndTime(ActionEvent actionEvent) {
         endHHmm = modEndTime.getText();
+        if (!(endHHmm.matches("[0-9]{4}$"))){
+            Alerts.inputError("end time", "Please use military time, enter 4 numbers only, in the form HHMM.").showAndWait();
+            return;
+        }
     }
 }

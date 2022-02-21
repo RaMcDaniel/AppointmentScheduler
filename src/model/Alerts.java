@@ -11,7 +11,8 @@ import static controller.LoginController.rb;
  */
 public class Alerts {
 
-    public static Alert associatedAppointments = new Alert(Alert.AlertType.ERROR, rb.getString("asscappts"));
+    //public static Alert associatedAppointments = new Alert(Alert.AlertType.CONFIRMATION, "This will remove all " +
+     //       "appointments belonging to this customer as well. Would you like to continue?");
     public static Alert userName = new Alert(Alert.AlertType.ERROR, rb.getString("usernameerror"));
     public static Alert noneSelected = new Alert(Alert.AlertType.ERROR, "Nothing Selected. Please make a selection.");
     public static Alert userPassword = new Alert(Alert.AlertType.ERROR, rb.getString("badpassword"));
@@ -22,6 +23,11 @@ public class Alerts {
     public static Alert noUpcoming = new Alert(Alert.AlertType.INFORMATION, "You have no upcoming appointments.");
     public static Alert overlap = new Alert(Alert.AlertType.WARNING, "This customer already has an appointment at this time. Please try a different time.");
 
+    public static Alert associatedAppointments (int deleteID){
+        String fullWarning = String.format("All appointments from customer ID: %s, will also be deleted. Would you like to continue?", deleteID);
+        Alert overlapping = new Alert(Alert.AlertType.CONFIRMATION, fullWarning);
+        return overlapping;
+    }
 
     /** This method gives a detailed information box about overlapping appointments.
      *

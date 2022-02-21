@@ -170,4 +170,11 @@ public class CustomersQuery {
         }
         return c;
     }
+
+    public static void deleteCustomerAppointments(int deleteID) throws SQLException {
+        String sql = "DELETE FROM appointments WHERE Customer_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1,deleteID);
+        ps.executeUpdate();
+    }
 }

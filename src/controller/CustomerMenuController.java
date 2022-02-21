@@ -123,21 +123,44 @@ public class CustomerMenuController implements Initializable {
         }
         int deleteID = deletedCustomer.getCustomerID();
 
-        if(CustomersQuery.determineAssociatedAppointments(deleteID)){
-            Alerts.associatedAppointments.showAndWait();
-            return;
+        if(CustomersQuery.determineAssociatedAppointments(deleteID) == false){
+            Alerts.delete.showAndWait().ifPresent((response2 -> {
+                if (response2 == ButtonType.OK) {
+                    try {
+                        CustomersQuery.deleteCustomer(deleteID);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    Alerts.deleteCustomerConfirmation(deletedCustomer.getCustomerID(), deletedCustomer.getCustomerName()).showAndWait();
+                }
+            }));
+
         }
 
-        Alerts.delete.showAndWait().ifPresent((response -> {
-            if (response == ButtonType.OK) {
-                try {
-                    CustomersQuery.deleteCustomer(deleteID);
-                } catch (SQLException e) {
-                    e.printStackTrace();
+        if(CustomersQuery.determineAssociatedAppointments(deleteID)){
+            Alerts.associatedAppointments(deleteID).showAndWait().ifPresent((response -> {
+                if (response == ButtonType.OK) {
+                    try {
+                        CustomersQuery.deleteCustomerAppointments(deleteID);
+                        Alerts.delete.showAndWait().ifPresent((response2 -> {
+                            if (response2 == ButtonType.OK) {
+                                try {
+                                    CustomersQuery.deleteCustomer(deleteID);
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+                                Alerts.deleteCustomerConfirmation(deletedCustomer.getCustomerID(), deletedCustomer.getCustomerName()).showAndWait();
+                                return;
+                            }
+                        }));
+                    }
+                    catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
-                Alerts.deleteCustomerConfirmation(deletedCustomer.getCustomerID(), deletedCustomer.getCustomerName()).showAndWait();
-            }
-        }));
+            }));
+        }
+
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

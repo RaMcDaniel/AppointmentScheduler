@@ -114,7 +114,7 @@ public class ModifyViewAppointmentController implements Initializable {
         appointmentTitleMod = appointmentTitleModField.getText();
         descriptionMod = appointmentDescriptionMod.getText();
         locationMod = appointmentLocationMod.getText();
-        appTypeMod = appointmentTypeMod.getTypeSelector();
+        appTypeMod = appointmentTypeMod.getText();
         startHHmm = modStartTime.getText();
         endHHmm = modEndTime.getText();
 
@@ -224,7 +224,7 @@ public class ModifyViewAppointmentController implements Initializable {
      * @param actionEvent not necessary to specify
      */
     public void onAppointmentTypeMod(ActionEvent actionEvent) {
-        appTypeMod = appointmentTypeMod.getTypeSelector();
+        appTypeMod = appointmentTypeMod.getText();
     }
 
     /** This method handles when the date chooser box is selected from.

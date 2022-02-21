@@ -167,6 +167,12 @@ public class ModifyViewAppointmentController implements Initializable {
             modEndTime.setText("");
             return;
         }
+        if(Appointments.checkOverlaps(startTimeStamp, endTimeStamp, dateMod, customerIDMod) == true){
+            Alerts.overlap.showAndWait();
+            modStartTime.setText("");
+            modEndTime.setText("");
+            return;
+        }
 
         AppointmentsQuery.updateAppointment(appointmentTitleMod, descriptionMod, locationMod, appTypeMod,
                 startTimeStamp, endTimeStamp, customerIDMod, Users.passableUserID, contactIDMod, appointmentIDMod);

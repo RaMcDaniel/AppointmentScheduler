@@ -168,6 +168,24 @@ public class AppointmentsQuery {
         }
         return potentialOverlaps;
     }
+    public static ObservableList<Appointments> potentialOverlapsMod(int customerID, LocalDate date, int apptID) throws SQLException {
+        String sql = "SELECT Appointment_ID, Start, End FROM appointments where Customer_ID = ? and DATE(Start) = ? and Appointment_ID !=?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, customerID);
+        ps.setDate(2, Date.valueOf(date));
+        ps.setInt(3, apptID);
+        ResultSet rs = ps.executeQuery();
+        ObservableList<Appointments> potentialOverlaps = FXCollections.observableArrayList();
+        while(rs.next()){
+            int appointmentID = rs.getInt("Appointment_ID");
+            Timestamp start = rs.getTimestamp("Start");
+            Timestamp end = rs.getTimestamp("End");
+
+            Appointments c = new Appointments(appointmentID, start, end);
+            potentialOverlaps.add(c);
+        }
+        return potentialOverlaps;
+    }
 
     /** This method gets all appointment types present in the system.
      *
